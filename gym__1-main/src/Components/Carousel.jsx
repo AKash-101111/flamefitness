@@ -88,7 +88,7 @@ export default function CustomCarousel() {
                         <div
                             key={i}
                             onClick={() => setIndex(i)}
-                            className={`h-1.5 rounded-full cursor-pointer transition-all ${index === i ? "w-8 md:w-10 bg-[#FB3640]" : "w-4 md:w-6 bg-white/50"
+                            className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${index === i ? "w-10 bg-[#FFD700] shadow-[0_0_15px_rgba(255,215,0,0.6)]" : "w-6 bg-white/30 hover:bg-white/50"
                                 }`}
                         ></div>
                     ))}

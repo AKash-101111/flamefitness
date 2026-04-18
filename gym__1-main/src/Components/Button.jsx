@@ -31,8 +31,8 @@ const StyledWrapper = styled.div`
     background-color: inherit;
     border-radius: 12px;
     font-weight: 600;
-    color: #D82639;
-    box-shadow: 0 0 0 1px #D82639;
+    color: #FFD700;
+    box-shadow: 0 0 0 1px #FFD700;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -41,7 +41,7 @@ const StyledWrapper = styled.div`
   .animated-button svg {
     position: absolute;
     width: 24px;
-    fill: #D82639;
+    fill: #FFD700;
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
@@ -56,7 +56,7 @@ const StyledWrapper = styled.div`
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: #D82639;
+    background-color: #FFD700;
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -71,15 +71,15 @@ const StyledWrapper = styled.div`
 
   .animated-button:hover {
     box-shadow: 0 0 0 12px transparent;
-    color: white;
+    color: #050505;
     border-radius: 12px;
   }
 
   .animated-button:hover .arr-1 { right: -25%; }
   .animated-button:hover .arr-2 { left: 16px; }
   .animated-button:hover .text { transform: translateX(12px); }
-  .animated-button:hover svg { fill: white; }
-  .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px #D82639; }
+  .animated-button:hover svg { fill: #050505; }
+  .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px #FFD700; }
   .animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
 `;
 
