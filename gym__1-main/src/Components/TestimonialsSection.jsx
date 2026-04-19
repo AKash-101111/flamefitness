@@ -54,7 +54,7 @@ const TestimonialsSection = () => {
                     {[...testimonials, ...testimonials].map((item, index) => (
                         <div 
                             key={index}
-                            className="flex-shrink-0 w-[350px] md:w-[450px] glass-card p-8 gold-border-hover transition-all"
+                            className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[450px] glass-card p-8 gold-border-hover transition-all"
                         >
                             <div className="flex items-center gap-4 mb-6">
                                 <img src={item.image} alt={item.name} className="w-14 h-14 rounded-full border border-[#FFD700]/30" />

@@ -20,7 +20,7 @@ const PricingSection = () => {
     }, [billingCycle]);
 
     return (
-        <section className="relative z-10 overflow-hidden pb-16 pt-20 lg:pb-[120px] lg:pt-[140px] bg-transparent">
+        <section id="membership-plans" className="relative z-10 overflow-hidden pb-16 pt-20 lg:pb-[120px] lg:pt-[140px] bg-transparent">
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FFD700]/5 rounded-full blur-[100px] -z-10" />
 
@@ -146,7 +146,7 @@ const PricingCard = ({
     onJoinClick
 }) => {
     return (
-        <div className={`w-full sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
+        <div className={`w-full max-w-[350px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
             <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col
                 ${active ? 'border-[#FFD700] shadow-[0_0_80px_rgba(255,215,0,0.25)] gold-shimmer-border' : 'border-white/10 hover:border-[#FFD700]/40'}`}>
                 

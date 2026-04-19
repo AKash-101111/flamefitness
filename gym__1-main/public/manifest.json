@@ -1,25 +1,43 @@
 {
   "name": "Flame Fitness Studio",
-  "short_name": "Flame",
-  "description": "Ultra Premium Luxury Fitness Experience",
+  "short_name": "Flame Gym",
+  "description": "Ultra Premium Luxury Fitness Experience in Chennai",
   "start_url": "/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "theme_color": "#FFD700",
   "background_color": "#050505",
   "scope": "/",
   "id": "com.flamegym.app",
+  "lang": "en",
   "categories": ["fitness", "lifestyle", "sports"],
   "icons": [
     {
       "src": "/images/logoflame.jpeg",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any"
     },
     {
       "src": "/images/logoflame.jpeg",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logoflame.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Membership Plans",
+      "short_name": "Plans",
+      "description": "View gym membership plans",
+      "url": "/#membership-plans",
+      "icons": [{ "src": "/images/logoflame.jpeg", "sizes": "192x192" }]
     }
   ]
 }

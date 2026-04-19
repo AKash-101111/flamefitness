@@ -121,7 +121,7 @@ const ServicesSection = () => {
             </h1>
             <div className='w-full h-[50vh] md:h-[65vh] relative'>
                 {!showGallery ? (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/20 rounded-[80px] border border-white/5 backdrop-blur-sm group">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/20 rounded-[40px] md:rounded-[80px] border border-white/5 backdrop-blur-sm group">
                         <p className="text-white/60 poiret text-xl mb-6">Interactive 3D Equipment Gallery</p>
                         <button 
                             onClick={() => setShowGallery(true)}
@@ -140,7 +140,7 @@ const ServicesSection = () => {
                 <h1 className='text-4xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter'>
                     Facilities
                 </h1>
-                <div className="w-[90%] md:w-[32vw] h-[35vh] py-6 justify-center items-center border-[#FFD700]/30 border-t-2 border-b-2">
+                <div className="w-[90%] md:w-[32vw] h-[35vh] py-6 flex flex-col items-center justify-center md:block border-[#FFD700]/30 border-t-2 border-b-2">
                     <MorphingText texts={texts} />
                 </div>
             </div>
@@ -162,7 +162,7 @@ const ServicesSection = () => {
                             whileHover={{ y: -10, scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                             onClick={() => handleTrainerClick(trainer)}
-                            className="group relative rounded-[40px] overflow-hidden glass-card cursor-pointer border border-white/10 hover:border-[#FFD700]/50 transition-all duration-700 shadow-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.25)]"
+                            className="group relative rounded-[24px] md:rounded-[40px] overflow-hidden glass-card cursor-pointer border border-white/10 hover:border-[#FFD700]/50 transition-all duration-700 shadow-xl hover:shadow-[0_0_40px_rgba(255,215,0,0.25)]"
                         >
                             <div className="aspect-[4/5] overflow-hidden">
                                 <img

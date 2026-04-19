@@ -34,7 +34,7 @@ export default function CustomCarousel() {
     const nextSlide = () => setIndex((index + 1) % slides.length);
 
     return (
-        <div className="flex w-full md:w-[95%] h-[50vh] md:h-[90vh] justify-center bg-[#1a1a1ab0] md:rounded-4xl mb-6 overflow-hidden md:overflow-visible">
+        <div className="flex w-full md:w-[95%] h-[50vh] md:h-[90vh] justify-center bg-[#1a1a1ab0] md:rounded-4xl mb-6 overflow-hidden">
             <div className="relative w-full h-full overflow-hidden md:rounded-3xl shadow-lg select-none">
 
                 {/* VIDEO SLIDES */}

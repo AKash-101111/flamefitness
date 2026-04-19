@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className='relative flex flex-col items-center w-full overflow-x-hidden min-h-screen bg-transparent'>
+      <div className='relative flex flex-col items-center w-full overflow-x-hidden min-h-screen bg-transparent' style={{ maxWidth: '100vw' }}>
         {/* Global Animated Background - Optimized for performance */}
         <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none will-change-transform">
           <DarkVeil />

@@ -117,13 +117,13 @@ const Footer = () => {
                 </div>
 
                 {/* Footer Bottom Line */}
-                <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
                     <p className="text-xs md:text-sm tracking-widest montserrat text-white/30">
                         © {currentYear} <span className="text-[#FFD700] font-black">Flame Fitness Studio</span>. All Rights Reserved. Made with Passion 🇮🇳
                     </p>
 
                     {/* Social Circle Links */}
-                    <div className="flex gap-5">
+                    <div className="flex flex-wrap justify-center gap-4">
                         {socialLinks.map((social, idx) => (
                             <motion.a
                                 key={idx}

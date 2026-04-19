@@ -81,7 +81,7 @@ const HeroSection = () => {
           whileHover={{ scale: 1.1, boxShadow: '0 0 30px rgba(255, 215, 0, 0.6)' }}
           whileTap={{ scale: 0.95 }}
           onClick={() => {
-            const el = document.getElementById('programs-section');
+            const el = document.getElementById('membership-plans');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
           className="mt-10 px-12 py-5 bg-[#FFD700] text-[#050505] font-black text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,215,0,0.3)]"
