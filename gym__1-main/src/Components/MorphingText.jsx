@@ -139,7 +139,7 @@ export const MorphingText = ({ texts, className }) => {
     return (
         <div
             className={cn(
-                "relative mx-auto h-16 w-full max-w-screen-md league-spartan text-black text-center font-bold text-[40px] leading-none [filter:url(#threshold)_blur(0.6px)] md:h-24 lg:text-[5rem]",
+                "relative mx-auto h-16 w-full max-w-screen-md league-spartan text-white text-center font-bold text-[40px] leading-none [filter:url(#threshold)] md:h-24 lg:text-[5rem]",
                 className
             )}
 
