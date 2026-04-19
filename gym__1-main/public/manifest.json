@@ -5,7 +5,7 @@
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#050505",
+  "theme_color": "#FFD700",
   "background_color": "#050505",
   "scope": "/",
   "id": "com.flamegym.app",
