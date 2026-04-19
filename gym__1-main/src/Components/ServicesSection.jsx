@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import CircularGallery from './CircularGallery';
+import React, { useState, Suspense, lazy } from 'react';
 import { MorphingText } from './MorphingText';
 import ChromaGrid from './ChromaGrid';
 import { AnimatePresence, motion } from 'framer-motion';
 
+// Lazy load the heavy 3D gallery
+const CircularGallery = lazy(() => import('./CircularGallery'));
+
 const ServicesSection = () => {
     const [selectedTrainer, setSelectedTrainer] = useState(null);
+    const [showGallery, setShowGallery] = useState(false); // Only load on demand
 
     const texts = [
         "Air Conditioning",
@@ -116,8 +119,22 @@ const ServicesSection = () => {
             <h1 className='text-4xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-8 md:mb-0'>
                 Equipment
             </h1>
-            <div className='w-full h-[50vh] md:h-[65vh]'>
-                <CircularGallery />
+            <div className='w-full h-[50vh] md:h-[65vh] relative'>
+                {!showGallery ? (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/20 rounded-[80px] border border-white/5 backdrop-blur-sm group">
+                        <p className="text-white/60 poiret text-xl mb-6">Interactive 3D Equipment Gallery</p>
+                        <button 
+                            onClick={() => setShowGallery(true)}
+                            className="px-10 py-4 bg-[#FFD700] text-black font-bold rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_40px_rgba(255,215,0,0.3)] league-spartan uppercase tracking-wider"
+                        >
+                            Explore Gear
+                        </button>
+                    </div>
+                ) : (
+                    <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/40 poiret">Loading 3D Scene...</div>}>
+                        <CircularGallery />
+                    </Suspense>
+                )}
             </div>
             <div className='w-full min-h-[50vh] md:h-[65vh] flex flex-col gap-8 items-center mt-20 mb-10'>
                 <h1 className='text-4xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter'>

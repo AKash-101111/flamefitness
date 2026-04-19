@@ -92,7 +92,7 @@ scanlineIntensity = 0,
 speed = 1.7,
 scanlineFrequency = 0,
 warpAmount = 0.6,
-resolutionScale = 1
+resolutionScale = 0.4 // Further optimized resolution scale
 }) {
 const ref = useRef(null);
 useEffect(() => {
@@ -100,7 +100,7 @@ const canvas = ref.current;
 const parent = canvas.parentElement;
 
 const renderer = new Renderer({
-dpr: Math.min(window.devicePixelRatio, 2),
+dpr: 1, // Minimum dpr for background shader performance
 canvas
 });
 

@@ -29,13 +29,26 @@ const Navbar = () => {
                 rounded-2xl 
                 sticky top-3 z-50 
                 bg-black/40
-                backdrop-blur-xl 
+                backdrop-blur-md 
                 border border-white/10
                 shadow-[0_4px_30px_rgba(0,0,0,0.5)]
             "
             >
-                <Link to="/" className="flex items-center gap-2">
+                <Link to="/" className="flex items-center gap-3">
                     <img src="/images/logoflame.jpeg" alt="Flame Fitness Logo" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
+                    <span 
+                        className="hidden lg:block text-white text-sm md:text-base tracking-widest leading-none font-bold" 
+                        style={{ 
+                            fontFamily: "'Michroma', sans-serif",
+                            textShadow: "0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.1)",
+                            background: "linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))"
+                        }}
+                    >
+                        FLAME FITNESS STUDIO
+                    </span>
                 </Link>
 
                 {/* DESKTOP MENU */}

@@ -310,7 +310,7 @@ class App {
         this.renderer = new Renderer({
             alpha: true,
             antialias: true,
-            dpr: Math.min(window.devicePixelRatio || 1, 2)
+            dpr: 1 // Minimum dpr for gallery performance
         });
         this.gl = this.renderer.gl;
         this.gl.clearColor(0, 0, 0, 0);
@@ -326,8 +326,8 @@ class App {
     }
     createGeometry() {
         this.planeGeometry = new Plane(this.gl, {
-            heightSegments: 50,
-            widthSegments: 100
+            heightSegments: 20, // Reduced from 50
+            widthSegments: 40   // Reduced from 100
         });
     }
     createMedias(items, bend = 1, textColor, borderRadius, font) {

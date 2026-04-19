@@ -84,8 +84,7 @@ const Footer = () => {
                         <div className="p-6 glass-card border border-[#FFD700]/10 bg-[#FFD700]/5 rounded-3xl group hover:border-[#FFD700]/40 transition-all duration-500">
                             <p className="text-xs font-black uppercase tracking-[0.3em] league-spartan mb-3 text-[#FFD700]">Location</p>
                             <p className="text-sm md:text-base montserrat leading-relaxed text-white/70 group-hover:text-white/90 transition-colors">
-                                No.1/1, 70 feet scheme emelem complex 1st floor<br />
-                                Mahalingapuram, Nungambakkam,<br />
+                                No 27/3, 14, N Usman Rd, T Nagar, Chennai, Tamil Nadu, Chennai<br />
                                 Chennai, India 600034
                             </p>
                             <div className="mt-4 flex items-center gap-2 text-[#FFD700] text-sm font-bold league-spartan uppercase tracking-tighter cursor-pointer hover:gap-3 transition-all">

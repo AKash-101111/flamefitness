@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import CircularGallery from '../Components/CircularGallery'
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const CircularGallery = lazy(() => import('../Components/CircularGallery'));
+
 const galleryImages = [
-    "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&q=80&w=1000"
+    "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=60&w=800",
+    "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&q=60&w=800"
 ];
 
 const Gallery = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [show3D, setShow3D] = useState(false);
 
     const openLightbox = (img, index) => {
         setSelectedImage(img);
@@ -57,8 +59,22 @@ const Gallery = () => {
                 A breeze and rocking environment to sweat out your stress.
             </p>
 
-            <div className="w-full h-[70vh] rounded-[80px] overflow-hidden border border-white/10 shadow-2xl backdrop-blur-md mb-24">
-                <CircularGallery />
+            <div className="w-full h-[70vh] rounded-[80px] overflow-hidden border border-white/10 shadow-2xl backdrop-blur-md mb-24 relative">
+                {!show3D ? (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm group">
+                        <p className="text-white/60 poiret text-xl mb-6 tracking-widest">Interactive 3D Experience</p>
+                        <button 
+                            onClick={() => setShow3D(true)}
+                            className="px-12 py-4 bg-[#FFD700] text-black font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_40px_rgba(255,215,0,0.3)] league-spartan uppercase tracking-widest"
+                        >
+                            Enter Studio
+                        </button>
+                    </div>
+                ) : (
+                    <Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/40 poiret">Calibrating 3D Space...</div>}>
+                        <CircularGallery />
+                    </Suspense>
+                )}
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
