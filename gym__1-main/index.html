@@ -3,10 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flame Fitness Studio</title>
+    <meta name="description" content="Flame Fitness Studio — Ultra Premium Luxury Gym in Chennai. Elite training, world-class equipment, expert trainers. Transform your body and mind." />
+    <meta name="theme-color" content="#FFD700" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/images/logoflame.jpeg" type="image/jpeg" />
+    <link rel="apple-touch-icon" href="/images/logoflame.jpeg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Poiret+One&display=swap" rel="stylesheet" />
+
+    <title>Flame Fitness Studio — Train Elite. Become Unstoppable.</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

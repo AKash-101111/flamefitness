@@ -3,6 +3,8 @@ import CustomCarousel from '../Components/Carousel'
 import HeroSection from '../Components/HeroSection';
 import ServicesSection from '../Components/ServicesSection';
 import PricingSection from '../Components/PricingSection';
+import TestimonialsSection from '../Components/TestimonialsSection';
+import FeedbackSection from '../Components/FeedbackSection';
 
 const Home = () => {
     return (
@@ -11,6 +13,8 @@ const Home = () => {
             <CustomCarousel />
             <ServicesSection />
             <PricingSection />
+            <TestimonialsSection />
+            <FeedbackSection />
         </div>
     )
 }

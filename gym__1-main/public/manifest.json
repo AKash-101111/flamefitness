@@ -1,0 +1,25 @@
+{
+  "name": "Flame Fitness Studio",
+  "short_name": "Flame",
+  "description": "Ultra Premium Luxury Fitness Experience",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FFD700",
+  "background_color": "#050505",
+  "scope": "/",
+  "id": "com.flamegym.app",
+  "categories": ["fitness", "lifestyle", "sports"],
+  "icons": [
+    {
+      "src": "/images/logoflame.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/images/logoflame.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

@@ -19,39 +19,40 @@ const PricingSection = () => {
         });
     }, [billingCycle]);
 
-
-
     return (
         <section className="relative z-10 overflow-hidden pb-16 pt-20 lg:pb-[120px] lg:pt-[140px] bg-transparent">
+            {/* Background Glow */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FFD700]/5 rounded-full blur-[100px] -z-10" />
+
             <div className="container mx-auto px-4">
                 {/* Heading */}
-                <div className="text-center mb-12">
-                    <span className="mb-2 block text-lg font-bold text-[#D82639] uppercase tracking-wider league-spartan">
+                <div className="text-center mb-16">
+                    <span className="mb-2 block text-lg font-bold text-[#FFD700] uppercase tracking-widest league-spartan">
                         Membership Plans
                     </span>
-                    <h2 className="mt-2 text-3xl md:text-5xl font-extrabold text-white leading-tight montserrat">
-                        Unleash Your Ultimate Power
+                    <h2 className="mt-2 text-4xl md:text-6xl font-extrabold text-white leading-tight league-spartan uppercase tracking-tighter">
+                        Unleash Your <span className="gradient-text">Ultimate Power</span>
                     </h2>
-                    <p className="mt-4 text-base md:text-lg text-white/70 max-w-2xl mx-auto poiret px-4">
+                    <p className="mt-4 text-lg md:text-xl text-white/50 max-w-2xl mx-auto poiret px-4 italic">
                         Choose the perfect plan to fuel your fitness journey and dominate your goals.
                     </p>
 
                     {/* Billing Toggle */}
-                    <div className="mt-8 flex justify-center">
+                    <div className="mt-10 flex justify-center">
                         <div
                             ref={toggleRef}
-                            className="relative bg-white/10 backdrop-blur-md rounded-full px-2 py-2 w-[280px] flex items-center cursor-pointer"
+                            className="relative bg-white/5 backdrop-blur-md rounded-full p-1.5 w-[300px] flex items-center cursor-pointer border border-[#FFD700]/10"
+                            onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
                         >
                             {/* Sliding background */}
                             <div
                                 ref={sliderRef}
-                                className="absolute top-1 left-1 w-1/2 h-[calc(100%-0.5rem)] bg-[#D82639] rounded-full z-0"
+                                className="absolute top-1.5 left-1.5 w-[calc(50%-0.375rem)] h-[calc(100%-0.75rem)] bg-[#FFD700] rounded-full z-0 shadow-[0_0_20px_rgba(255,215,0,0.4)]"
                             />
 
                             {/* Monthly Button */}
                             <button
-                                onClick={() => setBillingCycle('monthly')}
-                                className={`relative w-1/2 text-center py-2 font-semibold transition-all duration-300 z-10 ${billingCycle === 'monthly' ? 'text-white' : 'text-white/70'
+                                className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'monthly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
                                 Monthly
@@ -59,11 +60,10 @@ const PricingSection = () => {
 
                             {/* Yearly Button */}
                             <button
-                                onClick={() => setBillingCycle('yearly')}
-                                className={`relative w-1/2 text-center py-2 font-semibold transition-all duration-300 z-10 ${billingCycle === 'yearly' ? 'text-white' : 'text-white/70'
+                                className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'yearly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
-                                Yearly <span className="text-green-400 text-sm ml-1">Save 20%</span>
+                                Yearly <span className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full ${billingCycle === 'yearly' ? 'bg-black/10' : 'bg-[#FFD700]/20 text-[#FFD700]'}`}>-20%</span>
                             </button>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ const PricingSection = () => {
                 </div>
 
                 {/* Pricing Cards */}
-                <div className="flex flex-wrap justify-center gap-6">
+                <div className="flex flex-wrap justify-center gap-10">
                     <PricingCard
                         type="Basic"
                         price={billingCycle === 'monthly' ? "₹4,999" : "₹3,999"}
@@ -82,8 +82,6 @@ const PricingSection = () => {
                         buttonText="Get Started"
                         onJoinClick={() => setIsFormOpen(true)} // Open modal
                     >
-
-
                         <List>Access to gym floor</List>
                         <List>Basic equipment usage</List>
                         <List>Locker room access</List>
@@ -97,10 +95,9 @@ const PricingSection = () => {
                         subscription={billingCycle === 'monthly' ? "month" : "month"}
                         billingCycle={billingCycle}
                         description="For serious athletes seeking more features."
-                        buttonText="Join Now"
+                        buttonText="Join ELITE"
                         active
                         onJoinClick={() => setIsFormOpen(true)} // Open modal
-
                     >
                         <List>All Basic features</List>
                         <List>Group fitness classes</List>
@@ -119,7 +116,6 @@ const PricingSection = () => {
                         description="Ultimate experience with all premium amenities."
                         buttonText="Go Premium"
                         onJoinClick={() => setIsFormOpen(true)} // Open modal
-
                     >
                         <List>All Standard features</List>
                         <List>Unlimited personal training</List>
@@ -130,7 +126,6 @@ const PricingSection = () => {
                         <List>Dedicated locker</List>
                     </PricingCard>
                     <JoinForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
-
 
                 </div>
             </div>
@@ -144,43 +139,42 @@ const PricingCard = ({
     children,
     description,
     price,
-    originalPrice,
     type,
     subscription,
     buttonText,
     active,
-    billingCycle,
     onJoinClick
 }) => {
     return (
-        <div className="w-full sm:w-80 md:w-96 px-2">
-            <div className={`relative z-10 mb-10 overflow-hidden rounded-xl border border-white/20 bg-white/10 backdrop-blur-md px-6 py-8 sm:p-8 transition-transform duration-300 hover:scale-105 ${active ? 'border-[#D82639] shadow-2xl' : ''}`}>
+        <div className={`w-full sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
+            <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col
+                ${active ? 'border-[#FFD700] shadow-[0_0_80px_rgba(255,215,0,0.25)] gold-shimmer-border' : 'border-white/10 hover:border-[#FFD700]/40'}`}>
+                
                 {active && (
-                    <div className="absolute top-0 right-0 bg-[#D82639] text-white px-4 py-1 text-sm font-bold rounded-bl-lg league-spartan">
-                        MOST POPULAR
+                    <div className="absolute top-0 right-0 bg-[#FFD700] text-[#050505] px-6 py-1.5 text-xs font-black rounded-bl-2xl league-spartan uppercase tracking-tighter gold-pulse">
+                        Most Popular
                     </div>
                 )}
 
-                <span className="mb-3 block text-lg font-bold text-[#D82639] uppercase league-spartan">{type}</span>
+                <span className="mb-4 block text-lg font-bold text-[#FFD700] uppercase tracking-widest league-spartan">{type}</span>
 
-                <div className="mb-5">
-                    <h2 className="text-3xl font-extrabold text-white montserrat">
+                <div className="mb-6">
+                    <h2 className={`text-5xl font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
                         {price}
-                        <span className="text-base font-medium text-white/70"> / {subscription}</span>
+                        <span className="text-lg font-medium text-white/40 poiret italic"> / {subscription}</span>
                     </h2>
-                    {originalPrice && billingCycle === 'yearly' && (
-                        <p className="text-sm text-white/50 line-through mt-1 poiret">
-                            ₹{Math.round(parseInt(originalPrice.replace(/[^0-9]/g, '')) * 12 * 0.8).toLocaleString('en-IN')} billed annually
-                        </p>
-                    )}
                 </div>
 
-                <p className="mb-6 text-white/70 poiret">{description}</p>
+                <p className="mb-8 text-white/50 poiret text-lg h-12 leading-tight">{description}</p>
 
-                <div className="mb-6 flex flex-col gap-3">{children}</div>
+                <div className="mb-10 flex flex-col gap-4 flex-grow">{children}</div>
 
-                <button className={`w-full rounded-full py-3 text-lg font-bold transition-all duration-300 ${active ? "bg-[#D82639] text-white hover:opacity-90" : "border border-white/30 text-[#D82639] hover:bg-[#D82639] hover:text-white"}`}
+                <button 
                     onClick={onJoinClick}
+                    className={`w-full rounded-2xl py-5 text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer
+                        ${active 
+                            ? "bg-[#FFD700] text-[#050505] hover:shadow-[0_0_40px_rgba(255,215,0,0.6)]" 
+                            : "border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#050505]"}`}
                 >
                     {buttonText}
                 </button>
@@ -190,10 +184,10 @@ const PricingCard = ({
 };
 
 const List = ({ children }) => (
-    <div className="flex items-center gap-3">
-        <svg className="h-5 w-5 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+    <div className="flex items-center gap-4 group/item">
+        <svg className="h-6 w-6 text-[#FFD700] flex-shrink-0 drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
         </svg>
-        <p className="text-white/70 poiret">{children}</p>
+        <p className="text-white/70 poiret text-lg group-hover/item:text-white transition-colors">{children}</p>
     </div>
 );
