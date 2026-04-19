@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CircularGallery from '../Components/CircularGallery'
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,7 +9,7 @@ const galleryImages = [
     "https://images.unsplash.com/photo-1550345332-09e3ac987658?auto=format&fit=crop&q=80&w=1000",
     "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&q=80&w=1000",
     "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&q=80&w=1000",
-    "https://images.unsplash.com/photo-1590239068512-63276024bc61?auto=format&fit=crop&q=80&w=1000",
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000",
     "https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&q=80&w=1000"
 ];
 
