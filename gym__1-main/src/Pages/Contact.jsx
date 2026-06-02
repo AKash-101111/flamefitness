@@ -67,9 +67,25 @@ const Contact = () => {
                                 <h3 className="text-xl font-bold text-white league-spartan uppercase tracking-widest mb-2">
                                     {info.title}
                                 </h3>
-                                <p className="text-lg text-white/90 montserrat mb-1">
-                                    {info.value}
-                                </p>
+                                {info.title === "Phone" ? (
+                                    <a 
+                                        href={`tel:${info.value.replace(/\s+/g, '')}`}
+                                        className="text-lg text-white/90 montserrat mb-1 hover:text-[var(--primary)] hover:underline transition-all cursor-pointer block"
+                                    >
+                                        {info.value}
+                                    </a>
+                                ) : info.title === "Email" ? (
+                                    <a 
+                                        href={`mailto:${info.value}`}
+                                        className="text-lg text-white/90 montserrat mb-1 hover:text-[var(--primary)] hover:underline transition-all cursor-pointer block"
+                                    >
+                                        {info.value}
+                                    </a>
+                                ) : (
+                                    <p className="text-lg text-white/90 montserrat mb-1">
+                                        {info.value}
+                                    </p>
+                                )}
                                 <p className="text-sm text-white/40 poiret">
                                     {info.subtitle}
                                 </p>
