@@ -11,7 +11,7 @@ const APP_SHELL = [
 
 // Images to pre-cache individually (failures won't block install)
 const IMAGES_TO_PRECACHE = [
-  '/images/logoflame.jpeg',
+  '/images/flamelogo.svg',
   '/images/hero/hero-1.jpg',
   '/images/hero/hero-2.jpg',
   '/images/hero/hero-3.jpg',

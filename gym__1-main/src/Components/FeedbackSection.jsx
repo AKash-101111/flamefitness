@@ -19,17 +19,17 @@ const FeedbackSection = () => {
     return (
         <section className="w-full py-24 bg-transparent relative overflow-hidden">
             {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FFD700]/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--primary)]/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container mx-auto px-6 max-w-4xl relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-6xl font-extrabold league-spartan text-white tracking-tighter uppercase mb-4">
                         We Value Your <span className="gradient-text">Feedback</span>
                     </h2>
-                    <p className="poiret text-xl text-white/50">Help us maintain the gold standard of fitness.</p>
+                    <p className="poiret text-xl text-white/50">Help us maintain the elite standard of fitness.</p>
                 </div>
 
-                <div className="glass-card p-10 gold-border shadow-[0_0_50px_rgba(255,215,0,0.05)]">
+                <div className="glass-card p-10 primary-border shadow-[0_0_50px_rgba(255,0,0,0.05)]">
                     <AnimatePresence mode="wait">
                         {status === 'success' ? (
                             <motion.div
@@ -39,12 +39,12 @@ const FeedbackSection = () => {
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 className="flex flex-col items-center py-12 text-center"
                             >
-                                <div className="w-20 h-20 rounded-full bg-[#FFD700]/20 flex items-center justify-center mb-6 gold-pulse">
-                                    <svg className="w-10 h-10 text-[#FFD700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-20 h-20 rounded-full bg-[var(--primary)]/20 flex items-center justify-center mb-6 primary-pulse">
+                                    <svg className="w-10 h-10 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 className="text-3xl font-bold league-spartan text-[#FFD700] mb-2 uppercase">Thank You!</h3>
+                                <h3 className="text-3xl font-bold league-spartan text-[var(--primary)] mb-2 uppercase">Thank You!</h3>
                                 <p className="poiret text-white/70 text-lg">Your feedback helps us grow stronger. We appreciate your input.</p>
                             </motion.div>
                         ) : (
@@ -64,7 +64,7 @@ const FeedbackSection = () => {
                                         value={formData.name}
                                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                                         placeholder="Enter your name"
-                                        className="w-full p-4 rounded-xl input-gold montserrat"
+                                        className="w-full p-4 rounded-xl input-primary montserrat"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -75,12 +75,12 @@ const FeedbackSection = () => {
                                         value={formData.message}
                                         onChange={(e) => setFormData({...formData, message: e.target.value})}
                                         placeholder="Tell us what you think..."
-                                        className="w-full p-4 rounded-xl input-gold montserrat resize-none"
+                                        className="w-full p-4 rounded-xl input-primary montserrat resize-none"
                                     />
                                 </div>
                                 <button 
                                     disabled={status === 'sending'}
-                                    className="w-full py-4 bg-[#FFD700] text-[#050505] font-bold rounded-xl league-spartan text-xl uppercase tracking-widest hover:shadow-[0_0_40px_rgba(255,215,0,0.5)] transition-all flex items-center justify-center gap-3 cursor-pointer"
+                                    className="w-full py-4 bg-[var(--primary)] text-[#050505] font-bold rounded-xl league-spartan text-xl uppercase tracking-widest hover:shadow-[0_0_40px_rgba(255,0,0,0.5)] transition-all flex items-center justify-center gap-3 cursor-pointer"
                                 >
                                     {status === 'sending' ? (
                                         <span className="w-6 h-6 border-4 border-black border-t-transparent rounded-full animate-spin" />

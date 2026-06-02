@@ -5,10 +5,10 @@
 
 /* ---------- CSS Variables ---------- */
 :root {
-  --gold: #FFD700;
-  --gold-dark: #B8860B;
-  --gold-glow: #FFF0A0;
-  --gold-dim: rgba(255, 215, 0, 0.15);
+  --primary: #FF0000;
+  --primary-dark: #8B0000;
+  --primary-glow: #FF4D4D;
+  --primary-dim: rgba(255, 0, 0, 0.15);
   --bg-deep: #050505;
   --bg-surface: #0B0B0B;
   --text-main: #FFFFFF;
@@ -26,7 +26,7 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--gold) #111;
+  scrollbar-color: var(--primary) #111;
   /* Prevent horizontal scroll at root level */
   overflow-x: hidden;
   max-width: 100%;
@@ -47,8 +47,8 @@ body {
 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #111; }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold-glow); }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-glow); }
 
 /* ---------- Typography ---------- */
 .bebas { font-family: 'Bebas Neue', sans-serif; }
@@ -56,22 +56,22 @@ body {
 .league-spartan { font-family: "League Spartan", sans-serif; }
 .montserrat { font-family: "Montserrat", sans-serif; }
 
-/* ---------- GOLD GRADIENT TEXT ---------- */
+/* ---------- PRIMARY GRADIENT TEXT ---------- */
 .gradient-text {
   display: inline-block;
   background: linear-gradient(45deg,
-    #FFD700,
-    #FFF0A0,
-    #FFD700,
-    #B8860B,
-    #FFD700);
+    #FF0000,
+    #FF4D4D,
+    #FF0000,
+    #8B0000,
+    #FF0000);
   background-size: 400% 400%;
-  animation: goldMove 4s ease-in-out infinite;
+  animation: primaryMove 4s ease-in-out infinite;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
-  filter: drop-shadow(0 0 12px rgba(255,215,0,0.5));
+  filter: drop-shadow(0 0 12px rgba(255,0,0,0.5));
 }
 
 .gradient-text::before {
@@ -87,7 +87,7 @@ body {
   pointer-events: none;
 }
 
-@keyframes goldMove {
+@keyframes primaryMove {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -104,26 +104,26 @@ body {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 0, 0, 0.12);
   border-radius: 24px;
 }
 
-/* ---------- GOLD GLOW UTILITIES ---------- */
-.gold-glow {
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.4),
-              0 0 60px rgba(255, 215, 0, 0.15);
+/* ---------- PRIMARY GLOW UTILITIES ---------- */
+.primary-glow {
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.4),
+              0 0 60px rgba(255, 0, 0, 0.15);
 }
 
-.gold-border {
-  border: 1px solid rgba(255, 215, 0, 0.3);
+.primary-border {
+  border: 1px solid rgba(255, 0, 0, 0.3);
 }
 
-.gold-border-hover {
+.primary-border-hover {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.gold-border-hover:hover {
-  border-color: rgba(255, 215, 0, 0.6);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+.primary-border-hover:hover {
+  border-color: rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
 }
 
 /* ---------- SCROLL FADE IN ANIMATION ---------- */
@@ -136,14 +136,14 @@ body {
   animation: fadeUp 0.7s ease forwards;
 }
 
-/* ---------- GOLD PULSE ANIMATION ---------- */
-@keyframes goldPulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
-  50%       { box-shadow: 0 0 30px rgba(255,215,0,0.7); }
+/* ---------- PRIMARY PULSE ANIMATION ---------- */
+@keyframes primaryPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(255,0,0,0.3); }
+  50%       { box-shadow: 0 0 30px rgba(255,0,0,0.7); }
 }
 
-.gold-pulse {
-  animation: goldPulse 2s ease-in-out infinite;
+.primary-pulse {
+  animation: primaryPulse 2s ease-in-out infinite;
 }
 
 /* ---------- HERO SLIDER FADE ---------- */
@@ -184,25 +184,25 @@ body {
 }
 .tilt-card:hover {
   transform: perspective(600px) rotateX(4deg) rotateY(-4deg) scale(1.03);
-  box-shadow: 0 20px 60px rgba(255,215,0,0.15);
+  box-shadow: 0 20px 60px rgba(255,0,0,0.15);
 }
 
 /* ---------- STAR RATING ---------- */
-.star-gold { color: #FFD700; }
+.star-primary { color: #FF0000; }
 
-/* ---------- INPUT GOLD FOCUS ---------- */
-.input-gold {
+/* ---------- INPUT PRIMARY FOCUS ---------- */
+.input-primary {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   color: white;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-.input-gold:focus {
+.input-primary:focus {
   outline: none;
-  border-color: #FFD700;
-  box-shadow: 0 0 0 3px rgba(255,215,0,0.2);
+  border-color: #FF0000;
+  box-shadow: 0 0 0 3px rgba(255,0,0,0.2);
 }
-.input-gold::placeholder { color: rgba(255,255,255,0.35); }
+.input-primary::placeholder { color: rgba(255,255,255,0.35); }
 
 /* ---------- MODAL OVERLAY ---------- */
 .modal-overlay {
@@ -233,12 +233,12 @@ body {
 }
 
 @keyframes shimmerBorder {
-  0% { border-color: rgba(255, 215, 0, 0.2); }
-  50% { border-color: rgba(255, 215, 0, 0.8); }
-  100% { border-color: rgba(255, 215, 0, 0.2); }
+  0% { border-color: rgba(255, 0, 0, 0.2); }
+  50% { border-color: rgba(255, 0, 0, 0.8); }
+  100% { border-color: rgba(255, 0, 0, 0.2); }
 }
 
-.gold-shimmer-border {
+.primary-shimmer-border {
   animation: shimmerBorder 3s infinite;
 }
 

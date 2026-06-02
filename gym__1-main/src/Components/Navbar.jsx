@@ -36,13 +36,13 @@ const Navbar = () => {
             "
             >
                 <Link to="/" className="flex items-center gap-3">
-                    <img src="/images/logoflame.jpeg" alt="Flame Fitness Logo" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
+                    <img src="/images/flamelogo.svg" alt="Flame Fitness Logo" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
                     <span
                         className="block text-white text-[10px] sm:text-sm md:text-base tracking-widest leading-none font-bold"
                         style={{
                             fontFamily: "'Michroma', sans-serif",
-                            textShadow: "0 0 10px rgba(255,255,255,0.3), 0 0 20px rgba(255,255,255,0.1)",
-                            background: "linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%)",
+                            textShadow: "0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4)",
+                            background: "linear-gradient(180deg, #FFFFFF 0%, #FF4D4D 50%, #B20000 100%)",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
                             filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))"
@@ -60,11 +60,11 @@ const Navbar = () => {
                                 <Link
                                     to={link.path}
                                     className={`relative poiret text-xl font-normal cursor-pointer transition-colors duration-300 group ${
-                                        isActive(link.path) ? "text-[#FFD700] font-bold" : "text-white/80 hover:text-[#FFD700]"
+                                        isActive(link.path) ? "text-[var(--primary)] font-bold" : "text-white/80 hover:text-[var(--primary)]"
                                     }`}
                                 >
                                     {link.name}
-                                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-[#FFD700] transition-all duration-300 shadow-[0_0_8px_rgba(255,215,0,0.6)] ${
+                                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-[var(--primary)] transition-all duration-300 shadow-[0_0_8px_rgba(255,0,0,0.6)] ${
                                         isActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'
                                     }`} />
                                 </Link>
@@ -76,7 +76,7 @@ const Navbar = () => {
 
                 {/* MOBILE MENU TOGGLE */}
                 <button
-                    className="ml-auto md:hidden text-[#FFD700] cursor-pointer p-2"
+                    className="ml-auto md:hidden text-[var(--primary)] cursor-pointer p-2"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label="Toggle menu"
                 >
@@ -100,7 +100,7 @@ const Navbar = () => {
                     >
                         {/* Close button */}
                         <button
-                            className="absolute top-6 right-6 text-[#FFD700] cursor-pointer p-2"
+                            className="absolute top-6 right-6 text-[var(--primary)] cursor-pointer p-2"
                             onClick={() => setIsMobileMenuOpen(false)}
                             aria-label="Close menu"
                         >
@@ -119,7 +119,7 @@ const Navbar = () => {
                                         to={link.path}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                         className={`poiret text-4xl font-normal cursor-pointer transition-colors duration-300 ${
-                                            isActive(link.path) ? "text-[#FFD700]" : "text-white hover:text-[#FFD700]"
+                                            isActive(link.path) ? "text-[var(--primary)]" : "text-white hover:text-[var(--primary)]"
                                         }`}
                                     >
                                         {link.name}
@@ -136,7 +136,7 @@ const Navbar = () => {
                         >
                             <button
                                 onClick={() => { setIsFormOpen(true); setIsMobileMenuOpen(false); }}
-                                className="px-10 py-4 bg-[#FFD700] text-[#050505] font-bold text-lg league-spartan uppercase tracking-wider rounded-full hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transition-all cursor-pointer"
+                                className="px-10 py-4 bg-[var(--primary)] text-[#050505] font-bold text-lg league-spartan uppercase tracking-wider rounded-full hover:shadow-[0_0_30px_rgba(255,0,0,0.5)] transition-all cursor-pointer"
                             >
                                 Join Now
                             </button>

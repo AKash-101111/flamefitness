@@ -94,21 +94,19 @@ const Programs = () => {
                         whileHover={{ scale: 1.03, rotateX: 4, rotateY: -4 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => setSelectedProgram(prog)}
-                        className="group p-10 glass-card cursor-pointer hover:border-[#FFD700]/60 hover:shadow-[0_0_40px_rgba(255,215,0,0.25)] transition-all duration-500 gold-shimmer-border"
+                        className="group p-10 glass-card cursor-pointer hover:border-[var(--primary)]/60 hover:shadow-[0_0_40px_rgba(255,0,0,0.25)] transition-all duration-500 primary-shimmer-border"
                         style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
                     >
-                        <div className="text-5xl mb-6 text-[#FFD700] group-hover:scale-110 transition-transform duration-500 group-hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+                        <div className="text-5xl mb-6 text-[var(--primary)] group-hover:scale-110 transition-transform duration-500 group-hover:drop-shadow-[0_0_10px_rgba(255,0,0,0.5)]">
                             {prog.icon}
                         </div>
-                        <h3 className="text-3xl font-bold text-white league-spartan mb-4 tracking-tight group-hover:text-[#FFD700] transition-colors">
-                            {prog.title}
-                        </h3>
-                        <p className="text-white/50 montserrat leading-relaxed group-hover:text-white/70 transition-colors">
-                            {prog.description}
-                        </p>
-                        <span className="inline-block mt-4 text-sm text-[#FFD700]/60 poiret group-hover:text-[#FFD700] transition-colors">
-                            Click for details →
-                        </span>
+                        <h3 className="text-2xl font-black text-white league-spartan mb-4 uppercase tracking-tighter">{prog.title}</h3>
+                        <p className="poiret text-white/50 text-lg leading-relaxed">{prog.description}</p>
+                        
+                        <div className="mt-8 flex items-center gap-2 text-[var(--primary)] text-sm font-bold league-spartan uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-[-10px] group-hover:translate-x-0">
+                            <span>Explore Program</span>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </div>
                     </motion.div>
                 ))}
             </div>
@@ -128,24 +126,24 @@ const Programs = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.85, y: 40 }}
                             transition={{ duration: 0.35 }}
-                            className="glass-card p-8 md:p-12 max-w-lg w-[90%] relative shadow-[0_0_80px_rgba(255,215,0,0.1)]"
+                            className="glass-card p-8 md:p-12 max-w-lg w-[90%] relative shadow-[0_0_80px_rgba(255,0,0,0.1)]"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent rounded-t-3xl" />
-                            <div className="text-5xl text-[#FFD700] mb-4 drop-shadow-[0_0_15px_rgba(255,215,0,0.4)]">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent rounded-t-3xl" />
+                            <div className="text-5xl text-[var(--primary)] mb-4 drop-shadow-[0_0_15px_rgba(255,0,0,0.4)]">
                                 {selectedProgram.icon}
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-[#FFD700] league-spartan mb-4 uppercase tracking-tight">
+                            <h2 className="text-3xl md:text-4xl font-bold text-[var(--primary)] league-spartan mb-4 uppercase tracking-tight">
                                 {selectedProgram.title}
                             </h2>
                             <p className="text-white/70 montserrat mb-6 leading-relaxed">
                                 {selectedProgram.description}
                             </p>
-                            <h4 className="text-sm font-bold text-[#FFD700]/80 uppercase tracking-widest league-spartan mb-3">Benefits</h4>
+                            <h4 className="text-sm font-bold text-[var(--primary)]/80 uppercase tracking-widest league-spartan mb-3">Benefits</h4>
                             <ul className="space-y-3 mb-6">
                                 {selectedProgram.benefits.map((b, i) => (
                                     <li key={i} className="flex items-center gap-3">
-                                        <svg className="w-5 h-5 text-[#FFD700] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg className="w-5 h-5 text-[var(--primary)] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                         </svg>
                                         <span className="text-white/70 montserrat">{b}</span>
@@ -154,13 +152,13 @@ const Programs = () => {
                             </ul>
                             <button
                                 onClick={() => setSelectedProgram(null)}
-                                className="w-full py-3 bg-[#FFD700] text-[#050505] font-bold rounded-xl hover:shadow-[0_0_30px_rgba(255,215,0,0.5)] transition-all league-spartan uppercase tracking-wider cursor-pointer"
+                                className="w-full py-3 bg-[var(--primary)] text-[#050505] font-bold rounded-xl hover:shadow-[0_0_30px_rgba(255,0,0,0.5)] transition-all league-spartan uppercase tracking-wider cursor-pointer"
                             >
                                 Close
                             </button>
                             <button
                                 onClick={() => setSelectedProgram(null)}
-                                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:text-[#FFD700] hover:bg-white/20 transition-all cursor-pointer"
+                                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/20 transition-all cursor-pointer"
                             >
                                 ✕
                             </button>
@@ -170,14 +168,14 @@ const Programs = () => {
             </AnimatePresence>
 
             {/* CTA Section */}
-            <div className="mt-24 p-12 bg-gradient-to-br from-[#1a1500] to-[#0B0B0B] border border-[#FFD700]/20 rounded-[50px] w-full text-center shadow-[0_0_60px_rgba(255,215,0,0.05)] overflow-hidden relative group">
-                <div className="absolute inset-0 bg-[#FFD700]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="mt-24 p-12 bg-gradient-to-br from-[#1a0000] to-[#0B0B0B] border border-[var(--primary)]/20 rounded-[50px] w-full text-center shadow-[0_0_60px_rgba(255,0,0,0.05)] overflow-hidden relative group">
+                <div className="absolute inset-0 bg-[var(--primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h2 className="text-4xl md:text-6xl font-bold text-white league-spartan mb-8 tracking-tighter relative z-10">
-                    Ready to <span className="text-[#FFD700]">Transform?</span>
+                    Ready to <span className="text-[var(--primary)]">Transform?</span>
                 </h2>
                 <button 
                     onClick={() => setIsFormOpen(true)}
-                    className="px-12 py-5 bg-[#FFD700] text-[#050505] font-bold rounded-full hover:scale-105 transition-transform active:scale-95 shadow-[0_0_40px_rgba(255,215,0,0.3)] relative z-10 league-spartan uppercase tracking-wider cursor-pointer font-black"
+                    className="px-12 py-5 bg-[var(--primary)] text-[#050505] font-bold rounded-full hover:scale-105 transition-transform active:scale-95 shadow-[0_0_40px_rgba(255,0,0,0.3)] relative z-10 league-spartan uppercase tracking-wider cursor-pointer font-black"
                 >
                     Join A Program
                 </button>

@@ -71,20 +71,20 @@ const HeroSection = () => {
         >
           Train Elite. Become Unstoppable.
           <br />
-          <span className="text-[#FFD700]/80 league-spartan font-bold">FLAME</span> empowers every step of your fitness journey.
+          <span className="text-[var(--primary)]/80 league-spartan font-bold">FLAME</span> empowers every step of your fitness journey.
         </motion.p>
 
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 1 }}
-          whileHover={{ scale: 1.1, boxShadow: '0 0 30px rgba(255, 215, 0, 0.6)' }}
+          whileHover={{ scale: 1.1, boxShadow: '0 0 30px rgba(255, 0, 0, 0.6)' }}
           whileTap={{ scale: 0.95 }}
           onClick={() => {
             const el = document.getElementById('membership-plans');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="mt-10 px-12 py-5 bg-[#FFD700] text-[#050505] font-black text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,215,0,0.3)]"
+          className="mt-10 px-12 py-5 bg-[var(--primary)] text-[#050505] font-black text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,0,0,0.3)]"
         >
           Start Your Journey
         </motion.button>
@@ -97,8 +97,8 @@ const HeroSection = () => {
               onClick={() => setCurrentIndex(i)}
               className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
                 i === currentIndex
-                  ? 'bg-[#FFD700] w-12 shadow-[0_0_15px_rgba(255,215,0,0.8)]'
-                  : 'bg-white/20 w-3 hover:bg-white/40'
+                  ? 'bg-[var(--primary)] w-12 shadow-[0_0_15px_rgba(255,0,0,0.8)]'
+                  : 'bg-white/30 w-3 hover:bg-white/50'
               }`}
             />
           ))}
@@ -111,7 +111,7 @@ const HeroSection = () => {
           transition={{ delay: 2 }}
           className="absolute bottom-4 left-1/2 -translate-x-1/2 scroll-bounce opacity-60"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
         </motion.div>

@@ -12,7 +12,7 @@ const testimonials = [
     {
         name: "Priya Das",
         role: "Fitness Enthusiast",
-        content: "The trainers here are world-class. I've never felt more motivated to hit my goals. The gold standard of gyms in Chennai!",
+        content: "The trainers here are world-class. I've never felt more motivated to hit my goals. The elite standard of gyms in Chennai!",
         stars: 5,
         image: "https://i.pravatar.cc/150?u=priya"
     },
@@ -54,20 +54,20 @@ const TestimonialsSection = () => {
                     {[...testimonials, ...testimonials].map((item, index) => (
                         <div 
                             key={index}
-                            className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[450px] glass-card p-8 gold-border-hover transition-all"
+                            className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[450px] glass-card p-8 primary-border-hover transition-all"
                         >
                             <div className="flex items-center gap-4 mb-6">
-                                <img src={item.image} alt={item.name} className="w-14 h-14 rounded-full border border-[#FFD700]/30" />
+                                <img src={item.image} alt={item.name} className="w-14 h-14 rounded-full border border-[var(--primary)]/30" />
                                 <div>
                                     <h4 className="text-white font-bold league-spartan text-xl">{item.name}</h4>
-                                    <p className="text-[#FFD700] poiret text-sm">{item.role}</p>
+                                    <p className="text-[var(--primary)] poiret text-sm">{item.role}</p>
                                 </div>
                             </div>
                             <div className="flex mb-4">
                                 {[...Array(5)].map((_, i) => (
                                     <svg 
                                         key={i} 
-                                        className={`w-5 h-5 ${i < item.stars ? 'star-gold' : 'text-white/20'}`} 
+                                        className={`w-5 h-5 ${i < item.stars ? 'star-primary' : 'text-white/20'}`} 
                                         fill="currentColor" 
                                         viewBox="0 0 20 20"
                                     >

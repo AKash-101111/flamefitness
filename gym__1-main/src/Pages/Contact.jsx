@@ -59,9 +59,9 @@ const Contact = () => {
                             <motion.div 
                                 key={index}
                                 whileHover={{ scale: 1.05, translateY: -5 }}
-                                className="p-8 glass-card border border-white/10 hover:border-[#FFD700]/50 transition-all duration-500 backdrop-blur-md group"
+                                className="p-8 glass-card border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 backdrop-blur-md group"
                             >
-                                <div className="text-[#FFD700] text-3xl mb-4 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.5)] transition-all">
+                                <div className="text-[var(--primary)] text-3xl mb-4 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,0,0,0.5)] transition-all">
                                     {info.icon}
                                 </div>
                                 <h3 className="text-xl font-bold text-white league-spartan uppercase tracking-widest mb-2">
@@ -77,7 +77,7 @@ const Contact = () => {
                         ))}
                     </div>
 
-                    <div className="w-full h-80 rounded-[50px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative group gold-border-hover">
+                    <div className="w-full h-80 rounded-[50px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative group primary-border-hover">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.814343825838!2d80.23122177507775!3d13.047466587275217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52665e88410001%3A0x6734614611461146!2sT.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1713430000000!5m2!1sen!2sin" 
                             width="100%" 
@@ -92,10 +92,10 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="relative group p-10 glass-card border border-white/10 rounded-[60px] shadow-2xl overflow-hidden gold-border-hover">
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                <div className="relative group p-10 glass-card border border-white/10 rounded-[60px] shadow-2xl overflow-hidden primary-border-hover">
+                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
                     <h2 className="text-3xl font-bold text-white league-spartan mb-8 text-center uppercase tracking-widest">
-                        Send a <span className="text-[#FFD700]">Message</span>
+                        Send a <span className="text-[var(--primary)]">Message</span>
                     </h2>
 
                     <AnimatePresence mode="wait">
@@ -107,12 +107,12 @@ const Contact = () => {
                                 exit={{ opacity: 0, y: -20 }}
                                 className="flex flex-col items-center py-20 text-center"
                             >
-                                <div className="w-20 h-20 rounded-full bg-[#FFD700]/20 flex items-center justify-center mb-6 gold-pulse">
-                                    <svg className="w-10 h-10 text-[#FFD700]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-20 h-20 rounded-full bg-[var(--primary)]/20 flex items-center justify-center mb-6 primary-pulse">
+                                    <svg className="w-10 h-10 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold league-spartan text-[#FFD700] uppercase">Success!</h3>
+                                <h3 className="text-2xl font-bold league-spartan text-[var(--primary)] uppercase">Success!</h3>
                                 <p className="poiret text-white/70 mt-2">We've received your message. Our team will get back to you shortly.</p>
                             </motion.div>
                         ) : (
@@ -125,13 +125,13 @@ const Contact = () => {
                                 className="space-y-6"
                             >
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    <input type="text" required placeholder="Your Name" className="w-full px-8 py-5 rounded-full input-gold montserrat" />
-                                    <input type="email" required placeholder="Your Email" className="w-full px-8 py-5 rounded-full input-gold montserrat" />
+                                    <input type="text" required placeholder="Your Name" className="w-full px-8 py-5 rounded-full input-primary montserrat" />
+                                    <input type="email" required placeholder="Your Email" className="w-full px-8 py-5 rounded-full input-primary montserrat" />
                                 </div>
-                                <input type="tel" required placeholder="Phone Number" className="w-full px-8 py-5 rounded-full input-gold montserrat" />
-                                <textarea rows="5" required placeholder="Your Message" className="w-full px-8 py-5 rounded-[40px] input-gold montserrat resize-none"></textarea>
+                                <input type="tel" required placeholder="Phone Number" className="w-full px-8 py-5 rounded-full input-primary montserrat" />
+                                <textarea rows="5" required placeholder="Your Message" className="w-full px-8 py-5 rounded-[40px] input-primary montserrat resize-none"></textarea>
                                 <button 
-                                    className="w-full py-5 bg-[#FFD700] text-[#050505] font-black rounded-full hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,215,0,0.3)] league-spartan uppercase tracking-widest cursor-pointer"
+                                    className="w-full py-5 bg-[var(--primary)] text-[#050505] font-black rounded-full hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,0,0,0.3)] league-spartan uppercase tracking-widest cursor-pointer"
                                     disabled={status === 'sending'}
                                 >
                                     {status === 'sending' ? (

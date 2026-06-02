@@ -65,7 +65,7 @@ const Gallery = () => {
                         <p className="text-white/60 poiret text-xl mb-6 tracking-widest">Interactive 3D Experience</p>
                         <button 
                             onClick={() => setShow3D(true)}
-                            className="px-12 py-4 bg-[#FFD700] text-black font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_40px_rgba(255,215,0,0.3)] league-spartan uppercase tracking-widest"
+                            className="px-12 py-4 bg-[var(--primary)] text-black font-black rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_40px_rgba(255,0,0,0.3)] league-spartan uppercase tracking-widest"
                         >
                             Enter Studio
                         </button>
@@ -84,7 +84,7 @@ const Gallery = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => openLightbox(img, i)}
-                        className="group relative h-64 md:h-80 rounded-[40px] overflow-hidden border border-white/10 hover:border-[#FFD700]/50 transition-all duration-700 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(255,215,0,0.4)]"
+                        className="group relative h-64 md:h-80 rounded-[40px] overflow-hidden border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(255,0,0,0.4)]"
                     >
                         <img 
                             src={img} 
@@ -93,7 +93,7 @@ const Gallery = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                            <span className="bg-[#FFD700] text-[#050505] font-black px-6 py-2 rounded-full text-xs league-spartan uppercase tracking-widest shadow-[0_0_15px_rgba(255,215,0,0.4)]">View Full</span>
+                            <span className="bg-[var(--primary)] text-[#050505] font-black px-6 py-2 rounded-full text-xs league-spartan uppercase tracking-widest shadow-[0_0_15px_rgba(255,0,0,0.4)]">View Full</span>
                         </div>
                     </motion.div>
                 ))}
@@ -112,14 +112,14 @@ const Gallery = () => {
                         {/* Navigation Arrows */}
                         <button 
                             onClick={prevImage}
-                            className="absolute left-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[#FFD700] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
+                            className="absolute left-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
                         >
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
                         </button>
 
                         <button 
                             onClick={nextImage}
-                            className="absolute right-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[#FFD700] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
+                            className="absolute right-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
                         >
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
                         </button>
@@ -139,7 +139,7 @@ const Gallery = () => {
                             
                             <button 
                                 onClick={() => setSelectedImage(null)}
-                                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-[#FFD700]/30 flex items-center justify-center text-white hover:text-[#FFD700] transition-all cursor-pointer z-[1002]"
+                                className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-[var(--primary)]/30 flex items-center justify-center text-white hover:text-[var(--primary)] transition-all cursor-pointer z-[1002]"
                             >
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />

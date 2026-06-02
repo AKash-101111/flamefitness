@@ -31,8 +31,8 @@ const StyledWrapper = styled.div`
     background-color: inherit;
     border-radius: 12px;
     font-weight: 600;
-    color: #FFD700;
-    box-shadow: 0 0 0 1px #FFD700;
+    color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
     cursor: pointer;
     overflow: hidden;
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -41,7 +41,7 @@ const StyledWrapper = styled.div`
   .animated-button svg {
     position: absolute;
     width: 24px;
-    fill: #FFD700;
+    fill: var(--primary);
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
@@ -56,7 +56,7 @@ const StyledWrapper = styled.div`
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;
-    background-color: #FFD700;
+    background-color: var(--primary);
     border-radius: 50%;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
@@ -79,7 +79,7 @@ const StyledWrapper = styled.div`
   .animated-button:hover .arr-2 { left: 16px; }
   .animated-button:hover .text { transform: translateX(12px); }
   .animated-button:hover svg { fill: #050505; }
-  .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px #FFD700; }
+  .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px var(--primary); }
   .animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
 `;
 

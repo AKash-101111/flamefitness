@@ -22,12 +22,12 @@ const PricingSection = () => {
     return (
         <section id="membership-plans" className="relative z-10 overflow-hidden pb-16 pt-20 lg:pb-[120px] lg:pt-[140px] bg-transparent">
             {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FFD700]/5 rounded-full blur-[100px] -z-10" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--primary)]/5 rounded-full blur-[100px] -z-10" />
 
             <div className="container mx-auto px-4">
                 {/* Heading */}
                 <div className="text-center mb-16">
-                    <span className="mb-2 block text-lg font-bold text-[#FFD700] uppercase tracking-widest league-spartan">
+                    <span className="mb-2 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">
                         Membership Plans
                     </span>
                     <h2 className="mt-2 text-4xl md:text-6xl font-extrabold text-white leading-tight league-spartan uppercase tracking-tighter">
@@ -41,13 +41,13 @@ const PricingSection = () => {
                     <div className="mt-10 flex justify-center">
                         <div
                             ref={toggleRef}
-                            className="relative bg-white/5 backdrop-blur-md rounded-full p-1.5 w-[300px] flex items-center cursor-pointer border border-[#FFD700]/10"
+                            className="relative bg-white/5 backdrop-blur-md rounded-full p-1.5 w-[300px] flex items-center cursor-pointer border border-[var(--primary)]/10"
                             onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
                         >
                             {/* Sliding background */}
                             <div
                                 ref={sliderRef}
-                                className="absolute top-1.5 left-1.5 w-[calc(50%-0.375rem)] h-[calc(100%-0.75rem)] bg-[#FFD700] rounded-full z-0 shadow-[0_0_20px_rgba(255,215,0,0.4)]"
+                                className="absolute top-1.5 left-1.5 w-[calc(50%-0.375rem)] h-[calc(100%-0.75rem)] bg-[var(--primary)] rounded-full z-0 shadow-[0_0_20px_rgba(255,0,0,0.4)]"
                             />
 
                             {/* Monthly Button */}
@@ -63,7 +63,7 @@ const PricingSection = () => {
                                 className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'yearly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
-                                Yearly <span className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full ${billingCycle === 'yearly' ? 'bg-black/10' : 'bg-[#FFD700]/20 text-[#FFD700]'}`}>-20%</span>
+                                Yearly <span className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full ${billingCycle === 'yearly' ? 'bg-black/10' : 'bg-[var(--primary)]/20 text-[var(--primary)]'}`}>-20%</span>
                             </button>
                         </div>
                     </div>
@@ -148,15 +148,15 @@ const PricingCard = ({
     return (
         <div className={`w-full max-w-[350px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
             <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col
-                ${active ? 'border-[#FFD700] shadow-[0_0_80px_rgba(255,215,0,0.25)] gold-shimmer-border' : 'border-white/10 hover:border-[#FFD700]/40'}`}>
+                ${active ? 'border-[var(--primary)] shadow-[0_0_80px_rgba(255,0,0,0.25)] primary-shimmer-border' : 'border-white/10 hover:border-[var(--primary)]/40'}`}>
                 
                 {active && (
-                    <div className="absolute top-0 right-0 bg-[#FFD700] text-[#050505] px-6 py-1.5 text-xs font-black rounded-bl-2xl league-spartan uppercase tracking-tighter gold-pulse">
+                    <div className="absolute top-0 right-0 bg-[var(--primary)] text-[#050505] px-6 py-1.5 text-xs font-black rounded-bl-2xl league-spartan uppercase tracking-tighter primary-pulse">
                         Most Popular
                     </div>
                 )}
 
-                <span className="mb-4 block text-lg font-bold text-[#FFD700] uppercase tracking-widest league-spartan">{type}</span>
+                <span className="mb-4 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">{type}</span>
 
                 <div className="mb-6">
                     <h2 className={`text-5xl font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
@@ -173,8 +173,8 @@ const PricingCard = ({
                     onClick={onJoinClick}
                     className={`w-full rounded-2xl py-5 text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer
                         ${active 
-                            ? "bg-[#FFD700] text-[#050505] hover:shadow-[0_0_40px_rgba(255,215,0,0.6)]" 
-                            : "border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-[#050505]"}`}
+                            ? "bg-[var(--primary)] text-[#050505] hover:shadow-[0_0_40px_rgba(255,0,0,0.6)]" 
+                            : "border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[#050505]"}`}
                 >
                     {buttonText}
                 </button>
@@ -185,7 +185,7 @@ const PricingCard = ({
 
 const List = ({ children }) => (
     <div className="flex items-center gap-4 group/item">
-        <svg className="h-6 w-6 text-[#FFD700] flex-shrink-0 drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="h-6 w-6 text-[var(--primary)] flex-shrink-0 drop-shadow-[0_0_8px_rgba(255,0,0,0.5)]" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
         </svg>
         <p className="text-white/70 poiret text-lg group-hover/item:text-white transition-colors">{children}</p>

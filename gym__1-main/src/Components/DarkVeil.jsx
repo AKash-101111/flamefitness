@@ -69,14 +69,14 @@ vec4 col;mainImage(col,gl_FragCoord.xy);
 // Calculate intensity from the CPPN output
 float intensity = dot(col.rgb, vec3(0.299, 0.587, 0.114));
 
-// Map intensity to a Gold and Black palette
-// Gold: #FFD700 -> vec3(1.0, 0.843, 0.0)
-vec3 goldColor = vec3(1.0, 0.843, 0.0);
+// Map intensity to a Red and Black palette
+// Red: #FF0000 -> vec3(1.0, 0.0, 0.0)
+vec3 primaryColor = vec3(1.0, 0.0, 0.0);
 vec3 blackColor = vec3(0.01, 0.0, 0.0); // True black for better contrast
 
 // Increase intensity slightly for better visibility
 float v_intensity = pow(intensity, 1.2); 
-col.rgb = mix(blackColor, goldColor, v_intensity);
+col.rgb = mix(blackColor, primaryColor, v_intensity);
 
 float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
 col.rgb*=1.-(scanline_val*scanline_val)*uScan;
