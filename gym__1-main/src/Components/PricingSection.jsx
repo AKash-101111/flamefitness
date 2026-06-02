@@ -146,7 +146,7 @@ const PricingCard = ({
     onJoinClick
 }) => {
     return (
-        <div className={`w-full max-w-[350px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
+        <div className={`w-full max-w-[290px] min-[360px]:max-w-[320px] min-[390px]:max-w-[350px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
             <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col
                 ${active ? 'border-[var(--primary)] shadow-[0_0_80px_rgba(255,0,0,0.25)] primary-shimmer-border' : 'border-white/10 hover:border-[var(--primary)]/40'}`}>
                 

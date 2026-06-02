@@ -167,6 +167,7 @@ const ServicesSection = () => {
                                 <img
                                     src={trainer.image}
                                     alt={trainer.title}
+                                    loading="lazy"
                                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
                                 />
                             </div>
@@ -200,7 +201,7 @@ const ServicesSection = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.85, y: 40 }}
                             transition={{ duration: 0.35 }}
-                            className="glass-card p-8 md:p-10 max-w-md w-[90%] relative shadow-[0_0_80px_rgba(255,0,0,0.1)]"
+                            className="glass-card p-6 md:p-10 max-w-md w-[90%] relative shadow-[0_0_80px_rgba(255,0,0,0.1)]"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent rounded-t-3xl" />
@@ -209,6 +210,7 @@ const ServicesSection = () => {
                                 <img
                                     src={selectedTrainer.image}
                                     alt={selectedTrainer.title}
+                                    loading="lazy"
                                     className="w-20 h-20 rounded-2xl object-cover border-2 border-[var(--primary)]/50"
                                 />
                                 <div>

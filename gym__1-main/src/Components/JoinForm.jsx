@@ -40,7 +40,7 @@ const JoinForm = ({ isOpen, onClose }) => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 30 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative z-10 w-[90%] max-w-lg glass-card p-10 shadow-[0_0_80px_rgba(255,0,0,0.15)] text-white overflow-hidden"
+                    className="relative z-10 w-[90%] max-w-lg glass-card p-6 sm:p-10 shadow-[0_0_80px_rgba(255,0,0,0.15)] text-white overflow-hidden"
                 >
                     {/* Primary top accent */}
                     <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent rounded-t-3xl" />

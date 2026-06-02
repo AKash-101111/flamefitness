@@ -79,7 +79,7 @@ const Programs = () => {
     ];
 
     return (
-        <div id="programs-section" className="w-full min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center">
+        <div id="programs-section" className="w-full min-h-screen pt-24 sm:pt-32 pb-20 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col items-center">
             <h1 className="text-5xl md:text-7xl font-extrabold league-spartan text-white mb-6 tracking-tighter text-center uppercase">
                 Our <span className="gradient-text">Programs</span>
             </h1>
@@ -126,7 +126,7 @@ const Programs = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.85, y: 40 }}
                             transition={{ duration: 0.35 }}
-                            className="glass-card p-8 md:p-12 max-w-lg w-[90%] relative shadow-[0_0_80px_rgba(255,0,0,0.1)]"
+                            className="glass-card p-6 md:p-12 max-w-lg w-[90%] relative shadow-[0_0_80px_rgba(255,0,0,0.1)]"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent rounded-t-3xl" />
@@ -168,7 +168,7 @@ const Programs = () => {
             </AnimatePresence>
 
             {/* CTA Section */}
-            <div className="mt-24 p-12 bg-gradient-to-br from-[#1a0000] to-[#0B0B0B] border border-[var(--primary)]/20 rounded-[50px] w-full text-center shadow-[0_0_60px_rgba(255,0,0,0.05)] overflow-hidden relative group">
+            <div className="mt-24 p-6 sm:p-12 bg-gradient-to-br from-[#1a0000] to-[#0B0B0B] border border-[var(--primary)]/20 rounded-[50px] w-full text-center shadow-[0_0_60px_rgba(255,0,0,0.05)] overflow-hidden relative group">
                 <div className="absolute inset-0 bg-[var(--primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h2 className="text-4xl md:text-6xl font-bold text-white league-spartan mb-8 tracking-tighter relative z-10">
                     Ready to <span className="text-[var(--primary)]">Transform?</span>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className="w-full min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center">
+        <div className="w-full min-h-screen pt-24 sm:pt-32 pb-20 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col items-center">
             <h1 className="text-5xl md:text-7xl font-extrabold league-spartan text-white mb-12 tracking-tighter text-center uppercase">
                 Our <span className="gradient-text">Story</span>
             </h1>
@@ -30,6 +30,7 @@ const About = () => {
                     <img 
                         src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000" 
                         alt="Gym Interior" 
+                        loading="lazy"
                         className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent opacity-60"></div>

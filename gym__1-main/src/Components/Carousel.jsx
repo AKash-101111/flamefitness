@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
     {
         video: "/videos/video-1.mp4",
+        poster: "/images/hero/hero-1.jpg",
         title: "Run Beyond Limits",
         line: "Push past the burn. Chase the version of you that doesn’t stop.",
     },
     {
         video: "/videos/video-2.mp4",
+        poster: "/images/hero/hero-2.jpg",
         title: "Build Relentless Strength",
         line: "Every rep forges power. Every set shapes greatness.",
     },
     {
         video: "/videos/video-3.mp4",
+        poster: "/images/hero/hero-3.jpg",
         title: "Unleash the Warrior Within",
         line: "Let the ropes shake, not your resolve. This is where power awakens.",
     },
@@ -21,6 +24,12 @@ const slides = [
 
 export default function CustomCarousel() {
     const [index, setIndex] = useState(0);
+    
+    // Create refs for the video elements to control playback and optimize performance
+    const videoRef0 = useRef(null);
+    const videoRef1 = useRef(null);
+    const videoRef2 = useRef(null);
+    const videoRefs = [videoRef0, videoRef1, videoRef2];
 
     // Auto-slide
     useEffect(() => {
@@ -29,6 +38,21 @@ export default function CustomCarousel() {
         }, 7000);
         return () => clearInterval(interval);
     }, []);
+
+    // Control video playback based on active index to reduce re-renders and save resources
+    useEffect(() => {
+        videoRefs.forEach((ref, i) => {
+            if (ref.current) {
+                if (i === index) {
+                    ref.current.play().catch((err) => {
+                        console.log(`Video ${i} play failed:`, err);
+                    });
+                } else {
+                    ref.current.pause();
+                }
+            }
+        });
+    }, [index]);
 
     const prevSlide = () => setIndex(index === 0 ? slides.length - 1 : index - 1);
     const nextSlide = () => setIndex((index + 1) % slides.length);
@@ -45,14 +69,19 @@ export default function CustomCarousel() {
                     {slides.map((slide, i) => (
                         <div key={i} className="w-full h-full shrink-0 relative">
                             <video
-                                src={slide.video}
+                                ref={videoRefs[i]}
                                 className="w-full h-full object-cover"
-                                style={{ filter: 'hue-rotate(-20deg) contrast(1.1)' }}
+                                style={{ filter: 'hue-rotate(-20deg) contrast(1.1)', objectFit: 'cover' }}
                                 autoPlay
                                 loop
                                 muted
                                 playsInline
-                            />
+                                preload="auto"
+                                poster={slide.poster}
+                            >
+                                <source src={slide.video} type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
                             {/* OVERLAY */}
                             <div className="absolute inset-0 flex flex-col justify-end pb-12 md:pb-[20vh] p-6 md:p-8 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
                                 <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white league-spartan mb-2">
@@ -97,3 +126,4 @@ export default function CustomCarousel() {
         </div>
     );
 }
+

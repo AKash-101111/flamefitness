@@ -57,7 +57,7 @@ const TestimonialsSection = () => {
                             className="flex-shrink-0 w-[280px] sm:w-[350px] md:w-[450px] glass-card p-8 primary-border-hover transition-all"
                         >
                             <div className="flex items-center gap-4 mb-6">
-                                <img src={item.image} alt={item.name} className="w-14 h-14 rounded-full border border-[var(--primary)]/30" />
+                                <img src={item.image} alt={item.name} loading="lazy" className="w-14 h-14 rounded-full border border-[var(--primary)]/30" />
                                 <div>
                                     <h4 className="text-white font-bold league-spartan text-xl">{item.name}</h4>
                                     <p className="text-[var(--primary)] poiret text-sm">{item.role}</p>

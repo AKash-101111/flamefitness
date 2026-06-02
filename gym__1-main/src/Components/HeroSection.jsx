@@ -1,50 +1,24 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-
-const heroImages = [
-  '/images/hero/hero-1.jpg',
-  '/images/hero/hero-2.jpg',
-  '/images/hero/hero-3.jpg',
-  '/images/hero/hero-4.jpg',
-  '/images/hero/hero-5.jpg',
-];
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-  }, []);
-
-  useEffect(() => {
-    // 3 seconds interval as requested
-    const timer = setInterval(nextSlide, 3000);
-    return () => clearInterval(timer);
-  }, [nextSlide]);
-
   return (
     <div className="relative w-full h-screen hero-fullscreen mb-6 overflow-hidden">
-      {/* Background Image Slider */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: 'linear' }} // Reduced duration and simplified easing
-          className="absolute inset-0 overflow-hidden"
-        >
-          <img
-            src={heroImages[currentIndex]}
-            alt="Flame Fitness Studio"
-            className="w-full h-full object-cover ken-burns"
-            loading="eager"
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* Background Video - Scaled to crop bottom-right watermark */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ transform: 'scale(1.08)', transformOrigin: 'top left' }}
+      >
+        <source src="/videos/client-gym-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Dark Overlay - Optimized for premium look */}
-      <div className="absolute inset-0 bg-black/65 z-10" />
+      <div className="absolute inset-0 bg-black/45 z-10" />
 
       {/* Subtle vignette glow */}
       <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/40 z-10" />
@@ -88,21 +62,6 @@ const HeroSection = () => {
         >
           Start Your Journey
         </motion.button>
-
-        {/* Slide Indicators */}
-        <div className="absolute bottom-12 flex gap-3 z-30">
-          {heroImages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentIndex(i)}
-              className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
-                i === currentIndex
-                  ? 'bg-[var(--primary)] w-12 shadow-[0_0_15px_rgba(255,0,0,0.8)]'
-                  : 'bg-white/30 w-3 hover:bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
 
         {/* Scroll Indicator */}
         <motion.div

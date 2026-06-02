@@ -92,8 +92,10 @@ scanlineIntensity = 0,
 speed = 1.7,
 scanlineFrequency = 0,
 warpAmount = 0.6,
-resolutionScale = 0.4 // Further optimized resolution scale
+resolutionScale = 0.4
 }) {
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+const activeResolutionScale = isMobile ? 0.2 : resolutionScale;
 const ref = useRef(null);
 useEffect(() => {
 const canvas = ref.current;
@@ -126,7 +128,7 @@ const mesh = new Mesh(gl, { geometry, program });
 const resize = () => {
 const w = parent.clientWidth,
 h = parent.clientHeight;
-renderer.setSize(w * resolutionScale, h * resolutionScale);
+renderer.setSize(w * activeResolutionScale, h * activeResolutionScale);
 program.uniforms.uResolution.value.set(w, h);
 };
 
@@ -153,6 +155,6 @@ return () => {
 cancelAnimationFrame(frame);
 window.removeEventListener('resize', resize);
 };
-}, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
+}, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, activeResolutionScale]);
 return <canvas ref={ref} className="w-full h-full block" />;
 }

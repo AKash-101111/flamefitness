@@ -45,11 +45,21 @@
     <script type="module" src="/src/main.jsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js', { scope: '/' })
-            .then((reg) => console.log('[SW] Registered, scope:', reg.scope))
-            .catch((err) => console.warn('[SW] Registration failed:', err));
-        });
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          navigator.serviceWorker.getRegistrations().then((registrations) => {
+            for (let registration of registrations) {
+              registration.unregister().then((success) => {
+                if (success) console.log('[SW] Unregistered active worker for local development');
+              });
+            }
+          });
+        } else {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' })
+              .then((reg) => console.log('[SW] Registered, scope:', reg.scope))
+              .catch((err) => console.warn('[SW] Registration failed:', err));
+          });
+        }
       }
     </script>
   </body>
