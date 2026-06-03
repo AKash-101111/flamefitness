@@ -1,6 +1,6 @@
-const CACHE_NAME = 'flame-fitness-v3';
-const STATIC_CACHE = 'flame-static-v3';
-const IMAGE_CACHE = 'flame-images-v3';
+const CACHE_NAME = 'flame-fitness-v4';
+const STATIC_CACHE = 'flame-static-v4';
+const IMAGE_CACHE = 'flame-images-v4';
 
 // Core app shell - must be small and reliable
 const APP_SHELL = [
@@ -12,11 +12,7 @@ const APP_SHELL = [
 // Images to pre-cache individually (failures won't block install)
 const IMAGES_TO_PRECACHE = [
   '/images/flamelogo.svg',
-  '/images/hero/hero-1.jpg',
-  '/images/hero/hero-2.jpg',
-  '/images/hero/hero-3.jpg',
-  '/images/hero/hero-4.jpg',
-  '/images/hero/hero-5.jpg',
+  '/images/bg.jpeg',
 ];
 
 // --- INSTALL: Cache app shell, pre-cache images without blocking ---
@@ -100,18 +96,28 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML navigation: Stale-while-revalidate
-  event.respondWith(
-    (async () => {
-      const cache = await caches.open(STATIC_CACHE);
-      const cached = await cache.match(event.request);
-      const fetchPromise = fetch(event.request)
-        .then((response) => {
-          if (response.ok) cache.put(event.request, response.clone());
-          return response;
-        })
-        .catch(() => cached);
-      return cached || fetchPromise;
-    })()
-  );
-});
+  // HTML navigation: Network-first with timeout, fallback to cache
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(STATIC_CACHE);
+        try {
+          // Try network first
+          const response = await fetch(event.request);
+          if (response.ok) {
+            cache.put(event.request, response.clone());
+            return response;
+          }
+        } catch (err) {
+          // If network fails, try cache
+          const cached = await cache.match(event.request);
+          if (cached) return cached;
+        }
+        // Final fallback if both fail (shouldn't happen for index.html)
+        return cache.match('/index.html') || new Response('', { status: 404 });
+      })()
+    );
+    return;
+  }
+
+  // JS / CSS assets: Network-first, fallback to cache

@@ -4,19 +4,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
     {
         video: "/videos/video-1.mp4",
-        poster: "/images/hero/hero-1.jpg",
+        poster: "/images/bg.jpeg",
         title: "Run Beyond Limits",
         line: "Push past the burn. Chase the version of you that doesn’t stop.",
     },
     {
         video: "/videos/video-2.mp4",
-        poster: "/images/hero/hero-2.jpg",
+        poster: "/images/bg.jpeg",
         title: "Build Relentless Strength",
         line: "Every rep forges power. Every set shapes greatness.",
     },
     {
         video: "/videos/video-3.mp4",
-        poster: "/images/hero/hero-3.jpg",
+        poster: "/images/bg.jpeg",
         title: "Unleash the Warrior Within",
         line: "Let the ropes shake, not your resolve. This is where power awakens.",
     },

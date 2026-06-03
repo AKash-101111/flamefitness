@@ -11,7 +11,7 @@ const HeroSection = () => {
         loop
         playsInline
         preload="auto"
-        poster="/images/hero/hero-1.jpg"
+        poster="/images/bg.jpeg"
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ transform: 'scale(1.08)', transformOrigin: 'top left' }}
