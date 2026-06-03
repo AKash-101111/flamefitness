@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './Components/Navbar'
@@ -23,6 +23,14 @@ const PageLoader = () => (
 );
 
 const App = () => {
+  useEffect(() => {
+    // Signal that React is ready and components are mounted
+    if (typeof window.hideInitialLoader === 'function') {
+      // Small delay to ensure everything is rendered
+      setTimeout(window.hideInitialLoader, 500);
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

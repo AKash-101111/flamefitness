@@ -62,36 +62,33 @@
         align-items: center;
         justify-content: center;
         z-index: 99999;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+      }
+
+      .loader-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 30px;
+        animation: logoPulse 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
       }
 
       .spinner {
-        width: 64px;
-        height: 64px;
-        border: 4px solid #FF0000;
-        border-top-color: transparent;
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255, 0, 0, 0.1);
+        border-top-color: #FF0000;
         border-radius: 50%;
         animation: spin 1s linear infinite;
-        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
       }
 
-      .loader-text {
-        margin-top: 24px;
-        color: #FF0000;
-        font-family: sans-serif;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 0.3em;
-        animation: pulse 1.5s ease-in-out infinite;
+      @keyframes logoPulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.2)); }
+        50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.6)); }
       }
 
       @keyframes spin {
         to { transform: rotate(360deg); }
-      }
-
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
       }
     </style>
 
@@ -149,22 +146,26 @@
   </head>
   <body>
     <div id="initial-loader">
+      <img src="/images/flamelogo.svg" class="loader-logo" alt="Flame Fitness">
       <div class="spinner"></div>
-      <div class="loader-text">Flame Fitness</div>
     </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Hide initial loader when React is ready
-      window.addEventListener('load', () => {
+      // Function to hide the loader with a smooth fade
+      window.hideInitialLoader = () => {
         const loader = document.getElementById('initial-loader');
-        if (loader) {
+        if (loader && loader.style.visibility !== 'hidden') {
           loader.style.opacity = '0';
           setTimeout(() => {
             loader.style.visibility = 'hidden';
-          }, 500);
+            loader.style.display = 'none';
+          }, 800);
         }
-      });
+      };
+
+      // Fallback: hide loader after 5 seconds if React fails to signal
+      setTimeout(window.hideInitialLoader, 5000);
       
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {

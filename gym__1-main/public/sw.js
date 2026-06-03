@@ -1,6 +1,6 @@
-const CACHE_NAME = 'flame-fitness-v5';
-const STATIC_CACHE = 'flame-static-v5';
-const IMAGE_CACHE = 'flame-images-v5';
+const CACHE_NAME = 'flame-fitness-v6';
+const STATIC_CACHE = 'flame-static-v6';
+const IMAGE_CACHE = 'flame-images-v6';
 
 // Core app shell - must be small and reliable
 const APP_SHELL = [
