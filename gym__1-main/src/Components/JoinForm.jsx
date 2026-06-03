@@ -26,9 +26,6 @@ const JoinForm = ({ isOpen, onClose }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="form-title"
                 className="fixed inset-0 z-[200] flex items-center justify-center"
             >
                 {/* Blurred background overlay */}
@@ -65,7 +62,6 @@ const JoinForm = ({ isOpen, onClose }) => {
                     ) : (
                         <>
                             <motion.h2 
-                                id="form-title"
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
@@ -76,23 +72,23 @@ const JoinForm = ({ isOpen, onClose }) => {
 
                             <form onSubmit={handleSubmit} className="space-y-5">
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
-                                    <label htmlFor="full-name" className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Full Name</label>
-                                    <input id="full-name" type="text" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="Enter your name" />
+                                    <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Full Name</label>
+                                    <input type="text" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="Enter your name" />
                                 </motion.div>
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
-                                    <label htmlFor="email" className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Email Address</label>
-                                    <input id="email" type="email" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="your@email.com" />
+                                    <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Email Address</label>
+                                    <input type="email" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="your@email.com" />
                                 </motion.div>
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
-                                    <label htmlFor="phone" className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Phone Number</label>
-                                    <input id="phone" type="tel" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="+91 98765 43210" />
+                                    <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Phone Number</label>
+                                    <input type="tel" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="+91 98765 43210" />
                                 </motion.div>
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
-                                    <label htmlFor="plan" className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Select Plan</label>
-                                    <select id="plan" required className="w-full p-4 rounded-2xl input-primary montserrat appearance-none cursor-pointer">
+                                    <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Select Plan</label>
+                                    <select required className="w-full p-4 rounded-2xl input-primary montserrat appearance-none cursor-pointer">
                                         <option value="Basic" className="bg-[#0B0B0B]">Basic Membership</option>
                                         <option value="Standard" className="bg-[#0B0B0B]">Standard Membership</option>
                                         <option value="Premium" className="bg-[#0B0B0B]">Premium Membership</option>
@@ -112,7 +108,6 @@ const JoinForm = ({ isOpen, onClose }) => {
 
                     <button
                         onClick={handleClose}
-                        aria-label="Close registration form"
                         className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer"
                     >
                         ✕

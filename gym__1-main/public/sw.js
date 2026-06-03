@@ -1,6 +1,6 @@
-const CACHE_NAME = 'flame-fitness-v6';
-const STATIC_CACHE = 'flame-static-v6';
-const IMAGE_CACHE = 'flame-images-v6';
+const CACHE_NAME = 'flame-fitness-v3';
+const STATIC_CACHE = 'flame-static-v3';
+const IMAGE_CACHE = 'flame-images-v3';
 
 // Core app shell - must be small and reliable
 const APP_SHELL = [
@@ -12,7 +12,11 @@ const APP_SHELL = [
 // Images to pre-cache individually (failures won't block install)
 const IMAGES_TO_PRECACHE = [
   '/images/flamelogo.svg',
-  '/images/bg.jpeg',
+  '/images/hero/hero-1.jpg',
+  '/images/hero/hero-2.jpg',
+  '/images/hero/hero-3.jpg',
+  '/images/hero/hero-4.jpg',
+  '/images/hero/hero-5.jpg',
 ];
 
 // --- INSTALL: Cache app shell, pre-cache images without blocking ---
@@ -64,14 +68,16 @@ self.addEventListener('fetch', (event) => {
   // Images: Cache-first, fallback to network
   if (/\.(jpg|jpeg|png|gif|webp|svg|ico)$/i.test(url.pathname)) {
     event.respondWith(
-      caches.match(event.request).then((cached) => {
-        return cached || fetch(event.request).then((response) => {
-          if (response.ok) {
-            const copy = response.clone();
-            caches.open(IMAGE_CACHE).then((cache) => cache.put(event.request, copy));
-          }
+      caches.open(IMAGE_CACHE).then(async (cache) => {
+        const cached = await cache.match(event.request);
+        if (cached) return cached;
+        try {
+          const response = await fetch(event.request);
+          if (response.ok) cache.put(event.request, response.clone());
           return response;
-        });
+        } catch {
+          return cached || new Response('', { status: 404 });
+        }
       })
     );
     return;
@@ -94,14 +100,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML navigation: Direct network request with fallback
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match('/index.html') || caches.match('/');
-      })
-    );
-    return;
-  }
-
-  // JS / CSS assets: Network-first, fallback to cache
+  // HTML navigation: Stale-while-revalidate
+  event.respondWith(
+    (async () => {
+      const cache = await caches.open(STATIC_CACHE);
+      const cached = await cache.match(event.request);
+      const fetchPromise = fetch(event.request)
+        .then((response) => {
+          if (response.ok) cache.put(event.request, response.clone());
+          return response;
+        })
+        .catch(() => cached);
+      return cached || fetchPromise;
+    })()
+  );
+});

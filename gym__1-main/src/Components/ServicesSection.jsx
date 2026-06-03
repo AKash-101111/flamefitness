@@ -158,18 +158,9 @@ const ServicesSection = () => {
                     {team.map((trainer, index) => (
                         <motion.div
                             key={index}
-                            role="button"
-                            tabIndex={0}
                             whileHover={{ y: -10, scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
                             onClick={() => handleTrainerClick(trainer)}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    handleTrainerClick(trainer);
-                                }
-                            }}
-                            aria-label={`View details for trainer ${trainer.title}`}
                             className="group relative rounded-[24px] md:rounded-[40px] overflow-hidden glass-card cursor-pointer border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 shadow-xl hover:shadow-[0_0_40px_rgba(255,0,0,0.25)]"
                         >
                             <div className="aspect-[4/5] overflow-hidden">

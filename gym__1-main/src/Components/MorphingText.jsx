@@ -18,8 +18,6 @@ const useMorphingText = (texts) => {
     const text1Ref = useRef(null);
     const text2Ref = useRef(null);
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-
     const setStyles = useCallback(
         (fraction) => {
             const t1 = text1Ref.current;
@@ -27,23 +25,17 @@ const useMorphingText = (texts) => {
 
             if (!t1 || !t2) return;
 
-            if (!isMobile) {
-                t2.style.filter = `blur(${Math.min(8 / fraction - 8, 40)}px)`;
-                const inverted = 1 - fraction;
-                t1.style.filter = `blur(${Math.min(8 / inverted - 8, 40)}px)`;
-            } else {
-                t1.style.filter = "none";
-                t2.style.filter = "none";
-            }
-            
+            t2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
             t2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
             const inverted = 1 - fraction;
+            t1.style.filter = `blur(${Math.min(8 / inverted - 8, 100)}px)`;
             t1.style.opacity = `${Math.pow(inverted, 0.4) * 100}%`;
 
             t1.textContent = texts[textIndexRef.current % texts.length];
             t2.textContent = texts[(textIndexRef.current + 1) % texts.length];
         },
-        [texts, isMobile]
+        [texts]
     );
 
     const doMorph = useCallback(() => {

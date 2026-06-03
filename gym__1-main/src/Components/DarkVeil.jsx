@@ -92,10 +92,10 @@ scanlineIntensity = 0,
 speed = 1.7,
 scanlineFrequency = 0,
 warpAmount = 0.6,
-resolutionScale = 0.25
+resolutionScale = 0.4
 }) {
 const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-const activeResolutionScale = isMobile ? 0.1 : resolutionScale;
+const activeResolutionScale = isMobile ? 0.2 : resolutionScale;
 const ref = useRef(null);
 useEffect(() => {
 const canvas = ref.current;
@@ -139,10 +139,6 @@ const start = performance.now();
 let frame = 0;
 
 const loop = () => {
-if (document.hidden) {
-frame = requestAnimationFrame(loop);
-return;
-}
 program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
 program.uniforms.uHueShift.value = hueShift;
 program.uniforms.uNoise.value = noiseIntensity;
@@ -160,5 +156,5 @@ cancelAnimationFrame(frame);
 window.removeEventListener('resize', resize);
 };
 }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, activeResolutionScale]);
-return <canvas ref={ref} className="w-full h-full block will-change-transform" />;
+return <canvas ref={ref} className="w-full h-full block" />;
 }

@@ -48,14 +48,12 @@ const Footer = () => {
         { 
             icon: <FaWhatsapp size={20} />, 
             url: "https://wa.me/919791020081?text=Hi!%20I'm%20interested%20in%20joining%20your%20gym%20and%20would%20like%20to%20know%20more%20about%20the%20membership%20plans,%20and%20available%20facilities.", 
-            label: "WhatsApp",
-            aria: "Contact us on WhatsApp"
+            label: "WhatsApp" 
         },
         { 
             icon: <FaInstagram size={20} />, 
             url: "https://www.instagram.com/flamefitnessstudio_tnagar?igsh=b3JtdncxOTF5bmti", 
-            label: "Instagram",
-            aria: "Follow us on Instagram"
+            label: "Instagram" 
         }
     ];
 
@@ -65,19 +63,17 @@ const Footer = () => {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-4 bg-[var(--primary)]/10 blur-3xl opacity-30" />
             {/* Background Branding */}
             <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none overflow-hidden">
-                <span className="text-[35vw] font-black text-[var(--primary)] whitespace-nowrap uppercase italic league-spartan" aria-hidden="true">FLAME</span>
+                <span className="text-[35vw] font-black text-[var(--primary)] whitespace-nowrap uppercase italic league-spartan">FLAME</span>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
                 {/* Center Logo Section */}
                 <div className="flex flex-col items-center mb-20 text-center">
-                    <Link to="/" className="group" aria-label="Flame Fitness Home">
+                    <Link to="/" className="group">
                         <motion.img
                             whileHover={{ scale: 1.05, rotate: 2 }}
                             src="/images/flamelogo.svg"
                             alt="Flame Fitness Logo"
-                            width="112"
-                            height="112"
                             className="h-28 w-auto rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/5 group-hover:border-[var(--primary)]/30 transition-all duration-300 mb-8"
                         />
                     </Link>

@@ -92,18 +92,16 @@ const Gallery = () => {
                         {/* Navigation Arrows */}
                         <button 
                             onClick={prevImage}
-                            aria-label="Previous image"
                             className="absolute left-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
                         >
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
                         </button>
 
                         <button 
                             onClick={nextImage}
-                            aria-label="Next image"
                             className="absolute right-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
                         >
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
                         </button>
 
                         <motion.div
@@ -115,16 +113,15 @@ const Gallery = () => {
                         >
                             <img 
                                 src={selectedImage} 
-                                alt={`Gallery image ${currentIndex + 1} of ${galleryImages.length}`} 
+                                alt="Gallery Preview" 
                                 className="w-full h-full object-contain rounded-3xl"
                             />
                             
                             <button 
                                 onClick={() => setSelectedImage(null)}
-                                aria-label="Close lightbox"
                                 className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-[var(--primary)]/30 flex items-center justify-center text-white hover:text-[var(--primary)] transition-all cursor-pointer z-[1002]"
                             >
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>

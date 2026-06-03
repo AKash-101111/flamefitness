@@ -91,18 +91,9 @@ const Programs = () => {
                 {programsList.map((prog, index) => (
                     <motion.div
                         key={index}
-                        role="button"
-                        tabIndex={0}
                         whileHover={{ scale: 1.03, rotateX: 4, rotateY: -4 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => setSelectedProgram(prog)}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                setSelectedProgram(prog);
-                            }
-                        }}
-                        aria-label={`Learn more about ${prog.title} program`}
                         className="group p-10 glass-card cursor-pointer hover:border-[var(--primary)]/60 hover:shadow-[0_0_40px_rgba(255,0,0,0.25)] transition-all duration-500 primary-shimmer-border"
                         style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
                     >

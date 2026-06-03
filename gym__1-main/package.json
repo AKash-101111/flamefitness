@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "9.121.4",
+    "@react-three/fiber": "^8.16.0",
     "clsx": "latest",
     "framer-motion": "latest",
     "gsap": "latest",
@@ -22,7 +24,8 @@
     "react-router-dom": "^7.14.1",
     "styled-components": "latest",
     "tailwind-merge": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "three": "latest"
   },
   "devDependencies": {
     "@tailwindcss/vite": "latest",

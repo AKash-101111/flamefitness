@@ -4,19 +4,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
     {
         video: "/videos/video-1.mp4",
-        poster: "/images/bg.jpeg",
+        poster: "/images/hero/hero-1.jpg",
         title: "Run Beyond Limits",
         line: "Push past the burn. Chase the version of you that doesn’t stop.",
     },
     {
         video: "/videos/video-2.mp4",
-        poster: "/images/bg.jpeg",
+        poster: "/images/hero/hero-2.jpg",
         title: "Build Relentless Strength",
         line: "Every rep forges power. Every set shapes greatness.",
     },
     {
         video: "/videos/video-3.mp4",
-        poster: "/images/bg.jpeg",
+        poster: "/images/hero/hero-3.jpg",
         title: "Unleash the Warrior Within",
         line: "Let the ropes shake, not your resolve. This is where power awakens.",
     },
@@ -76,9 +76,8 @@ export default function CustomCarousel() {
                                 loop
                                 muted
                                 playsInline
-                                preload={i === 0 ? "auto" : "metadata"}
+                                preload="auto"
                                 poster={slide.poster}
-                                aria-hidden="true"
                             >
                                 <source src={slide.video} type="video/mp4" />
                                 Your browser does not support the video tag.

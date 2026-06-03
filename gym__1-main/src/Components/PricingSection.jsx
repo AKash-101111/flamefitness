@@ -43,16 +43,6 @@ const PricingSection = () => {
                             ref={toggleRef}
                             className="relative bg-white/5 backdrop-blur-md rounded-full p-1.5 w-[300px] flex items-center cursor-pointer border border-[var(--primary)]/10"
                             onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
-                            role="switch"
-                            aria-checked={billingCycle === 'yearly'}
-                            aria-label="Toggle between monthly and yearly billing"
-                            tabIndex={0}
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' || e.key === ' ') {
-                                    e.preventDefault();
-                                    setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly');
-                                }
-                            }}
                         >
                             {/* Sliding background */}
                             <div
@@ -61,20 +51,20 @@ const PricingSection = () => {
                             />
 
                             {/* Monthly Button */}
-                            <div
+                            <button
                                 className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'monthly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
                                 Monthly
-                            </div>
+                            </button>
 
                             {/* Yearly Button */}
-                            <div
+                            <button
                                 className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'yearly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
                                 Yearly <span className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full ${billingCycle === 'yearly' ? 'bg-black/10' : 'bg-[var(--primary)]/20 text-[var(--primary)]'}`}>-20%</span>
-                            </div>
+                            </button>
                         </div>
                     </div>
 
@@ -181,7 +171,6 @@ const PricingCard = ({
 
                 <button 
                     onClick={onJoinClick}
-                    aria-label={`Join the ${type} membership plan`}
                     className={`w-full rounded-2xl py-5 text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer
                         ${active 
                             ? "bg-[var(--primary)] text-[#050505] hover:shadow-[0_0_40px_rgba(255,0,0,0.6)]" 

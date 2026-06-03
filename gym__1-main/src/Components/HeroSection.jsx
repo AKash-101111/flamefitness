@@ -10,9 +10,6 @@ const HeroSection = () => {
         muted
         loop
         playsInline
-        preload="auto"
-        poster="/images/bg.jpeg"
-        aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ transform: 'scale(1.08)', transformOrigin: 'top left' }}
       >
@@ -61,7 +58,6 @@ const HeroSection = () => {
             const el = document.getElementById('membership-plans');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
-          aria-label="View membership plans and start your journey"
           className="mt-10 px-12 py-5 bg-[var(--primary)] text-[#050505] font-black text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,0,0,0.3)]"
         >
           Start Your Journey
