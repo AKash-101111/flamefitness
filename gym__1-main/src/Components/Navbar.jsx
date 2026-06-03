@@ -30,11 +30,18 @@ const Navbar = () => {
                 sticky top-3 z-50
                 mx-auto
                 bg-black/40
-                backdrop-blur-md
+                md:backdrop-blur-md
                 border border-white/10
                 shadow-[0_4px_30px_rgba(0,0,0,0.5)]
             "
-            >
+        >
+            <style>
+                {`
+                    @media (max-width: 768px) {
+                        nav { backdrop-filter: none !important; background: rgba(5, 5, 5, 0.95) !important; }
+                    }
+                `}
+            </style>
                 <Link to="/" className="flex items-center gap-3" aria-label="Flame Fitness Home">
                     <img src="/images/flamelogo.svg" alt="Flame Fitness Logo" width="48" height="48" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
                     <span

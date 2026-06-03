@@ -326,8 +326,8 @@ class App {
     }
     createGeometry() {
         this.planeGeometry = new Plane(this.gl, {
-            heightSegments: 20, // Reduced from 50
-            widthSegments: 40   // Reduced from 100
+            heightSegments: 10, // Further reduced for performance
+            widthSegments: 20   // Further reduced for performance
         });
     }
     createMedias(items, bend = 1, textColor, borderRadius, font) {
