@@ -35,10 +35,11 @@ const Navbar = () => {
                 shadow-[0_4px_30px_rgba(0,0,0,0.5)]
             "
             >
-                <Link to="/" className="flex items-center gap-3">
-                    <img src="/images/flamelogo.svg" alt="Flame Fitness Logo" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
+                <Link to="/" className="flex items-center gap-3" aria-label="Flame Fitness Home">
+                    <img src="/images/flamelogo.svg" alt="Flame Fitness Logo" width="48" height="48" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
                     <span
                         className="block text-white text-[10px] sm:text-sm md:text-base tracking-widest leading-none font-bold"
+                        aria-hidden="true"
                         style={{
                             fontFamily: "'Michroma', sans-serif",
                             textShadow: "0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4)",
@@ -59,6 +60,7 @@ const Navbar = () => {
                             <li key={link.path}>
                                 <Link
                                     to={link.path}
+                                    aria-label={`Navigate to ${link.name}`}
                                     className={`relative poiret text-xl font-normal cursor-pointer transition-colors duration-300 group ${
                                         isActive(link.path) ? "text-[var(--primary)] font-bold" : "text-white/80 hover:text-[var(--primary)]"
                                     }`}
@@ -71,7 +73,7 @@ const Navbar = () => {
                             </li>
                         ))}
                     </ul>
-                    <Button onClick={() => setIsFormOpen(true)}>Join Now</Button>
+                    <Button onClick={() => setIsFormOpen(true)} ariaLabel="Open membership registration form">Join Now</Button>
                 </div>
 
                 {/* MOBILE MENU TOGGLE */}

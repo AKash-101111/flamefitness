@@ -20,7 +20,7 @@ const Contact = () => {
         {
             icon: <FaPhoneAlt />,
             title: "Phone",
-            value: "+91 98765 43210",
+            value: "08042781333",
             subtitle: "Call us Mon-Sat"
         },
         {

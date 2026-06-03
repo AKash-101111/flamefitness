@@ -76,8 +76,9 @@ export default function CustomCarousel() {
                                 loop
                                 muted
                                 playsInline
-                                preload="auto"
+                                preload={i === 0 ? "auto" : "metadata"}
                                 poster={slide.poster}
+                                aria-hidden="true"
                             >
                                 <source src={slide.video} type="video/mp4" />
                                 Your browser does not support the video tag.
