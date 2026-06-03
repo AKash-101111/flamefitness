@@ -1,6 +1,6 @@
-const CACHE_NAME = 'flame-fitness-v4';
-const STATIC_CACHE = 'flame-static-v4';
-const IMAGE_CACHE = 'flame-images-v4';
+const CACHE_NAME = 'flame-fitness-v5';
+const STATIC_CACHE = 'flame-static-v5';
+const IMAGE_CACHE = 'flame-images-v5';
 
 // Core app shell - must be small and reliable
 const APP_SHELL = [
@@ -64,16 +64,14 @@ self.addEventListener('fetch', (event) => {
   // Images: Cache-first, fallback to network
   if (/\.(jpg|jpeg|png|gif|webp|svg|ico)$/i.test(url.pathname)) {
     event.respondWith(
-      caches.open(IMAGE_CACHE).then(async (cache) => {
-        const cached = await cache.match(event.request);
-        if (cached) return cached;
-        try {
-          const response = await fetch(event.request);
-          if (response.ok) cache.put(event.request, response.clone());
+      caches.match(event.request).then((cached) => {
+        return cached || fetch(event.request).then((response) => {
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(IMAGE_CACHE).then((cache) => cache.put(event.request, copy));
+          }
           return response;
-        } catch {
-          return cached || new Response('', { status: 404 });
-        }
+        });
       })
     );
     return;
@@ -96,26 +94,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML navigation: Network-first with timeout, fallback to cache
+  // HTML navigation: Direct network request with fallback
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      (async () => {
-        const cache = await caches.open(STATIC_CACHE);
-        try {
-          // Try network first
-          const response = await fetch(event.request);
-          if (response.ok) {
-            cache.put(event.request, response.clone());
-            return response;
-          }
-        } catch (err) {
-          // If network fails, try cache
-          const cached = await cache.match(event.request);
-          if (cached) return cached;
-        }
-        // Final fallback if both fail (shouldn't happen for index.html)
-        return cache.match('/index.html') || new Response('', { status: 404 });
-      })()
+      fetch(event.request).catch(() => {
+        return caches.match('/index.html') || caches.match('/');
+      })
     );
     return;
   }

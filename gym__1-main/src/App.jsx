@@ -28,11 +28,9 @@ const App = () => {
       <ScrollToTop />
       <div className='relative flex flex-col items-center w-full overflow-x-hidden min-h-screen bg-[#050505]' style={{ maxWidth: '100vw' }}>
         {/* Global Animated Background - Optimized for performance */}
-        <Suspense fallback={null}>
-          <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none will-change-transform">
-            <DarkVeil />
-          </div>
-        </Suspense>
+        <div className="fixed inset-0 overflow-hidden -z-20 pointer-events-none will-change-transform">
+          <DarkVeil />
+        </div>
 
         <Navbar />
         

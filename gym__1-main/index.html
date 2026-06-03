@@ -42,11 +42,57 @@
     <meta name="msapplication-TileColor" content="#050505" />
     <meta name="msapplication-TileImage" content="/images/flamelogo.svg" />
 
-    <!-- Prevent horizontal scroll on all mobile browsers -->
     <style>
-      html, body { overflow-x: hidden; max-width: 100vw; }
-      /* Prevent iOS bounce scroll from showing white edges */
-      body { background-color: #050505; }
+      html, body { 
+        overflow-x: hidden; 
+        max-width: 100vw; 
+        background-color: #050505;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #050505;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+
+      .spinner {
+        width: 64px;
+        height: 64px;
+        border: 4px solid #FF0000;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+      }
+
+      .loader-text {
+        margin-top: 24px;
+        color: #FF0000;
+        font-family: sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
     </style>
 
     <!-- Google Fonts -->
@@ -102,9 +148,24 @@
     </script>
   </head>
   <body>
+    <div id="initial-loader">
+      <div class="spinner"></div>
+      <div class="loader-text">Flame Fitness</div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
+      // Hide initial loader when React is ready
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.style.visibility = 'hidden';
+          }, 500);
+        }
+      });
+      
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
