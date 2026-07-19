@@ -67,20 +67,20 @@ body {
 /* ---------- HERO TITLE RESPONSIVE TYPOGRAPHY ---------- */
 .hero-title {
   font-family: 'Brand', sans-serif;
-  font-size: clamp(1.75rem, 5vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+  font-size: clamp(3rem, 7.5vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
   width: 100%;
-  max-width: min(92vw, 1200px);
+  max-width: min(96vw, 1350px);
   margin-inline: auto;
-  padding-inline: clamp(0.5rem, 2vw, 2rem);
+  padding-inline: clamp(0.5rem, 2vw, 1.5rem);
   box-sizing: border-box;
 }
 
 .hero-title .gradient-text {
-  font-size: clamp(2.25rem, 6.8vw, 7.5rem);
-  line-height: 1.1;
-  padding-bottom: 0.06em;
+  font-size: clamp(3.8rem, 10vw, 9.8rem);
+  line-height: 1.05;
+  padding-bottom: 0.08em;
   padding-top: 0.04em;
   display: inline-block;
 }
@@ -315,13 +315,25 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.4rem, 11.5vw, 4.5rem);
+    line-height: 0.95;
+    padding-inline: 0.5rem;
+  }
+  .hero-title .gradient-text {
+    font-size: clamp(3.2rem, 15vw, 5.8rem);
+    line-height: 1.05;
+  }
+}
+
 @media (max-width: 380px) {
   .hero-title {
-    font-size: clamp(1.5rem, 6vw, 1.75rem);
+    font-size: clamp(2rem, 10.5vw, 2.4rem);
     padding-inline: 0.25rem;
   }
   .hero-title .gradient-text {
-    font-size: clamp(1.95rem, 8.5vw, 2.25rem);
+    font-size: clamp(2.7rem, 14vw, 3.2rem);
   }
 }
 
