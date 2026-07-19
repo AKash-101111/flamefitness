@@ -25,15 +25,17 @@ const HeroSection = () => {
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#050505] to-transparent z-10" />
 
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center stagger-in">
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-full py-12 px-4 sm:px-6 text-center stagger-in">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
+          className="w-full flex justify-center"
         >
-          <h1 className="text-5xl md:text-8xl lg:text-9xl text-white hero-title font-extrabold tracking-tighter uppercase leading-tight">
-            Unleash Your<br />
-            <span className="gradient-text text-6xl md:text-9xl lg:text-[10rem]">Beast!</span>
+          <h1 className="hero-title text-white uppercase text-center">
+            <span className="inline-block whitespace-nowrap">Unleash Your</span>
+            <br />
+            <span className="gradient-text">Beast!</span>
           </h1>
         </motion.div>
 
@@ -41,7 +43,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="poiret text-lg md:text-2xl text-white/80 mt-4 md:mt-2 max-w-2xl leading-relaxed"
+          className="poiret text-base sm:text-xl md:text-2xl text-white/80 mt-4 md:mt-6 max-w-2xl leading-relaxed px-4"
         >
           Train Elite. Become Unstoppable.
           <br />
@@ -58,7 +60,7 @@ const HeroSection = () => {
             const el = document.getElementById('membership-plans');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="mt-10 px-12 py-5 bg-[var(--primary)] text-[#050505] font-black text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,0,0,0.3)]"
+          className="mt-8 sm:mt-10 px-8 sm:px-12 py-4 sm:py-5 bg-[var(--primary)] text-[#050505] font-black text-lg sm:text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,0,0,0.3)]"
         >
           Start Your Journey
         </motion.button>

@@ -63,7 +63,27 @@ body {
 .poiret { font-family: "Poiret One", sans-serif; }
 .league-spartan { font-family: "League Spartan", sans-serif; }
 .montserrat { font-family: "Montserrat", sans-serif; }
-.hero-title { font-family: 'Brand', sans-serif; }
+
+/* ---------- HERO TITLE RESPONSIVE TYPOGRAPHY ---------- */
+.hero-title {
+  font-family: 'Brand', sans-serif;
+  font-size: clamp(1.85rem, 5.5vw, 6.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  width: 100%;
+  max-width: min(92vw, 1200px);
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 3vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+.hero-title .gradient-text {
+  font-size: clamp(2.4rem, 7.5vw, 8.5rem);
+  line-height: 1.12;
+  padding-bottom: 0.08em;
+  padding-top: 0.04em;
+  display: inline-block;
+}
 
 /* ---------- PRIMARY GRADIENT TEXT ---------- */
 .gradient-text {
@@ -267,6 +287,7 @@ body {
 .hero-fullscreen {
   width: 100vw !important;
   height: 100vh !important;
+  min-height: 100dvh !important;
   max-width: none !important;
   margin: 0 !important;
   border-radius: 0 !important;
@@ -275,7 +296,10 @@ body {
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
   .gradient-text::before { display: none; }
-  .hero-fullscreen { height: 75vh !important; }
+  .hero-fullscreen {
+    height: auto !important;
+    min-height: 100dvh !important;
+  }
 
   /* Prevent any fixed-width child from causing horizontal scroll */
   .testimonial-track {
@@ -288,6 +312,16 @@ body {
     align-items: flex-start;
     padding-top: max(16px, env(safe-area-inset-top));
     padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-title {
+    font-size: clamp(1.5rem, 6.5vw, 1.85rem);
+    padding-inline: 0.5rem;
+  }
+  .hero-title .gradient-text {
+    font-size: clamp(2rem, 9vw, 2.4rem);
   }
 }
 
