@@ -58,16 +58,16 @@ const Gallery = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
                 {galleryImages.map((img, i) => (
-                    <motion.div 
+                    <motion.div
                         key={i}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => openLightbox(img, i)}
                         className="group relative h-64 md:h-80 rounded-[40px] overflow-hidden border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 cursor-pointer shadow-lg hover:shadow-[0_0_25px_rgba(255,0,0,0.4)]"
                     >
-                        <img 
-                            src={img} 
-                            alt={`Gallery ${i}`} 
+                        <img
+                            src={img}
+                            alt={`Gallery ${i}`}
                             loading="lazy"
                             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110"
                         />
@@ -90,18 +90,18 @@ const Gallery = () => {
                         className="modal-overlay p-4 z-[1000]"
                     >
                         {/* Navigation Arrows */}
-                        <button 
+                        <button
                             onClick={prevImage}
                             className="absolute left-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
                         >
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
                         </button>
 
-                        <button 
+                        <button
                             onClick={nextImage}
                             className="absolute right-8 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/10 transition-all cursor-pointer z-[1001] hidden md:flex"
                         >
-                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
                         </button>
 
                         <motion.div
@@ -111,13 +111,13 @@ const Gallery = () => {
                             className="relative max-w-6xl w-full h-[85vh] flex items-center justify-center p-2 rounded-[40px] overflow-hidden bg-black/20"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <img 
-                                src={selectedImage} 
-                                alt="Gallery Preview" 
+                            <img
+                                src={selectedImage}
+                                alt="Gallery Preview"
                                 className="w-full h-full object-contain rounded-3xl"
                             />
-                            
-                            <button 
+
+                            <button
                                 onClick={() => setSelectedImage(null)}
                                 className="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-[var(--primary)]/30 flex items-center justify-center text-white hover:text-[var(--primary)] transition-all cursor-pointer z-[1002]"
                             >
