@@ -48,34 +48,36 @@ const headCoach = {
     image: '/images/trainers/head-coach.jpg',
     fallbackImage: 'https://i.pravatar.cc/500?img=11',
     title: 'Surendar P',
-    subtitle: 'Head Coach',
-    experience: '15+ Years',
+    subtitle: 'Head Coach & Managing Director',
+    focus: 'Fitness Coach & Wellness',
     description:
-        'Surendar is a world-class fitness professional dedicated to transforming lives through elite training protocols and holistic lifestyle optimization. As the visionary behind our premium training standards, he brings unmatched expertise to the floor.',
-    skills: [
-        'Elite Strength Conditioning',
-        'Body Recomposition',
-        'Injury Rehabilitation',
-        'Advanced Sports Nutrition',
-        'Competition Prep',
+        'Surendar P is a dedicated Fitness Coach & Wellness Specialist, serving as Head Coach and Managing Director of Flame Fitness Studio, and Vice President of TNGO&TWA (Tamil Nadu Gym Owners and Trainers Welfare Association). Internationally certified by leading fitness organizations including NASM, ISSA, and IFA, he brings elite standards to physical fitness and holistic wellness.',
+    positions: [
+        {
+            role: 'Head Coach',
+            organization: 'Flame Fitness Studio',
+            description: 'Directs overall athletic training protocols, coaching standards, and member progression programs.',
+        },
+        {
+            role: 'Managing Director',
+            organization: 'Flame Fitness Studio',
+            description: 'Leads executive management, operational vision, and strategic growth of Flame Fitness Studio.',
+        },
+        {
+            role: 'Vice President',
+            organization: 'TNGO&TWA (Tamil Nadu Gym Owners and Trainers Welfare Association)',
+            description: 'Serves in leadership advocating for gym owners and trainers welfare across Tamil Nadu.',
+        },
     ],
-    achievements: [
-        'National Powerlifting Champion',
-        'Trained 50+ Elite Athletes',
-        'Fitness Industry Innovator Award 2024',
-    ],
-    specializations: ['Hypertrophy', 'Functional Movement', 'Metabolic Conditioning'],
-    highlights: [
-        'Tamil Nadu Vice President – TGOTWA Chennai',
-        'Founder & Owner – Flame Fitness Studio, T. Nagar',
-        'Certified Fitness Coach & Wellness Specialist',
-        'Internationally Certified by ISSA, IFA & NASM',
+    affiliations: [
+        { abbr: 'NASM', name: 'National Academy of Sports Medicine' },
+        { abbr: 'ISSA', name: 'International Sports Sciences Association' },
+        { abbr: 'IFA', name: 'International Fitness Association' },
     ],
 };
 
 const balu = {
-    // Replace null with '/images/trainers/balu.jpg' when the real photo is available
-    image: null,
+    image: '/images/profile/balu-profile.png',
     initials: 'RB',
     title: 'R. Balu',
     subtitle: 'Senior Trainer & Floor Manager',
@@ -180,16 +182,17 @@ const certificatesData = [
 // ─── Reusable Stat Block ──────────────────────────────────────────────────────
 const StatBlock = ({ value, label, accent }) => (
     <div className="text-center">
-        <p className={`text-2xl font-bold league-spartan ${accent ? 'text-[var(--primary)]' : 'text-white'}`}>
+        <p className={`text-xl sm:text-2xl font-bold league-spartan ${accent ? 'text-[var(--primary)]' : 'text-white'}`}>
             {value}
         </p>
-        <p className="text-xs text-white/50 uppercase tracking-widest montserrat">{label}</p>
+        <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-widest montserrat">{label}</p>
     </div>
 );
 
 // ─── Trainer Card (shared layout wrapper) ─────────────────────────────────────
 // reverse=true  →  image on RIGHT, content on LEFT (desktop)
 // reverse=false →  image on LEFT, content on RIGHT (desktop)
+// On Mobile/Tablet (< md): Single column layout with Image at TOP and Content BELOW
 const TrainerCard = ({ trainer, reverse, onViewProfile, stats }) => {
     const imageArea = trainer.image ? (
         <img
@@ -207,13 +210,13 @@ const TrainerCard = ({ trainer, reverse, onViewProfile, stats }) => {
 
     return (
         <motion.div
-            whileHover={{ y: -8, scale: 1.005 }}
-            className={`group relative rounded-[32px] overflow-hidden glass-card border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(255,0,0,0.25)] flex flex-col ${
+            whileHover={{ y: -4, scale: 1.002 }}
+            className={`group relative rounded-[24px] sm:rounded-[32px] overflow-hidden glass-card border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(255,0,0,0.25)] flex flex-col ${
                 reverse ? 'md:flex-row-reverse' : 'md:flex-row'
-            }`}
+            } w-full`}
         >
-            {/* Image Section */}
-            <div className="w-full md:w-1/2 h-[360px] md:h-[480px] relative overflow-hidden shrink-0">
+            {/* Image Section - Always rendered first in DOM so mobile flex-col shows image above text */}
+            <div className="w-full md:w-1/2 h-[260px] sm:h-[360px] md:h-[480px] relative overflow-hidden shrink-0">
                 {imageArea}
                 <div
                     className={`absolute inset-0 ${
@@ -225,23 +228,23 @@ const TrainerCard = ({ trainer, reverse, onViewProfile, stats }) => {
             </div>
 
             {/* Content Section */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative z-10 bg-[#050505]/80 backdrop-blur-md">
-                <h3 className="text-3xl md:text-5xl font-black text-white league-spartan uppercase tracking-tighter mb-2">
+            <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center relative z-10 bg-[#050505]/80 backdrop-blur-md">
+                <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-2">
                     {trainer.title}
                 </h3>
-                <p className="text-[var(--primary)] text-base md:text-lg poiret font-bold tracking-widest uppercase mb-6">
+                <p className="text-[var(--primary)] text-sm sm:text-base md:text-lg poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
                     {trainer.subtitle}
                 </p>
-                <p className="text-white/70 montserrat leading-relaxed mb-8 line-clamp-3">
+                <p className="text-white/70 montserrat text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 line-clamp-3">
                     {trainer.description}
                 </p>
 
                 {/* Stats row */}
                 {stats && stats.length > 0 && (
-                    <div className="flex items-center gap-6 mb-8 flex-wrap">
+                    <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8 flex-wrap">
                         {stats.map((stat, i) => (
                             <React.Fragment key={i}>
-                                {i > 0 && <div className="w-px h-10 bg-white/10" />}
+                                {i > 0 && <div className="w-px h-8 sm:h-10 bg-white/10" />}
                                 <StatBlock value={stat.value} label={stat.label} accent={stat.accent} />
                             </React.Fragment>
                         ))}
@@ -250,7 +253,7 @@ const TrainerCard = ({ trainer, reverse, onViewProfile, stats }) => {
 
                 <button
                     onClick={onViewProfile}
-                    className="self-start px-8 py-3 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider"
+                    className="self-start px-6 sm:px-8 py-2.5 sm:py-3 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
                 >
                     View Full Profile
                 </button>
@@ -281,7 +284,7 @@ const ServicesSection = () => {
     ];
 
     return (
-        <div className="w-full flex flex-col items-center py-8 my-10 overflow-hidden">
+        <div className="w-full flex flex-col items-center py-8 my-10 overflow-x-hidden max-w-full">
             {/* ── Equipment ─────────────────────────────────────────────── */}
             <h1 className="text-4xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-8 md:mb-0">
                 Equipment
@@ -321,24 +324,24 @@ const ServicesSection = () => {
             </div>
 
             {/* ── Trainers Section ──────────────────────────────────────── */}
-            <div className="w-full flex flex-col items-center mt-20">
-                <h2 className="text-[10px] md:text-sm text-[var(--primary)] font-bold tracking-[0.2em] uppercase mb-4">
+            <div className="w-full flex flex-col items-center mt-12 sm:mt-20 px-4">
+                <h2 className="text-[10px] sm:text-xs md:text-sm text-[var(--primary)] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-2 sm:mb-4 text-center">
                     Meet the Professionals Behind Your Transformation
                 </h2>
-                <h1 className="text-4xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-16">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-10 sm:mb-16 text-center">
                     Our <span className="gradient-text">Trainers</span>
                 </h1>
 
-                <div className="w-full max-w-5xl px-4 md:px-8 flex flex-col gap-8">
+                <div className="w-full max-w-5xl px-0 sm:px-4 md:px-8 flex flex-col gap-6 sm:gap-8">
 
-                    {/* ── 1. Surendar P — Head Coach (Image Left) ────────── */}
+                    {/* ── 1. Surendar P — Head Coach (Image Left on Desktop, Top on Mobile) ── */}
                     <motion.div
-                        whileHover={{ y: -8, scale: 1.005 }}
-                        className="group relative rounded-[32px] overflow-hidden glass-card cursor-pointer border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(255,0,0,0.3)] flex flex-col md:flex-row"
+                        whileHover={{ y: -4, scale: 1.002 }}
+                        className="group relative rounded-[24px] sm:rounded-[32px] overflow-hidden glass-card cursor-pointer border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(255,0,0,0.3)] flex flex-col md:flex-row w-full"
                         onClick={() => setShowHeadCoachProfile(true)}
                     >
                         {/* Image */}
-                        <div className="w-full md:w-1/2 h-[360px] md:h-[500px] relative overflow-hidden shrink-0">
+                        <div className="w-full md:w-1/2 h-[260px] sm:h-[360px] md:h-[500px] relative overflow-hidden shrink-0">
                             <img
                                 src={headCoach.image}
                                 alt={headCoach.title}
@@ -352,31 +355,31 @@ const ServicesSection = () => {
                         </div>
 
                         {/* Content */}
-                        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative z-10 bg-[#050505]/80 backdrop-blur-md">
-                            <h3 className="text-3xl md:text-5xl font-black text-white league-spartan uppercase tracking-tighter mb-2">
+                        <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center relative z-10 bg-[#050505]/80 backdrop-blur-md">
+                            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-2">
                                 {headCoach.title}
                             </h3>
-                            <p className="text-[var(--primary)] text-xl poiret font-bold tracking-widest uppercase mb-6">
+                            <p className="text-[var(--primary)] text-sm sm:text-base md:text-xl poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
                                 {headCoach.subtitle}
                             </p>
-                            <p className="text-white/70 montserrat leading-relaxed mb-8 line-clamp-3">
+                            <p className="text-white/70 montserrat text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 line-clamp-3">
                                 {headCoach.description}
                             </p>
 
-                            <div className="flex items-center gap-6 mb-8">
-                                <StatBlock value={headCoach.experience} label="Experience" />
-                                <div className="w-px h-10 bg-white/10" />
+                            <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8 flex-wrap">
+                                <StatBlock value={headCoach.affiliations.length} label="Affiliations" />
+                                <div className="w-px h-8 sm:h-10 bg-white/10" />
                                 <StatBlock value={certificatesData.length} label="Certifications" accent />
                             </div>
 
-                            <button className="self-start px-8 py-3 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider">
+                            <button className="self-start px-6 sm:px-8 py-2.5 sm:py-3 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm">
                                 View Full Profile
                             </button>
                             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                         </div>
                     </motion.div>
 
-                    {/* ── 2. R. Balu — Senior Trainer (Image Right) ──────── */}
+                    {/* ── 2. R. Balu — Senior Trainer (Image Right on Desktop, Top on Mobile) ── */}
                     <TrainerCard
                         trainer={balu}
                         reverse={true}
@@ -388,7 +391,7 @@ const ServicesSection = () => {
                         ]}
                     />
 
-                    {/* ── 3. Vijayakumar R — HFI (Image Left) ───────────── */}
+                    {/* ── 3. Vijayakumar R — HFI (Image Left on Desktop, Top on Mobile) ── */}
                     <TrainerCard
                         trainer={vijay}
                         reverse={false}
@@ -409,7 +412,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto"
+                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowHeadCoachProfile(false)}
                     >
                         <motion.div
@@ -417,7 +420,7 @@ const ServicesSection = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-[#0a0a0a] border border-white/10 rounded-[32px] w-full max-w-5xl my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row"
+                            className="bg-[#0a0a0a] border border-white/10 rounded-[24px] sm:rounded-[32px] w-[calc(100vw-24px)] max-w-5xl max-h-[calc(100dvh-24px)] md:max-h-[85vh] my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row overflow-y-auto custom-scrollbar"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-transparent to-[var(--primary)]" />
@@ -425,14 +428,15 @@ const ServicesSection = () => {
                             {/* Close */}
                             <button
                                 onClick={() => setShowHeadCoachProfile(false)}
-                                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer"
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer shadow-lg"
+                                aria-label="Close profile modal"
                             >
                                 ✕
                             </button>
 
-                            {/* Left: Image & Highlights */}
-                            <div className="w-full md:w-[40%] bg-[#050505] flex flex-col max-h-[85vh] overflow-y-auto custom-scrollbar">
-                                <div className="h-[400px] w-full shrink-0">
+                            {/* Left: Image & Overview */}
+                            <div className="w-full md:w-[38%] bg-[#050505] flex flex-col shrink-0 border-b md:border-b-0 md:border-r border-white/10">
+                                <div className="h-[240px] sm:h-[320px] md:h-[380px] w-full shrink-0 relative overflow-hidden">
                                     <img
                                         src={headCoach.image}
                                         alt={headCoach.title}
@@ -440,93 +444,120 @@ const ServicesSection = () => {
                                         onError={(e) => {
                                             e.target.src = headCoach.fallbackImage;
                                         }}
-                                        className="w-full h-full object-cover grayscale-[20%]"
+                                        className="w-full h-full object-cover object-top grayscale-[20%]"
                                     />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
                                 </div>
-                                <div className="p-8">
-                                    <h4 className="text-lg text-[var(--primary)] league-spartan uppercase tracking-wider mb-6 border-b border-white/10 pb-4">
-                                        Professional Highlights
+                                <div className="p-5 sm:p-8 space-y-4 sm:space-y-6">
+                                    <div>
+                                        <h4 className="text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.2em] montserrat font-semibold mb-1 sm:mb-2">
+                                            Professional Focus
+                                        </h4>
+                                        <p className="text-[var(--primary)] font-bold text-base sm:text-lg league-spartan uppercase tracking-wider">
+                                            {headCoach.focus}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.2em] montserrat font-semibold mb-2 sm:mb-3">
+                                            International Affiliations
+                                        </h4>
+                                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                                            {headCoach.affiliations.map((aff, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="px-2.5 py-1 bg-[var(--primary)]/10 border border-[var(--primary)]/30 rounded-full text-[10px] sm:text-xs font-bold text-white tracking-wider montserrat"
+                                                >
+                                                    {aff.abbr}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Right: Bio, Positions, Affiliations & Certifications */}
+                            <div className="w-full md:w-[62%] p-5 sm:p-8 md:p-12 space-y-6 sm:space-y-8">
+                                <div>
+                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-1 sm:mb-2">
+                                        {headCoach.title}
+                                    </h2>
+                                    <p className="text-sm sm:text-base md:text-lg text-[var(--primary)] poiret font-bold tracking-widest uppercase">
+                                        {headCoach.subtitle}
+                                    </p>
+                                </div>
+
+                                {/* 1. Professional Summary */}
+                                <div>
+                                    <h4 className="text-base sm:text-lg text-[var(--primary)] league-spartan uppercase tracking-wider mb-2 sm:mb-3 border-b border-white/10 pb-2">
+                                        Professional Summary
                                     </h4>
-                                    <div className="space-y-4">
-                                        {headCoach.highlights.map((highlight, index) => (
-                                            <div key={index} className="flex items-start gap-3">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] mt-2 shrink-0" />
-                                                <p className="text-white/90 text-sm montserrat leading-relaxed">
-                                                    {highlight}
+                                    <p className="text-white/80 montserrat leading-relaxed text-xs sm:text-sm md:text-base">
+                                        {headCoach.description}
+                                    </p>
+                                </div>
+
+                                {/* 2, 3, 4. Positions & Association Roles */}
+                                <div>
+                                    <h4 className="text-base sm:text-lg text-[var(--primary)] league-spartan uppercase tracking-wider mb-3 sm:mb-4 border-b border-white/10 pb-2">
+                                        Positions & Association Roles
+                                    </h4>
+                                    <div className="space-y-3">
+                                        {headCoach.positions.map((pos, i) => (
+                                            <div
+                                                key={i}
+                                                className="p-3.5 sm:p-4 bg-white/[0.03] border border-white/5 rounded-xl sm:rounded-2xl hover:border-[var(--primary)]/30 transition-colors"
+                                            >
+                                                <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
+                                                    <p className="text-white text-sm sm:text-base font-bold league-spartan uppercase tracking-wide">
+                                                        {pos.role}
+                                                    </p>
+                                                    <span className="text-[var(--primary)] text-[10px] sm:text-xs font-semibold uppercase tracking-wider montserrat">
+                                                        {pos.organization}
+                                                    </span>
+                                                </div>
+                                                <p className="text-white/70 text-xs montserrat leading-relaxed mt-1.5 sm:mt-2">
+                                                    {pos.description}
                                                 </p>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Right: Bio, Skills & Certifications */}
-                            <div className="w-full md:w-[60%] p-8 md:p-12 max-h-[85vh] overflow-y-auto custom-scrollbar">
-                                <h2 className="text-4xl md:text-6xl font-black text-white league-spartan uppercase tracking-tighter mb-2">
-                                    {headCoach.title}
-                                </h2>
-                                <p className="text-xl text-[var(--primary)] poiret font-bold tracking-widest uppercase mb-8">
-                                    {headCoach.subtitle}
-                                </p>
-
-                                <div className="mb-10">
-                                    <h4 className="text-lg text-white/60 league-spartan uppercase tracking-wider mb-4">
-                                        Professional Biography
-                                    </h4>
-                                    <p className="text-white/80 montserrat leading-relaxed">
-                                        {headCoach.description}
-                                    </p>
-                                </div>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                                    <div>
-                                        <h4 className="text-lg text-white/60 league-spartan uppercase tracking-wider mb-4">
-                                            Experience
-                                        </h4>
-                                        <p className="text-2xl font-bold text-white mb-2">
-                                            {headCoach.experience}
-                                        </p>
-                                        <div className="space-y-2">
-                                            {headCoach.achievements.map((ach, i) => (
-                                                <div key={i} className="flex items-start gap-2">
-                                                    <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] mt-2 shrink-0" />
-                                                    <p className="text-sm text-white/70 montserrat">{ach}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-lg text-white/60 league-spartan uppercase tracking-wider mb-4">
-                                            Specializations & Skills
-                                        </h4>
-                                        <div className="flex flex-wrap gap-2">
-                                            {[...headCoach.specializations, ...headCoach.skills].map(
-                                                (skill, i) => (
-                                                    <span
-                                                        key={i}
-                                                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/80 montserrat"
-                                                    >
-                                                        {skill}
-                                                    </span>
-                                                )
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Surendar's Certifications */}
+                                {/* 5. Professional Affiliations / Credentials */}
                                 <div>
-                                    <h4 className="text-2xl text-[var(--primary)] league-spartan uppercase tracking-wider mb-6 border-b border-white/10 pb-4">
-                                        Professional Certifications
+                                    <h4 className="text-base sm:text-lg text-[var(--primary)] league-spartan uppercase tracking-wider mb-3 sm:mb-4 border-b border-white/10 pb-2">
+                                        Professional Affiliations & Credentials
                                     </h4>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
+                                        {headCoach.affiliations.map((aff, i) => (
+                                            <div
+                                                key={i}
+                                                className="p-3 sm:p-4 rounded-xl bg-white/[0.03] border border-white/5 text-center flex flex-col items-center justify-center hover:border-[var(--primary)]/30 transition-all"
+                                            >
+                                                <span className="text-xl sm:text-2xl font-black text-[var(--primary)] league-spartan mb-0.5 sm:mb-1">
+                                                    {aff.abbr}
+                                                </span>
+                                                <span className="text-white/80 text-[10px] sm:text-xs font-medium montserrat leading-snug">
+                                                    {aff.name}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* 6. Certificates & Achievements */}
+                                <div>
+                                    <h4 className="text-lg sm:text-xl text-[var(--primary)] league-spartan uppercase tracking-wider mb-4 sm:mb-6 border-b border-white/10 pb-3 sm:pb-4">
+                                        Certificates & Qualifications
+                                    </h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                         {certificatesData.map((cert, index) => (
                                             <div
                                                 key={index}
-                                                className="bg-[#050505] border border-white/10 rounded-2xl p-4 hover:border-[var(--primary)]/50 transition-colors flex gap-4 group"
+                                                className="bg-[#050505] border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-4 hover:border-[var(--primary)]/50 transition-colors flex gap-3 sm:gap-4 group"
                                             >
                                                 <div
-                                                    className="w-20 h-24 shrink-0 overflow-hidden rounded-lg bg-black border border-white/5 cursor-pointer relative"
+                                                    className="w-16 h-20 sm:w-20 sm:h-24 shrink-0 overflow-hidden rounded-lg bg-black border border-white/5 cursor-pointer relative"
                                                     onClick={() => setSelectedCertificate(cert)}
                                                 >
                                                     <img
@@ -536,27 +567,27 @@ const ServicesSection = () => {
                                                         className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                                                     />
                                                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        <span className="text-[10px] uppercase text-white font-bold tracking-wider">
+                                                        <span className="text-[9px] sm:text-[10px] uppercase text-white font-bold tracking-wider">
                                                             Preview
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className="flex flex-col justify-between py-1">
+                                                <div className="flex flex-col justify-between py-0.5 min-w-0">
                                                     <div>
-                                                        <h5 className="text-white text-sm font-bold leading-tight mb-1">
+                                                        <h5 className="text-white text-xs sm:text-sm font-bold leading-tight mb-1 truncate">
                                                             {cert.title}
                                                         </h5>
-                                                        <p className="text-[var(--primary)] text-xs uppercase tracking-wider">
+                                                        <p className="text-[var(--primary)] text-[10px] sm:text-xs uppercase tracking-wider truncate">
                                                             {cert.organization}
                                                         </p>
-                                                        <p className="text-white/40 text-[10px] mt-1">
+                                                        <p className="text-white/40 text-[9px] sm:text-[10px] mt-0.5 sm:mt-1">
                                                             {cert.date} • {cert.type}
                                                         </p>
                                                     </div>
-                                                    <div className="flex gap-3 mt-3">
+                                                    <div className="flex gap-3 mt-2 sm:mt-3">
                                                         <button
                                                             onClick={() => setSelectedCertificate(cert)}
-                                                            className="text-xs text-white/70 hover:text-white underline decoration-white/30 underline-offset-2"
+                                                            className="text-[10px] sm:text-xs text-white/70 hover:text-white underline decoration-white/30 underline-offset-2"
                                                         >
                                                             Preview
                                                         </button>
@@ -565,7 +596,7 @@ const ServicesSection = () => {
                                                             download
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="text-xs text-[var(--primary)] hover:text-red-400 underline decoration-red-900/50 underline-offset-2"
+                                                            className="text-[10px] sm:text-xs text-[var(--primary)] hover:text-red-400 underline decoration-red-900/50 underline-offset-2"
                                                         >
                                                             Download
                                                         </a>
@@ -588,7 +619,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto"
+                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowBaluProfile(false)}
                     >
                         <motion.div
@@ -596,7 +627,7 @@ const ServicesSection = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-[#0a0a0a] border border-white/10 rounded-[32px] w-full max-w-5xl my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row"
+                            className="bg-[#0a0a0a] border border-white/10 rounded-[24px] sm:rounded-[32px] w-[calc(100vw-24px)] max-w-5xl max-h-[calc(100dvh-24px)] md:max-h-[85vh] my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row overflow-y-auto custom-scrollbar"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-transparent to-[var(--primary)]" />
@@ -604,20 +635,21 @@ const ServicesSection = () => {
                             {/* Close */}
                             <button
                                 onClick={() => setShowBaluProfile(false)}
-                                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer"
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer shadow-lg"
+                                aria-label="Close profile modal"
                             >
                                 ✕
                             </button>
 
                             {/* Left: Photo / Placeholder + Achievements */}
-                            <div className="w-full md:w-[38%] bg-[#050505] flex flex-col max-h-[85vh] overflow-y-auto custom-scrollbar">
-                                <div className="h-[360px] w-full shrink-0 relative overflow-hidden">
+                            <div className="w-full md:w-[38%] bg-[#050505] flex flex-col shrink-0 border-b md:border-b-0 md:border-r border-white/10">
+                                <div className="h-[240px] sm:h-[320px] md:h-[360px] w-full shrink-0 relative overflow-hidden">
                                     {balu.image ? (
                                         <img
                                             src={balu.image}
                                             alt={balu.title}
                                             loading="lazy"
-                                            className="w-full h-full object-cover grayscale-[20%]"
+                                            className="w-full h-full object-cover object-top grayscale-[20%]"
                                         />
                                     ) : (
                                         <TrainerPlaceholder initials={balu.initials} name={balu.title} />
@@ -625,15 +657,15 @@ const ServicesSection = () => {
                                 </div>
 
                                 {/* Achievements */}
-                                <div className="p-8">
-                                    <h4 className="text-lg text-[var(--primary)] league-spartan uppercase tracking-wider mb-6 border-b border-white/10 pb-4">
+                                <div className="p-5 sm:p-8">
+                                    <h4 className="text-base sm:text-lg text-[var(--primary)] league-spartan uppercase tracking-wider mb-4 sm:mb-6 border-b border-white/10 pb-3 sm:pb-4">
                                         Achievements
                                     </h4>
-                                    <div className="space-y-4">
+                                    <div className="space-y-3 sm:space-y-4">
                                         {balu.achievements.map((achievement, i) => (
                                             <div key={i} className="flex items-start gap-3">
                                                 <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] mt-2 shrink-0" />
-                                                <p className="text-white/90 text-sm montserrat leading-relaxed">
+                                                <p className="text-white/90 text-xs sm:text-sm montserrat leading-relaxed">
                                                     {achievement}
                                                 </p>
                                             </div>
@@ -641,12 +673,12 @@ const ServicesSection = () => {
                                     </div>
 
                                     {/* Resume Button */}
-                                    <div className="mt-8 pt-6 border-t border-white/10">
+                                    <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10">
                                         <button
                                             onClick={() =>
                                                 window.open(balu.resumePdf, '_blank', 'noopener,noreferrer')
                                             }
-                                            className="w-full py-3 px-6 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-sm"
+                                            className="w-full py-3 px-4 sm:px-6 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
                                         >
                                             View Resume
                                         </button>
@@ -655,71 +687,73 @@ const ServicesSection = () => {
                             </div>
 
                             {/* Right: Bio, Stats & Certifications */}
-                            <div className="w-full md:w-[62%] p-8 md:p-12 max-h-[85vh] overflow-y-auto custom-scrollbar">
-                                <h2 className="text-4xl md:text-5xl font-black text-white league-spartan uppercase tracking-tighter mb-2">
-                                    {balu.title}
-                                </h2>
-                                <p className="text-lg text-[var(--primary)] poiret font-bold tracking-widest uppercase mb-8">
-                                    {balu.subtitle}
-                                </p>
+                            <div className="w-full md:w-[62%] p-5 sm:p-8 md:p-12 space-y-6 sm:space-y-8">
+                                <div>
+                                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-1 sm:mb-2">
+                                        {balu.title}
+                                    </h2>
+                                    <p className="text-sm sm:text-base md:text-lg text-[var(--primary)] poiret font-bold tracking-widest uppercase">
+                                        {balu.subtitle}
+                                    </p>
+                                </div>
 
                                 {/* Professional Summary */}
-                                <div className="mb-8">
-                                    <h4 className="text-lg text-white/60 league-spartan uppercase tracking-wider mb-4">
+                                <div>
+                                    <h4 className="text-base sm:text-lg text-white/60 league-spartan uppercase tracking-wider mb-2 sm:mb-4">
                                         Professional Summary
                                     </h4>
-                                    <p className="text-white/80 montserrat leading-relaxed">
+                                    <p className="text-white/80 montserrat leading-relaxed text-xs sm:text-sm md:text-base">
                                         {balu.description}
                                     </p>
                                 </div>
 
                                 {/* Experience Stats */}
-                                <div className="grid grid-cols-3 gap-4 mb-10 p-6 bg-white/[0.03] rounded-2xl border border-white/5">
+                                <div className="grid grid-cols-3 gap-2 sm:gap-4 p-4 sm:p-6 bg-white/[0.03] rounded-2xl border border-white/5">
                                     <div className="text-center">
-                                        <p className="text-3xl font-black text-white league-spartan">
+                                        <p className="text-xl sm:text-3xl font-black text-white league-spartan">
                                             {balu.experience}
                                         </p>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest montserrat mt-1">
+                                        <p className="text-[9px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mt-1">
                                             Experience
                                         </p>
                                     </div>
                                     <div className="text-center border-x border-white/10">
-                                        <p className="text-3xl font-black text-[var(--primary)] league-spartan">
+                                        <p className="text-xl sm:text-3xl font-black text-[var(--primary)] league-spartan">
                                             {balu.clientsTrained}
                                         </p>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest montserrat mt-1">
-                                            Clients Trained
+                                        <p className="text-[9px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mt-1">
+                                            Clients
                                         </p>
                                     </div>
                                     <div className="text-center">
-                                        <p className="text-3xl font-black text-white league-spartan">
+                                        <p className="text-xl sm:text-3xl font-black text-white league-spartan">
                                             {balu.certifications.length}
                                         </p>
-                                        <p className="text-xs text-white/40 uppercase tracking-widest montserrat mt-1">
-                                            Certifications
+                                        <p className="text-[9px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mt-1">
+                                            Certs
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Certifications List */}
                                 <div>
-                                    <h4 className="text-xl text-[var(--primary)] league-spartan uppercase tracking-wider mb-6 border-b border-white/10 pb-4">
+                                    <h4 className="text-lg sm:text-xl text-[var(--primary)] league-spartan uppercase tracking-wider mb-4 sm:mb-6 border-b border-white/10 pb-3 sm:pb-4">
                                         Qualifications & Certifications
                                     </h4>
-                                    <div className="space-y-3">
+                                    <div className="space-y-2.5 sm:space-y-3">
                                         {balu.certifications.map((cert, i) => (
                                             <div
                                                 key={i}
-                                                className="flex items-start gap-4 p-4 bg-white/[0.03] border border-white/5 rounded-xl hover:border-[var(--primary)]/30 transition-colors"
+                                                className="flex items-start gap-3 p-3 sm:p-4 bg-white/[0.03] border border-white/5 rounded-xl hover:border-[var(--primary)]/30 transition-colors"
                                             >
-                                                <div className="w-6 h-6 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/30 flex items-center justify-center shrink-0 mt-0.5">
+                                                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[var(--primary)]/10 border border-[var(--primary)]/30 flex items-center justify-center shrink-0 mt-0.5">
                                                     <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)]" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-white/90 text-sm font-semibold montserrat leading-snug">
+                                                    <p className="text-white/90 text-xs sm:text-sm font-semibold montserrat leading-snug">
                                                         {cert.title}
                                                     </p>
-                                                    <p className="text-[var(--primary)]/70 text-xs uppercase tracking-wider mt-1">
+                                                    <p className="text-[var(--primary)]/70 text-[10px] sm:text-xs uppercase tracking-wider mt-1">
                                                         {cert.organization}
                                                     </p>
                                                 </div>
@@ -740,7 +774,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl overflow-y-auto"
+                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowVijayProfile(false)}
                     >
                         <motion.div
@@ -748,7 +782,7 @@ const ServicesSection = () => {
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.9, y: 20 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-[#0a0a0a] border border-white/10 rounded-[32px] w-full max-w-2xl my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden"
+                            className="bg-[#0a0a0a] border border-white/10 rounded-[24px] sm:rounded-[32px] w-[calc(100vw-24px)] max-w-2xl max-h-[calc(100dvh-24px)] md:max-h-[85vh] my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row overflow-y-auto custom-scrollbar"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-transparent to-[var(--primary)]" />
@@ -756,20 +790,21 @@ const ServicesSection = () => {
                             {/* Close */}
                             <button
                                 onClick={() => setShowVijayProfile(false)}
-                                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/50 border border-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer"
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer shadow-lg"
+                                aria-label="Close profile modal"
                             >
                                 ✕
                             </button>
 
-                            <div className="flex flex-col md:flex-row">
+                            <div className="flex flex-col md:flex-row w-full">
                                 {/* Photo / Placeholder */}
-                                <div className="w-full md:w-[40%] h-[280px] md:min-h-[380px] relative overflow-hidden shrink-0 bg-[#050505]">
+                                <div className="w-full md:w-[40%] h-[220px] sm:h-[280px] md:min-h-[380px] relative overflow-hidden shrink-0 bg-[#050505]">
                                     {vijay.image ? (
                                         <img
                                             src={vijay.image}
                                             alt={vijay.title}
                                             loading="lazy"
-                                            className="w-full h-full object-cover grayscale-[20%]"
+                                            className="w-full h-full object-cover object-top grayscale-[20%]"
                                         />
                                     ) : (
                                         <TrainerPlaceholder initials={vijay.initials} name={vijay.title} />
@@ -777,32 +812,32 @@ const ServicesSection = () => {
                                 </div>
 
                                 {/* Content */}
-                                <div className="w-full md:w-[60%] p-8 md:p-10 flex flex-col justify-center">
-                                    <div className="mb-3">
-                                        <span className="text-[10px] uppercase tracking-[0.25em] text-[var(--primary)]/60 montserrat font-semibold">
+                                <div className="w-full md:w-[60%] p-5 sm:p-8 md:p-10 flex flex-col justify-center">
+                                    <div className="mb-2 sm:mb-3">
+                                        <span className="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[var(--primary)]/60 montserrat font-semibold">
                                             Flame Fitness Studio
                                         </span>
                                     </div>
-                                    <h2 className="text-3xl md:text-4xl font-black text-white league-spartan uppercase tracking-tighter mb-2">
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-1 sm:mb-2">
                                         {vijay.title}
                                     </h2>
-                                    <p className="text-[var(--primary)] text-sm poiret font-bold tracking-widest uppercase mb-6">
+                                    <p className="text-[var(--primary)] text-xs sm:text-sm poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
                                         {vijay.subtitle}
                                     </p>
 
-                                    <div className="mb-6 p-4 bg-white/[0.03] border border-white/5 rounded-xl">
-                                        <h4 className="text-xs text-white/40 uppercase tracking-widest montserrat mb-3">
+                                    <div className="mb-4 sm:mb-6 p-3.5 sm:p-4 bg-white/[0.03] border border-white/5 rounded-xl">
+                                        <h4 className="text-[10px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mb-2">
                                             About
                                         </h4>
-                                        <p className="text-white/80 montserrat text-sm leading-relaxed">
+                                        <p className="text-white/80 montserrat text-xs sm:text-sm leading-relaxed">
                                             {vijay.description}
                                         </p>
                                     </div>
 
                                     {/* Role badge */}
                                     <div className="flex items-center gap-3">
-                                        <div className="px-4 py-2 bg-[var(--primary)]/10 border border-[var(--primary)]/30 rounded-full">
-                                            <p className="text-[var(--primary)] text-xs uppercase tracking-wider league-spartan font-bold">
+                                        <div className="px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[var(--primary)]/10 border border-[var(--primary)]/30 rounded-full">
+                                            <p className="text-[var(--primary)] text-[10px] sm:text-xs uppercase tracking-wider league-spartan font-bold">
                                                 Health &amp; Fitness Instructor
                                             </p>
                                         </div>
@@ -810,7 +845,7 @@ const ServicesSection = () => {
 
                                     <button
                                         onClick={() => setShowVijayProfile(false)}
-                                        className="mt-8 w-full py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-sm"
+                                        className="mt-6 sm:mt-8 w-full py-2.5 sm:py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
                                     >
                                         Close
                                     </button>
@@ -828,7 +863,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/95 backdrop-blur-2xl"
+                        className="modal-overlay fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-black/95 backdrop-blur-2xl min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setSelectedCertificate(null)}
                     >
                         <motion.div
@@ -836,25 +871,26 @@ const ServicesSection = () => {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                            className="relative max-w-[90vw] max-h-[90vh] flex flex-col items-center"
+                            className="relative max-w-[95vw] md:max-w-[90vw] max-h-[90dvh] flex flex-col items-center justify-center"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
                                 onClick={() => setSelectedCertificate(null)}
-                                className="absolute -top-12 right-0 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/20 transition-all cursor-pointer z-10"
+                                className="absolute -top-10 sm:-top-12 right-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:text-[var(--primary)] hover:bg-white/20 transition-all cursor-pointer z-20 shadow-md"
+                                aria-label="Close certificate lightbox"
                             >
                                 ✕
                             </button>
                             <img
                                 src={selectedCertificate.image}
                                 alt={selectedCertificate.title}
-                                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-[0_0_100px_rgba(255,255,255,0.1)]"
+                                className="max-w-full max-h-[60dvh] md:max-h-[75vh] object-contain rounded-lg shadow-[0_0_100px_rgba(255,255,255,0.1)]"
                             />
-                            <div className="mt-6 text-center">
-                                <h3 className="text-xl text-white font-bold mb-1">
+                            <div className="mt-4 sm:mt-6 text-center px-2">
+                                <h3 className="text-sm sm:text-xl text-white font-bold mb-1">
                                     {selectedCertificate.title}
                                 </h3>
-                                <p className="text-[var(--primary)] uppercase tracking-wider text-sm">
+                                <p className="text-[var(--primary)] uppercase tracking-wider text-xs sm:text-sm font-medium">
                                     {selectedCertificate.organization}
                                 </p>
                             </div>
