@@ -3,6 +3,14 @@
 
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Brand';
+  src: url('/fonts/Brand.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------- CSS Variables ---------- */
 :root {
   --primary: #FF0000;
@@ -55,6 +63,7 @@ body {
 .poiret { font-family: "Poiret One", sans-serif; }
 .league-spartan { font-family: "League Spartan", sans-serif; }
 .montserrat { font-family: "Montserrat", sans-serif; }
+.hero-title { font-family: 'Brand', sans-serif; }
 
 /* ---------- PRIMARY GRADIENT TEXT ---------- */
 .gradient-text {

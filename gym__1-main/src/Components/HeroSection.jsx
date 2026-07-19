@@ -31,7 +31,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          <h1 className="text-5xl md:text-8xl lg:text-9xl text-white league-spartan font-extrabold tracking-tighter uppercase leading-tight">
+          <h1 className="text-5xl md:text-8xl lg:text-9xl text-white hero-title font-extrabold tracking-tighter uppercase leading-tight">
             Unleash Your<br />
             <span className="gradient-text text-6xl md:text-9xl lg:text-[10rem]">Beast!</span>
           </h1>
