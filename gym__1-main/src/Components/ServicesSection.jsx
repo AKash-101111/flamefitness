@@ -119,7 +119,7 @@ const balu = {
             organization: 'CPRVerify',
         },
     ],
-    resumePdf: '/documents/Balu Fitness Resume_Oct2023.pdf',
+
 };
 
 const vijay = {
@@ -584,22 +584,13 @@ const ServicesSection = () => {
                                                             {cert.date} • {cert.type}
                                                         </p>
                                                     </div>
-                                                    <div className="flex gap-3 mt-2 sm:mt-3">
+                                                    <div className="mt-2 sm:mt-3">
                                                         <button
                                                             onClick={() => setSelectedCertificate(cert)}
                                                             className="text-[10px] sm:text-xs text-white/70 hover:text-white underline decoration-white/30 underline-offset-2"
                                                         >
                                                             Preview
                                                         </button>
-                                                        <a
-                                                            href={cert.image}
-                                                            download
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            className="text-[10px] sm:text-xs text-[var(--primary)] hover:text-red-400 underline decoration-red-900/50 underline-offset-2"
-                                                        >
-                                                            Download
-                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -672,17 +663,7 @@ const ServicesSection = () => {
                                         ))}
                                     </div>
 
-                                    {/* Resume Button */}
-                                    <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10">
-                                        <button
-                                            onClick={() =>
-                                                window.open(balu.resumePdf, '_blank', 'noopener,noreferrer')
-                                            }
-                                            className="w-full py-3 px-4 sm:px-6 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
-                                        >
-                                            View Resume
-                                        </button>
-                                    </div>
+
                                 </div>
                             </div>
 
