@@ -21,7 +21,7 @@ const About = () => {
                         <div className="absolute top-0 left-0 w-1 h-full bg-[var(--primary)] opacity-50"></div>
                         <h3 className="text-[var(--primary)] text-xl font-black league-spartan mb-3 uppercase tracking-[0.2em]">Our Philosophy</h3>
                         <p className="text-white/80 montserrat italic leading-relaxed text-lg">
-                            "To provide high-energy environment where fitness meets fun. We believe that sweating out your stress should be a rocking experience."
+                            "To provide a high-energy environment where fitness meets fun. We believe that sweating out your stress should be a rocking experience."
                         </p>
                     </div>
                 </div>
