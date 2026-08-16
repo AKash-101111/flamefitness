@@ -56,7 +56,7 @@ const Contact = () => {
                 <div className="space-y-12">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         {contactInfo.map((info, index) => (
-                            <motion.div 
+                            <motion.div
                                 key={index}
                                 whileHover={{ scale: 1.05, translateY: -5 }}
                                 className="p-8 glass-card border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 backdrop-blur-md group"
@@ -68,14 +68,14 @@ const Contact = () => {
                                     {info.title}
                                 </h3>
                                 {info.title === "Phone" ? (
-                                    <a 
+                                    <a
                                         href={`tel:${info.value.replace(/\s+/g, '')}`}
                                         className="text-lg text-white/90 montserrat mb-1 hover:text-[var(--primary)] hover:underline transition-all cursor-pointer block"
                                     >
                                         {info.value}
                                     </a>
                                 ) : info.title === "Email" ? (
-                                    <a 
+                                    <a
                                         href={`mailto:${info.value}`}
                                         className="text-lg text-white/90 montserrat mb-1 hover:text-[var(--primary)] hover:underline transition-all cursor-pointer block"
                                     >
@@ -94,13 +94,13 @@ const Contact = () => {
                     </div>
 
                     <div className="w-full h-80 rounded-[50px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative group primary-border-hover">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.814343825838!2d80.23122177507775!3d13.047466587275217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52665e88410001%3A0x6734614611461146!2sT.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1713430000000!5m2!1sen!2sin" 
-                            width="100%" 
-                            height="100%" 
-                            style={{ border: 0 }} 
-                            allowFullScreen="" 
-                            loading="lazy" 
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.814343825838!2d80.23122177507775!3d13.047466587275217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52665e88410001%3A0x6734614611461146!2sT.%20Nagar%2C%20Chennai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1713430000000!5m2!1sen!2sin"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                             className="opacity-70 group-hover:opacity-100 transition-opacity duration-700"
                         />
@@ -132,12 +132,12 @@ const Contact = () => {
                                 <p className="poiret text-white/70 mt-2">We've received your message. Our team will get back to you shortly.</p>
                             </motion.div>
                         ) : (
-                            <motion.form 
+                            <motion.form
                                 key="form"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                onSubmit={handleSubmit} 
+                                onSubmit={handleSubmit}
                                 className="space-y-6"
                             >
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -146,7 +146,7 @@ const Contact = () => {
                                 </div>
                                 <input type="tel" required placeholder="Phone Number" className="w-full px-8 py-5 rounded-full input-primary montserrat" />
                                 <textarea rows="5" required placeholder="Your Message" className="w-full px-8 py-5 rounded-[40px] input-primary montserrat resize-none"></textarea>
-                                <button 
+                                <button
                                     className="w-full py-5 bg-[var(--primary)] text-[#050505] font-black rounded-full hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,0,0,0.3)] league-spartan uppercase tracking-widest cursor-pointer"
                                     disabled={status === 'sending'}
                                 >

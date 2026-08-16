@@ -10,26 +10,26 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6">
                     <p className="text-xl md:text-2xl text-white/90 poiret leading-relaxed">
-                        FLAME FITNESS STUDIO is the brain child of fitness professionals who have been in this industry for over 10 years. 
+                        FLAME FITNESS STUDIO is the brain child of fitness professionals who have been in this industry for over 10 years.
                         Started in <span className="text-[var(--primary)] font-bold">July 2010</span>, we offer one of the best gym facilities, aerobics and dance classes in Chennai.
                     </p>
                     <p className="text-lg text-white/70 montserrat leading-relaxed">
-                        Our studio is set up over <span className="text-white font-bold">6000 sq ft</span> of area with a spacious 
+                        Our studio is set up over <span className="text-white font-bold">6000 sq ft</span> of area with a spacious
                         <span className="text-white font-bold"> 3000 sq ft</span> gymnasium housing world-class equipment ranging from cardio to strength training machines.
                     </p>
                     <div className="p-8 glass-card border border-[var(--primary)]/10 rounded-3xl backdrop-blur-md relative overflow-hidden group hover:border-[var(--primary)]/30 transition-all duration-500">
                         <div className="absolute top-0 left-0 w-1 h-full bg-[var(--primary)] opacity-50"></div>
                         <h3 className="text-[var(--primary)] text-xl font-black league-spartan mb-3 uppercase tracking-[0.2em]">Our Philosophy</h3>
                         <p className="text-white/80 montserrat italic leading-relaxed text-lg">
-                            "To provide a high-energy environment where fitness meets fun. We believe that sweating out your stress should be a rocking experience."
+                            "To provide high-energy environment where fitness meets fun. We believe that sweating out your stress should be a rocking experience."
                         </p>
                     </div>
                 </div>
 
                 <div className="relative group overflow-hidden rounded-3xl border border-white/10 primary-border-hover shadow-2xl">
-                    <img 
-                        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000" 
-                        alt="Gym Interior" 
+                    <img
+                        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000"
+                        alt="Gym Interior"
                         loading="lazy"
                         className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
                     />
