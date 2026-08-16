@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FaDumbbell, FaRunning } from 'react-icons/fa';
-import { GiBoxingGlove, GiMeditation, GiMuscleFat } from 'react-icons/gi';
-import { MdSportsGymnastics } from 'react-icons/md';
+import { FaDumbbell } from 'react-icons/fa';
+import { FaChildReaching, FaPersonRunning } from 'react-icons/fa6';
+import { MdSportsGymnastics, MdSelfImprovement } from 'react-icons/md';
+import { GiBoxingGlove } from 'react-icons/gi';
 import JoinForm from '../Components/JoinForm';
 
 const Programs = () => {
@@ -35,7 +36,7 @@ const Programs = () => {
         {
             title: "Zumba",
             description: "Rocking environment to sweat out your stress with fun and effective Zumba routines.",
-            icon: <FaRunning />,
+            icon: <FaChildReaching />,
             benefits: [
                 "Fun dance-fitness fusion",
                 "Burn 500-800 calories per session",
@@ -57,7 +58,7 @@ const Programs = () => {
         {
             title: "Yoga",
             description: "Mind-body wellness classes to improve flexibility and reduce stress.",
-            icon: <GiMeditation />,
+            icon: <MdSelfImprovement />,
             benefits: [
                 "Flexibility improvement",
                 "Mental clarity and focus",
@@ -68,7 +69,7 @@ const Programs = () => {
         {
             title: "Sports Conditioning",
             description: "Specialized training for athletes and sports professionals.",
-            icon: <GiMuscleFat />,
+            icon: <FaPersonRunning />,
             benefits: [
                 "Sport-specific training plans",
                 "Performance optimization",
@@ -77,6 +78,18 @@ const Programs = () => {
             ]
         }
     ];
+
+        const personalTrainingProg = {
+            title: "Personal Training",
+            description: "Elite one-to-one fitness coaching for strength, athletic performance, and transformational results.",
+            icon: <FaDumbbell />,
+            benefits: [
+                "Elite personal coaching",
+                "Customized strength & athletic training",
+                "One-to-one fitness monitoring",
+                "Premium gym environment"
+            ]
+        };
 
     return (
         <div id="programs-section" className="w-full min-h-screen pt-24 sm:pt-32 pb-20 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col items-center">
@@ -87,7 +100,52 @@ const Programs = () => {
                 Customizing workouts as per the needs of our clients.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Featured Personal Training Card */}
+            <motion.div
+                whileHover={{ scale: 1.02, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setSelectedProgram(personalTrainingProg)}
+                className="w-full max-w-5xl mx-auto mb-16 cursor-pointer group relative rounded-[32px] overflow-hidden shadow-[0_0_40px_rgba(255,0,0,0.15)] hover:shadow-[0_0_60px_rgba(255,0,0,0.4)] transition-all duration-700"
+                style={{
+                    background: 'linear-gradient(145deg, rgba(20,0,0,0.9) 0%, rgba(5,5,5,1) 100%)',
+                    border: '1px solid rgba(255, 0, 0, 0.4)',
+                }}
+            >
+                {/* Subtle animated red aura */}
+                <div className="absolute inset-0 bg-[var(--primary)] opacity-0 group-hover:opacity-10 transition-opacity duration-700 blur-3xl pointer-events-none" />
+                
+                <div className="flex flex-col md:flex-row-reverse w-full relative z-10">
+                    {/* ATHLETE VISUAL */}
+                    <div className="w-full md:w-[55%] h-[300px] md:h-[450px] relative overflow-hidden shrink-0">
+                        <img 
+                            src="/images/programs/personal_training.jpg" 
+                            alt="Premium Personal Training"
+                            className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#050505] via-[#050505]/40 to-transparent" />
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="w-full md:w-[45%] p-8 md:p-12 flex flex-col justify-center relative bg-[#050505]/80 backdrop-blur-sm md:bg-transparent">
+                        <div className="text-5xl mb-6 text-[var(--primary)] drop-shadow-[0_0_15px_rgba(255,0,0,0.6)]">
+                            <FaDumbbell />
+                        </div>
+                        <h3 className="text-3xl md:text-5xl font-black text-white league-spartan mb-4 uppercase tracking-tighter drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]">
+                            Personal Training
+                        </h3>
+                        <p className="poiret text-white/70 text-lg leading-relaxed mb-8">
+                            Elite one-to-one fitness coaching for strength, athletic performance, and transformational results in a premium environment.
+                        </p>
+                        
+                        <div className="mt-auto flex items-center gap-2 text-[var(--primary)] text-sm font-bold league-spartan uppercase tracking-widest group-hover:translate-x-2 transition-transform duration-500">
+                            <span>Explore Program</span>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full">
                 {programsList.map((prog, index) => (
                     <motion.div
                         key={index}
