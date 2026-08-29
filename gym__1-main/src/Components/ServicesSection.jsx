@@ -45,7 +45,7 @@ const TrainerPlaceholder = ({ initials, name }) => (
 // ─── Trainer Data ─────────────────────────────────────────────────────────────
 
 const headCoach = {
-    image: '/images/trainers/head-coach.jpg',
+    image: '/images/profile/surendhar-prof.jpeg',
     fallbackImage: 'https://i.pravatar.cc/500?img=11',
     title: 'Surendar P',
     subtitle: 'Head Coach & Managing Director',
@@ -130,6 +130,21 @@ const vijay = {
     subtitle: 'Health and Fitness Instructor (HFI)',
     description:
         'Health and Fitness Instructor at Flame Fitness Studio, dedicated to helping members achieve their fitness goals through structured, safe, and effective training.',
+};
+
+const prawin = {
+    image: null,
+    initials: 'PK',
+    title: 'Prawin K',
+    subtitle: 'Certified Fitness Instructor (CFI) + CPR First Aid Course',
+    focus: 'Safe, structured fitness coaching',
+    description:
+        'Certified Fitness Instructor from Caduceus Fitness Academy with CPR First Aid training, focused on guiding members through effective, safe, and motivating fitness routines.',
+    certifications: [
+        'Certified Fitness Instructor (CFI)',
+        'CPR First Aid Course',
+    ],
+    academy: 'Caduceus Fitness Academy',
 };
 
 // ─── Certificate Data (Surendar P) ────────────────────────────────────────────
@@ -272,6 +287,7 @@ const ServicesSection = () => {
     const [showHeadCoachProfile, setShowHeadCoachProfile] = useState(false);
     const [showBaluProfile, setShowBaluProfile] = useState(false);
     const [showVijayProfile, setShowVijayProfile] = useState(false);
+    const [showPrawinProfile, setShowPrawinProfile] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
 
     const texts = [
@@ -379,7 +395,15 @@ const ServicesSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* ── 2. R. Balu — Senior Trainer (Image Right on Desktop, Top on Mobile) ── */}
+                    {/* ── 2. Vijayakumar R — HFI (Image Left on Desktop, Top on Mobile) ── */}
+                    <TrainerCard
+                        trainer={vijay}
+                        reverse={false}
+                        onViewProfile={() => setShowVijayProfile(true)}
+                        stats={[]}
+                    />
+
+                    {/* ── 3. R. Balu — Senior Trainer (Image Right on Desktop, Top on Mobile) ── */}
                     <TrainerCard
                         trainer={balu}
                         reverse={true}
@@ -391,12 +415,15 @@ const ServicesSection = () => {
                         ]}
                     />
 
-                    {/* ── 3. Vijayakumar R — HFI (Image Left on Desktop, Top on Mobile) ── */}
+                    {/* ── 4. Prawin K — Certified Fitness Instructor (Image Left on Desktop, Top on Mobile) ── */}
                     <TrainerCard
-                        trainer={vijay}
+                        trainer={prawin}
                         reverse={false}
-                        onViewProfile={() => setShowVijayProfile(true)}
-                        stats={[]}
+                        onViewProfile={() => setShowPrawinProfile(true)}
+                        stats={[
+                            { value: prawin.certifications.length, label: 'Certifications', accent: true },
+                            { value: 'CFI', label: 'Credential' },
+                        ]}
                     />
                 </div>
             </div>
@@ -826,6 +853,96 @@ const ServicesSection = () => {
 
                                     <button
                                         onClick={() => setShowVijayProfile(false)}
+                                        className="mt-6 sm:mt-8 w-full py-2.5 sm:py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* ── Prawin K — Profile Modal ─────────────────────────────── */}
+            <AnimatePresence>
+                {showPrawinProfile && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        onClick={() => setShowPrawinProfile(false)}
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            transition={{ duration: 0.4 }}
+                            className="bg-[#0a0a0a] border border-white/10 rounded-[24px] sm:rounded-[32px] w-[calc(100vw-24px)] max-w-2xl max-h-[calc(100dvh-24px)] md:max-h-[85vh] my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row overflow-y-auto custom-scrollbar"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-transparent to-[var(--primary)]" />
+
+                            <button
+                                onClick={() => setShowPrawinProfile(false)}
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer shadow-lg"
+                                aria-label="Close profile modal"
+                            >
+                                ✕
+                            </button>
+
+                            <div className="flex flex-col md:flex-row w-full">
+                                <div className="w-full md:w-[40%] h-[220px] sm:h-[280px] md:min-h-[380px] relative overflow-hidden shrink-0 bg-[#050505]">
+                                    {prawin.image ? (
+                                        <img
+                                            src={prawin.image}
+                                            alt={prawin.title}
+                                            loading="lazy"
+                                            className="w-full h-full object-cover object-top grayscale-[20%]"
+                                        />
+                                    ) : (
+                                        <TrainerPlaceholder initials={prawin.initials} name={prawin.title} />
+                                    )}
+                                </div>
+
+                                <div className="w-full md:w-[60%] p-5 sm:p-8 md:p-10 flex flex-col justify-center">
+                                    <div className="mb-2 sm:mb-3">
+                                        <span className="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[var(--primary)]/60 montserrat font-semibold">
+                                            {prawin.academy}
+                                        </span>
+                                    </div>
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-1 sm:mb-2">
+                                        {prawin.title}
+                                    </h2>
+                                    <p className="text-[var(--primary)] text-xs sm:text-sm poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
+                                        {prawin.subtitle}
+                                    </p>
+
+                                    <div className="mb-4 sm:mb-6 p-3.5 sm:p-4 bg-white/[0.03] border border-white/5 rounded-xl">
+                                        <h4 className="text-[10px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mb-2">
+                                            About
+                                        </h4>
+                                        <p className="text-white/80 montserrat text-xs sm:text-sm leading-relaxed">
+                                            {prawin.description}
+                                        </p>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-2.5 sm:gap-3">
+                                        {prawin.certifications.map((item, index) => (
+                                            <div
+                                                key={index}
+                                                className="px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[var(--primary)]/10 border border-[var(--primary)]/30 rounded-full"
+                                            >
+                                                <p className="text-[var(--primary)] text-[10px] sm:text-xs uppercase tracking-wider league-spartan font-bold">
+                                                    {item}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <button
+                                        onClick={() => setShowPrawinProfile(false)}
                                         className="mt-6 sm:mt-8 w-full py-2.5 sm:py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
                                     >
                                         Close
