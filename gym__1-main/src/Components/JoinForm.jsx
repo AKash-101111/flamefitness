@@ -101,12 +101,12 @@ const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
                                         onChange={(e) => setSelectedPlan(e.target.value)}
                                         className="w-full p-4 rounded-2xl input-primary montserrat appearance-none cursor-pointer"
                                     >
-                                        <option value="Monthly Package" className="bg-[#0B0B0B]">Monthly Package - RS. 6,000/-</option>
-                                        <option value="Quarterly Package" className="bg-[#0B0B0B]">Quarterly Package - RS. 12,000/-</option>
-                                        <option value="Half Yearly Package" className="bg-[#0B0B0B]">Half Yearly Package - RS. 18,000/-</option>
-                                        <option value="Annual Package" className="bg-[#0B0B0B]">Annual Package - RS. 25,000/-</option>
-                                        <option value="Body Transformation" className="bg-[#0B0B0B]">Body Transformation - RS. 50,000/-</option>
-                                        <option value="Dance Fitness" className="bg-[#0B0B0B]">Dance Fitness (12 Sessions) - RS. 3,000/-</option>
+                                        <option value="Monthly Package" className="bg-[#0B0B0B]">Monthly Package - Rs. 6,000/-</option>
+                                        <option value="Quarterly Package" className="bg-[#0B0B0B]">Quarterly Package - Rs. 12,000/-</option>
+                                        <option value="Half Yearly Package" className="bg-[#0B0B0B]">Half Yearly Package - Rs. 18,000/-</option>
+                                        <option value="Annual Package" className="bg-[#0B0B0B]">Annual Package - Rs. 25,000/-</option>
+                                        <option value="Body Transformation" className="bg-[#0B0B0B]">Body Transformation - Rs. 50,000/-</option>
+                                        <option value="Dance Fitness" className="bg-[#0B0B0B]">Dance Fitness (12 Sessions) - Rs. 3,000/-</option>
                                     </select>
                                 </motion.div>
 

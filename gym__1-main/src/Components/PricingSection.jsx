@@ -78,12 +78,12 @@ const PricingSection = () => {
                 </div>
 
                 {/* Pricing Cards */}
-                <div className="flex flex-wrap justify-center items-stretch gap-10">
+                <div className="flex flex-wrap justify-center items-stretch gap-8 sm:gap-10">
                     {billingCycle === 'monthly' ? (
                         <>
                             <PricingCard
                                 type="Monthly Package"
-                                price="RS. 6,000/-"
+                                price="Rs. 6,000/-"
                                 subscription="1 Month"
                                 billingCycle={billingCycle}
                                 description="Essential monthly workout schedule and general training."
@@ -101,7 +101,7 @@ const PricingSection = () => {
 
                             <PricingCard
                                 type="Quarterly Package"
-                                price="RS. 12,000/-"
+                                price="Rs. 12,000/-"
                                 subscription="3 Months"
                                 billingCycle={billingCycle}
                                 description="Quarterly fitness routine with steam bath and dance fitness."
@@ -120,7 +120,7 @@ const PricingSection = () => {
 
                             <PricingCard
                                 type="Dance Fitness"
-                                price="RS. 3,000/-"
+                                price="Rs. 3,000/-"
                                 subscription="12 Sessions"
                                 billingCycle={billingCycle}
                                 description="12 high-energy sessions including dance fitness and zumba."
@@ -139,7 +139,7 @@ const PricingSection = () => {
                         <>
                             <PricingCard
                                 type="Half Yearly Package"
-                                price="RS. 18,000/-"
+                                price="Rs. 18,000/-"
                                 subscription="6 Months"
                                 billingCycle={billingCycle}
                                 description="Half-yearly comprehensive wellness and physiotherapy sessions."
@@ -157,7 +157,7 @@ const PricingSection = () => {
 
                             <PricingCard
                                 type="Annual Package"
-                                price="RS. 25,000/-"
+                                price="Rs. 25,000/-"
                                 subscription="1 Year"
                                 billingCycle={billingCycle}
                                 description="Full annual package with complete assessment and maximum sessions."
@@ -176,7 +176,7 @@ const PricingSection = () => {
 
                             <PricingCard
                                 type="Body Transformation"
-                                price="RS. 50,000/-"
+                                price="Rs. 50,000/-"
                                 subscription="Package"
                                 billingCycle={billingCycle}
                                 description="Elite body transformation program with personal training."
@@ -213,8 +213,8 @@ const PricingCard = ({
     onJoinClick
 }) => {
     return (
-        <div className={`w-full max-w-[290px] min-[360px]:max-w-[320px] min-[390px]:max-w-[350px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
-            <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col justify-between
+        <div className={`w-full max-w-[320px] min-[390px]:max-w-[340px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
+            <div className={`relative z-10 overflow-hidden rounded-[32px] border px-6 sm:px-8 py-8 sm:py-10 transition-all duration-700 glass-card h-full flex flex-col justify-between
                 ${active ? 'border-[var(--primary)] shadow-[0_0_80px_rgba(255,0,0,0.25)] primary-shimmer-border' : 'border-white/10 hover:border-[var(--primary)]/40'}`}>
                 
                 {active && (
@@ -227,20 +227,24 @@ const PricingCard = ({
                     <span className="mb-4 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">{type}</span>
 
                     <div className="mb-6">
-                        <h2 className={`text-3xl min-[360px]:text-4xl sm:text-4xl lg:text-5xl font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
-                            {price}
-                            <span className="text-lg font-medium text-white/40 poiret italic"> / {subscription}</span>
-                        </h2>
+                        <div className={`flex flex-wrap items-baseline gap-x-2 font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
+                            <span className="text-3xl min-[360px]:text-4xl sm:text-4xl lg:text-[42px] xl:text-5xl font-black whitespace-nowrap tracking-tight">
+                                {price}
+                            </span>
+                            <span className="text-base sm:text-lg font-medium text-white/40 poiret italic whitespace-nowrap">
+                                / {subscription}
+                            </span>
+                        </div>
                     </div>
 
-                    <p className="mb-8 text-white/50 poiret text-lg h-12 leading-tight">{description}</p>
+                    <p className="mb-8 text-white/50 poiret text-base sm:text-lg h-12 leading-tight">{description}</p>
 
                     <div className="mb-10 flex flex-col gap-4">{children}</div>
                 </div>
 
                 <button 
                     onClick={onJoinClick}
-                    className={`w-full rounded-2xl py-5 text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer mt-auto
+                    className={`w-full rounded-2xl py-4 sm:py-5 text-lg sm:text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer mt-auto
                         ${active 
                             ? "bg-[var(--primary)] text-[#050505] hover:shadow-[0_0_40px_rgba(255,0,0,0.6)]" 
                             : "border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[#050505]"}`}
@@ -253,10 +257,10 @@ const PricingCard = ({
 };
 
 const List = ({ children }) => (
-    <div className="flex items-start gap-4 group/item">
+    <div className="flex items-start gap-3 sm:gap-4 group/item">
         <svg className="h-5 w-5 mt-0.5 text-[var(--primary)] flex-shrink-0 drop-shadow-[0_0_8px_rgba(255,0,0,0.5)]" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
         </svg>
-        <p className="text-white/70 poiret text-lg group-hover/item:text-white transition-colors leading-snug">{children}</p>
+        <p className="text-white/70 poiret text-base sm:text-lg group-hover/item:text-white transition-colors leading-snug break-words">{children}</p>
     </div>
 );
