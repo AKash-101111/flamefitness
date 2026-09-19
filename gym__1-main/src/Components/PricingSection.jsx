@@ -7,7 +7,12 @@ const PricingSection = () => {
     const toggleRef = useRef(null);
     const sliderRef = useRef(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState('Monthly Package');
 
+    const handleJoinClick = (planName) => {
+        setSelectedPlan(planName);
+        setIsFormOpen(true);
+    };
 
     useEffect(() => {
         if (!sliderRef.current || !toggleRef.current) return;
@@ -52,7 +57,8 @@ const PricingSection = () => {
 
                             {/* Monthly Button */}
                             <button
-                                className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'monthly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
+                                type="button"
+                                className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider cursor-pointer ${billingCycle === 'monthly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
                                 Monthly
@@ -60,10 +66,11 @@ const PricingSection = () => {
 
                             {/* Yearly Button */}
                             <button
-                                className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider ${billingCycle === 'yearly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
+                                type="button"
+                                className={`relative w-1/2 text-center py-2.5 font-bold transition-all duration-300 z-10 league-spartan uppercase tracking-wider cursor-pointer ${billingCycle === 'yearly' ? 'text-[#050505]' : 'text-white/60 hover:text-white'
                                     }`}
                             >
-                                Yearly <span className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full ${billingCycle === 'yearly' ? 'bg-black/10' : 'bg-[var(--primary)]/20 text-[var(--primary)]'}`}>-20%</span>
+                                Yearly
                             </button>
                         </div>
                     </div>
@@ -71,61 +78,121 @@ const PricingSection = () => {
                 </div>
 
                 {/* Pricing Cards */}
-                <div className="flex flex-wrap justify-center gap-10">
-                    <PricingCard
-                        type="Basic"
-                        price={billingCycle === 'monthly' ? "₹4,999" : "₹3,999"}
-                        originalPrice={billingCycle === 'monthly' ? null : "₹4,999"}
-                        subscription={billingCycle === 'monthly' ? "month" : "month"}
-                        billingCycle={billingCycle}
-                        description="Start your fitness journey with essential access."
-                        buttonText="Get Started"
-                        onJoinClick={() => setIsFormOpen(true)} // Open modal
-                    >
-                        <List>Access to gym floor</List>
-                        <List>Basic equipment usage</List>
-                        <List>Locker room access</List>
-                        <List>Free Wi-Fi</List>
-                    </PricingCard>
+                <div className="flex flex-wrap justify-center items-stretch gap-10">
+                    {billingCycle === 'monthly' ? (
+                        <>
+                            <PricingCard
+                                type="Monthly Package"
+                                price="RS. 6,000/-"
+                                subscription="1 Month"
+                                billingCycle={billingCycle}
+                                description="Essential monthly workout schedule and general training."
+                                buttonText="Get Started"
+                                onJoinClick={() => handleJoinClick("Monthly Package")}
+                            >
+                                <List>General Trainer</List>
+                                <List>Workout Schedule Card</List>
+                                <List>1 Session Steam Bath</List>
+                                <List>Complete body assessment</List>
+                                <List>1 Session Dance Fitness</List>
+                                <List>1 Session full Body Stretches</List>
+                                <List>1 Session Physiotherapy</List>
+                            </PricingCard>
 
-                    <PricingCard
-                        type="Standard"
-                        price={billingCycle === 'monthly' ? "₹8,999" : "₹7,199"}
-                        originalPrice={billingCycle === 'monthly' ? null : "₹8,999"}
-                        subscription={billingCycle === 'monthly' ? "month" : "month"}
-                        billingCycle={billingCycle}
-                        description="For serious athletes seeking more features."
-                        buttonText="Join ELITE"
-                        active
-                        onJoinClick={() => setIsFormOpen(true)} // Open modal
-                    >
-                        <List>All Basic features</List>
-                        <List>Group fitness classes</List>
-                        <List>Cardio theater</List>
-                        <List>Premium equipment</List>
-                        <List>1 Free personal training session</List>
-                        <List>24/7 access</List>
-                    </PricingCard>
+                            <PricingCard
+                                type="Quarterly Package"
+                                price="RS. 12,000/-"
+                                subscription="3 Months"
+                                billingCycle={billingCycle}
+                                description="Quarterly fitness routine with steam bath and dance fitness."
+                                buttonText="Join ELITE"
+                                active
+                                onJoinClick={() => handleJoinClick("Quarterly Package")}
+                            >
+                                <List>General Trainer</List>
+                                <List>Workout Schedule Card</List>
+                                <List>3 Class Steam Bath</List>
+                                <List>Complete body assessment</List>
+                                <List>2 Class Dance Fitness</List>
+                                <List>2 Class full Body Stretches</List>
+                                <List>2 Class Physiotherapy</List>
+                            </PricingCard>
 
-                    <PricingCard
-                        type="Premium"
-                        price={billingCycle === 'monthly' ? "₹14,999" : "₹11,999"}
-                        originalPrice={billingCycle === 'monthly' ? null : "₹14,999"}
-                        subscription={billingCycle === 'monthly' ? "month" : "month"}
-                        billingCycle={billingCycle}
-                        description="Ultimate experience with all premium amenities."
-                        buttonText="Go Premium"
-                        onJoinClick={() => setIsFormOpen(true)} // Open modal
-                    >
-                        <List>All Standard features</List>
-                        <List>Unlimited personal training</List>
-                        <List>Priority class booking</List>
-                        <List>Nutrition planning</List>
-                        <List>Spa & recovery area</List>
-                        <List>Supplement discounts</List>
-                        <List>Dedicated locker</List>
-                    </PricingCard>
-                    <JoinForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
+                            <PricingCard
+                                type="Dance Fitness"
+                                price="RS. 3,000/-"
+                                subscription="12 Sessions"
+                                billingCycle={billingCycle}
+                                description="12 high-energy sessions including dance fitness and zumba."
+                                buttonText="Join Dance"
+                                onJoinClick={() => handleJoinClick("Dance Fitness")}
+                            >
+                                <List>12 Sessions Dance Fitness</List>
+                                <List>Zumba & Aerobics</List>
+                                <List>Cardio & Endurance</List>
+                                <List>General Trainer</List>
+                                <List>Steam Bath & Shower</List>
+                                <List>Lockers & Wi-Fi</List>
+                            </PricingCard>
+                        </>
+                    ) : (
+                        <>
+                            <PricingCard
+                                type="Half Yearly Package"
+                                price="RS. 18,000/-"
+                                subscription="6 Months"
+                                billingCycle={billingCycle}
+                                description="Half-yearly comprehensive wellness and physiotherapy sessions."
+                                buttonText="Join Half Yearly"
+                                onJoinClick={() => handleJoinClick("Half Yearly Package")}
+                            >
+                                <List>General Trainer</List>
+                                <List>Workout Schedule Card</List>
+                                <List>6 Session Steam Bath</List>
+                                <List>Complete body assessment</List>
+                                <List>3 Session Dance Fitness</List>
+                                <List>2 Session full Body Stretches</List>
+                                <List>3 Session Physiotherapy</List>
+                            </PricingCard>
+
+                            <PricingCard
+                                type="Annual Package"
+                                price="RS. 25,000/-"
+                                subscription="1 Year"
+                                billingCycle={billingCycle}
+                                description="Full annual package with complete assessment and maximum sessions."
+                                buttonText="Join Annual"
+                                active
+                                onJoinClick={() => handleJoinClick("Annual Package")}
+                            >
+                                <List>General Trainer</List>
+                                <List>Workout Schedule Card</List>
+                                <List>12 Session Steam Bath</List>
+                                <List>Complete body assessment</List>
+                                <List>4 Session Dance Fitness</List>
+                                <List>4 Session full Body Stretches</List>
+                                <List>3 Session Physiotherapy</List>
+                            </PricingCard>
+
+                            <PricingCard
+                                type="Body Transformation"
+                                price="RS. 50,000/-"
+                                subscription="Package"
+                                billingCycle={billingCycle}
+                                description="Elite body transformation program with personal training."
+                                buttonText="Transform Now"
+                                onJoinClick={() => handleJoinClick("Body Transformation")}
+                            >
+                                <List>Personal Training</List>
+                                <List>Complete body assessment</List>
+                                <List>Strength Training & Cardio</List>
+                                <List>Steam Bath & Shower Bath</List>
+                                <List>Workout Schedule Card</List>
+                                <List>General Trainer Support</List>
+                            </PricingCard>
+                        </>
+                    )}
+                    <JoinForm isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} defaultPlan={selectedPlan} />
 
                 </div>
             </div>
@@ -147,7 +214,7 @@ const PricingCard = ({
 }) => {
     return (
         <div className={`w-full max-w-[290px] min-[360px]:max-w-[320px] min-[390px]:max-w-[350px] sm:w-[350px] px-2 transition-all duration-700 group ${active ? 'z-20 scale-105 md:scale-110' : 'hover:scale-105 opacity-80 hover:opacity-100'}`}>
-            <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col
+            <div className={`relative z-10 overflow-hidden rounded-[32px] border px-8 py-10 transition-all duration-700 glass-card h-full flex flex-col justify-between
                 ${active ? 'border-[var(--primary)] shadow-[0_0_80px_rgba(255,0,0,0.25)] primary-shimmer-border' : 'border-white/10 hover:border-[var(--primary)]/40'}`}>
                 
                 {active && (
@@ -156,22 +223,24 @@ const PricingCard = ({
                     </div>
                 )}
 
-                <span className="mb-4 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">{type}</span>
+                <div>
+                    <span className="mb-4 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">{type}</span>
 
-                <div className="mb-6">
-                    <h2 className={`text-5xl font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
-                        {price}
-                        <span className="text-lg font-medium text-white/40 poiret italic"> / {subscription}</span>
-                    </h2>
+                    <div className="mb-6">
+                        <h2 className={`text-3xl min-[360px]:text-4xl sm:text-4xl lg:text-5xl font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
+                            {price}
+                            <span className="text-lg font-medium text-white/40 poiret italic"> / {subscription}</span>
+                        </h2>
+                    </div>
+
+                    <p className="mb-8 text-white/50 poiret text-lg h-12 leading-tight">{description}</p>
+
+                    <div className="mb-10 flex flex-col gap-4">{children}</div>
                 </div>
-
-                <p className="mb-8 text-white/50 poiret text-lg h-12 leading-tight">{description}</p>
-
-                <div className="mb-10 flex flex-col gap-4 flex-grow">{children}</div>
 
                 <button 
                     onClick={onJoinClick}
-                    className={`w-full rounded-2xl py-5 text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer
+                    className={`w-full rounded-2xl py-5 text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer mt-auto
                         ${active 
                             ? "bg-[var(--primary)] text-[#050505] hover:shadow-[0_0_40px_rgba(255,0,0,0.6)]" 
                             : "border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[#050505]"}`}
@@ -184,10 +253,10 @@ const PricingCard = ({
 };
 
 const List = ({ children }) => (
-    <div className="flex items-center gap-4 group/item">
-        <svg className="h-6 w-6 text-[var(--primary)] flex-shrink-0 drop-shadow-[0_0_8px_rgba(255,0,0,0.5)]" fill="currentColor" viewBox="0 0 20 20">
+    <div className="flex items-start gap-4 group/item">
+        <svg className="h-5 w-5 mt-0.5 text-[var(--primary)] flex-shrink-0 drop-shadow-[0_0_8px_rgba(255,0,0,0.5)]" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
         </svg>
-        <p className="text-white/70 poiret text-lg group-hover/item:text-white transition-colors">{children}</p>
+        <p className="text-white/70 poiret text-lg group-hover/item:text-white transition-colors leading-snug">{children}</p>
     </div>
 );

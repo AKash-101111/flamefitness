@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const JoinForm = ({ isOpen, onClose }) => {
+const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
     const [submitted, setSubmitted] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState(defaultPlan || "Monthly Package");
+
+    React.useEffect(() => {
+        if (defaultPlan) {
+            setSelectedPlan(defaultPlan);
+        }
+    }, [defaultPlan]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -88,10 +95,18 @@ const JoinForm = ({ isOpen, onClose }) => {
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
                                     <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Select Plan</label>
-                                    <select required className="w-full p-4 rounded-2xl input-primary montserrat appearance-none cursor-pointer">
-                                        <option value="Basic" className="bg-[#0B0B0B]">Basic Membership</option>
-                                        <option value="Standard" className="bg-[#0B0B0B]">Standard Membership</option>
-                                        <option value="Premium" className="bg-[#0B0B0B]">Premium Membership</option>
+                                    <select 
+                                        required 
+                                        value={selectedPlan}
+                                        onChange={(e) => setSelectedPlan(e.target.value)}
+                                        className="w-full p-4 rounded-2xl input-primary montserrat appearance-none cursor-pointer"
+                                    >
+                                        <option value="Monthly Package" className="bg-[#0B0B0B]">Monthly Package - RS. 6,000/-</option>
+                                        <option value="Quarterly Package" className="bg-[#0B0B0B]">Quarterly Package - RS. 12,000/-</option>
+                                        <option value="Half Yearly Package" className="bg-[#0B0B0B]">Half Yearly Package - RS. 18,000/-</option>
+                                        <option value="Annual Package" className="bg-[#0B0B0B]">Annual Package - RS. 25,000/-</option>
+                                        <option value="Body Transformation" className="bg-[#0B0B0B]">Body Transformation - RS. 50,000/-</option>
+                                        <option value="Dance Fitness" className="bg-[#0B0B0B]">Dance Fitness (12 Sessions) - RS. 3,000/-</option>
                                     </select>
                                 </motion.div>
 
