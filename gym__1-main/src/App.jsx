@@ -26,6 +26,7 @@ const App = () => {
         <main className="w-full flex-grow relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/programs" element={<Programs />} />
             <Route path="/gallery" element={<Gallery />} />
