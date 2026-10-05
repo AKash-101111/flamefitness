@@ -10,6 +10,8 @@ const HeroSection = () => {
         muted
         loop
         playsInline
+        preload="auto"
+        poster="/images/posters/client-gym-video-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover z-0"
         style={{ transform: 'scale(1.08)', transformOrigin: 'top left' }}
       >

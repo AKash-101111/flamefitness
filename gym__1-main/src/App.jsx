@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './Components/Navbar'
@@ -6,10 +6,18 @@ import Footer from './Components/Footer'
 import DarkVeil from './Components/DarkVeil'
 import ScrollToTop from './Components/ScrollToTop'
 import Home from './Pages/Home'
-import About from './Pages/About'
-import Programs from './Pages/Programs'
-import Gallery from './Pages/Gallery'
-import Contact from './Pages/Contact'
+
+// Lazy load secondary routes so initial page load is lightning fast
+const About = lazy(() => import('./Pages/About'))
+const Programs = lazy(() => import('./Pages/Programs'))
+const Gallery = lazy(() => import('./Pages/Gallery'))
+const Contact = lazy(() => import('./Pages/Contact'))
+
+const RouteLoader = () => (
+  <div className="w-full min-h-[60vh] flex items-center justify-center">
+    <div className="w-10 h-10 border-2 border-[var(--primary)]/20 border-t-[var(--primary)] rounded-full animate-spin" />
+  </div>
+)
 
 const App = () => {
   return (
@@ -24,14 +32,16 @@ const App = () => {
         <Navbar />
         
         <main className="w-full flex-grow relative z-10">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/programs" element={<Programs />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+          <Suspense fallback={<RouteLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/programs" element={<Programs />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
         </main>
 
         <Footer />

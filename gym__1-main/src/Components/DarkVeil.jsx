@@ -126,6 +126,7 @@ uWarp: { value: warpAmount }
 const mesh = new Mesh(gl, { geometry, program });
 
 const resize = () => {
+if (!parent) return;
 const w = parent.clientWidth,
 h = parent.clientHeight;
 renderer.setSize(w * activeResolutionScale, h * activeResolutionScale);
@@ -137,8 +138,10 @@ resize();
 
 const start = performance.now();
 let frame = 0;
+let isPageVisible = !document.hidden;
 
 const loop = () => {
+if (!isPageVisible) return;
 program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
 program.uniforms.uHueShift.value = hueShift;
 program.uniforms.uNoise.value = noiseIntensity;
@@ -149,11 +152,21 @@ renderer.render({ scene: mesh });
 frame = requestAnimationFrame(loop);
 };
 
+const handleVisibility = () => {
+isPageVisible = !document.hidden;
+if (isPageVisible) {
+cancelAnimationFrame(frame);
+frame = requestAnimationFrame(loop);
+}
+};
+
+document.addEventListener('visibilitychange', handleVisibility);
 loop();
 
 return () => {
 cancelAnimationFrame(frame);
 window.removeEventListener('resize', resize);
+document.removeEventListener('visibilitychange', handleVisibility);
 };
 }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, activeResolutionScale]);
 return <canvas ref={ref} className="w-full h-full block" />;

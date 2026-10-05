@@ -4,19 +4,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
     {
         video: "/videos/video-1.mp4",
-        poster: "/images/hero/hero-1.jpg",
+        poster: "/images/posters/video-1-poster.jpg",
         title: "Run Beyond Limits",
         line: "Push past the burn. Chase the version of you that doesn’t stop.",
     },
     {
         video: "/videos/video-2.mp4",
-        poster: "/images/hero/hero-2.jpg",
+        poster: "/images/posters/video-2-poster.jpg",
         title: "Build Relentless Strength",
         line: "Every rep forges power. Every set shapes greatness.",
     },
     {
         video: "/videos/video-3.mp4",
-        poster: "/images/hero/hero-3.jpg",
+        poster: "/images/posters/video-3-poster.jpg",
         title: "Unleash the Warrior Within",
         line: "Let the ropes shake, not your resolve. This is where power awakens.",
     },
@@ -24,12 +24,39 @@ const slides = [
 
 export default function CustomCarousel() {
     const [index, setIndex] = useState(0);
+    const containerRef = useRef(null);
+    const isVisibleRef = useRef(true);
     
     // Create refs for the video elements to control playback and optimize performance
     const videoRef0 = useRef(null);
     const videoRef1 = useRef(null);
     const videoRef2 = useRef(null);
     const videoRefs = [videoRef0, videoRef1, videoRef2];
+
+    // Pause video playback when carousel is scrolled out of viewport
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isVisibleRef.current = entry.isIntersecting;
+                if (!entry.isIntersecting) {
+                    videoRefs.forEach((ref) => {
+                        if (ref.current && !ref.current.paused) {
+                            ref.current.pause();
+                        }
+                    });
+                } else {
+                    if (videoRefs[index]?.current) {
+                        videoRefs[index].current.play().catch(() => {});
+                    }
+                }
+            },
+            { threshold: 0.15 }
+        );
+
+        observer.observe(containerRef.current);
+        return () => observer.disconnect();
+    }, [index]);
 
     // Auto-slide
     useEffect(() => {
@@ -39,13 +66,14 @@ export default function CustomCarousel() {
         return () => clearInterval(interval);
     }, []);
 
-    // Control video playback based on active index to reduce re-renders and save resources
+    // Control video playback based on active index to reduce memory & GPU usage
     useEffect(() => {
+        if (!isVisibleRef.current) return;
         videoRefs.forEach((ref, i) => {
             if (ref.current) {
                 if (i === index) {
                     ref.current.play().catch((err) => {
-                        console.log(`Video ${i} play failed:`, err);
+                        // Silent autoplay catch for low-power or mobile policy
                     });
                 } else {
                     ref.current.pause();
@@ -58,7 +86,7 @@ export default function CustomCarousel() {
     const nextSlide = () => setIndex((index + 1) % slides.length);
 
     return (
-        <div className="flex w-full md:w-[95%] h-[50vh] md:h-[90vh] justify-center bg-[#1a1a1ab0] md:rounded-4xl mb-6 overflow-hidden">
+        <div ref={containerRef} className="flex w-full md:w-[95%] h-[50vh] md:h-[90vh] justify-center bg-[#1a1a1ab0] md:rounded-4xl mb-6 overflow-hidden">
             <div className="relative w-full h-full overflow-hidden md:rounded-3xl shadow-lg select-none">
 
                 {/* VIDEO SLIDES */}
@@ -72,11 +100,11 @@ export default function CustomCarousel() {
                                 ref={videoRefs[i]}
                                 className="w-full h-full object-cover"
                                 style={{ filter: 'hue-rotate(-20deg) contrast(1.1)', objectFit: 'cover' }}
-                                autoPlay
+                                autoPlay={i === 0}
                                 loop
                                 muted
                                 playsInline
-                                preload="auto"
+                                preload={i === 0 || Math.abs(index - i) <= 1 ? "metadata" : "none"}
                                 poster={slide.poster}
                             >
                                 <source src={slide.video} type="video/mp4" />
@@ -98,7 +126,8 @@ export default function CustomCarousel() {
                 {/* LEFT ARROW */}
                 <button
                     onClick={prevSlide}
-                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 hover:bg-white/40 text-white rounded-full backdrop-blur-md transition-all"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 hover:bg-white/40 text-white rounded-full backdrop-blur-md transition-all cursor-pointer"
+                    aria-label="Previous slide"
                 >
                     <ChevronLeft size={24} />
                 </button>
@@ -106,7 +135,8 @@ export default function CustomCarousel() {
                 {/* RIGHT ARROW */}
                 <button
                     onClick={nextSlide}
-                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 hover:bg-white/40 text-white rounded-full backdrop-blur-md transition-all"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-2 md:p-3 bg-white/20 hover:bg-white/40 text-white rounded-full backdrop-blur-md transition-all cursor-pointer"
+                    aria-label="Next slide"
                 >
                     <ChevronRight size={24} />
                 </button>
@@ -126,4 +156,3 @@ export default function CustomCarousel() {
         </div>
     );
 }
-

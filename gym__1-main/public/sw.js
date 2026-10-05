@@ -1,6 +1,6 @@
-const CACHE_NAME = 'flame-fitness-v3';
-const STATIC_CACHE = 'flame-static-v3';
-const IMAGE_CACHE = 'flame-images-v3';
+const CACHE_NAME = 'flame-fitness-v4';
+const STATIC_CACHE = 'flame-static-v4';
+const IMAGE_CACHE = 'flame-images-v4';
 
 // Core app shell - must be small and reliable
 const APP_SHELL = [
@@ -12,28 +12,25 @@ const APP_SHELL = [
 // Images to pre-cache individually (failures won't block install)
 const IMAGES_TO_PRECACHE = [
   '/images/flamelogo.svg',
-  '/images/hero/hero-1.jpg',
-  '/images/hero/hero-2.jpg',
-  '/images/hero/hero-3.jpg',
-  '/images/hero/hero-4.jpg',
-  '/images/hero/hero-5.jpg',
+  '/images/posters/client-gym-video-poster.jpg',
+  '/images/posters/video-1-poster.jpg',
+  '/images/posters/video-2-poster.jpg',
+  '/images/posters/video-3-poster.jpg',
 ];
 
 // --- INSTALL: Cache app shell, pre-cache images without blocking ---
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
-      // Cache the app shell (critical - must all succeed)
       const staticCache = await caches.open(STATIC_CACHE);
       await staticCache.addAll(APP_SHELL);
 
-      // Pre-cache images individually (failures are non-fatal)
       const imageCache = await caches.open(IMAGE_CACHE);
       await Promise.allSettled(
         IMAGES_TO_PRECACHE.map((url) =>
           fetch(url).then((res) => {
             if (res.ok) return imageCache.put(url, res);
-          }).catch(() => {}) // Ignore failures
+          }).catch(() => {})
         )
       );
     })()
