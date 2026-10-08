@@ -47,7 +47,7 @@ const Footer = () => {
     const socialLinks = [
         { 
             icon: <FaWhatsapp size={20} />, 
-            url: "https://wa.me/919791020081?text=Hi!%20I'm%20interested%20in%20joining%20your%20gym%20and%20would%20like%20to%20know%20more%20about%20the%20membership%20plans,%20and%20available%20facilities.", 
+            url: "https://wa.me/919940530733?text=Hi!%20I'm%20interested%20in%20joining%20Flame%20Fitness%20Studio%20and%20would%20like%20to%20know%20more%20about%20the%20membership%20plans%20and%20available%20facilities.", 
             label: "WhatsApp" 
         },
         { 
@@ -88,13 +88,18 @@ const Footer = () => {
                         <div className="p-6 glass-card border border-[var(--primary)]/10 bg-[var(--primary)]/5 rounded-3xl group hover:border-[var(--primary)]/40 transition-all duration-500">
                             <p className="text-xs font-black uppercase tracking-[0.3em] league-spartan mb-3 text-[var(--primary)]">Location</p>
                             <p className="text-sm md:text-base montserrat leading-relaxed text-white/70 group-hover:text-white/90 transition-colors">
-                                No 27/3, 14, N Usman Rd, T Nagar, Chennai, Tamil Nadu, Chennai<br />
-                                Chennai, India 600034
+                                14, N Usman Rd, Darmapuram,<br />
+                                T. Nagar, Chennai, Tamil Nadu 600017
                             </p>
-                            <div className="mt-4 flex items-center gap-2 text-[var(--primary)] text-sm font-bold league-spartan uppercase tracking-tighter cursor-pointer hover:gap-3 transition-all">
+                            <a 
+                                href="https://www.google.com/search?sca_esv=b1ed0be76243ea24&sxsrf=APpeQns67M5oOlhbV3TS64SqV4z8BZQaVQ:1791429647060&q=flame+fitness+studio+address&ludocid=792837066430244050&sa=X&ved=2ahUKEwiR1YK-u6mXAxU8UGwGHRowLYsQ6BN6BAguEAI" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="mt-4 flex items-center gap-2 text-[var(--primary)] text-sm font-bold league-spartan uppercase tracking-tighter cursor-pointer hover:gap-3 transition-all"
+                            >
                                 <span>Get Directions</span>
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                            </div>
+                            </a>
                         </div>
                     </div>
 

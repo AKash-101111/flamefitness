@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 
 const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
     const [submitted, setSubmitted] = useState(false);
     const [selectedPlan, setSelectedPlan] = useState(defaultPlan || "Monthly Package");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: ""
+    });
 
     React.useEffect(() => {
         if (defaultPlan) {
@@ -11,11 +17,31 @@ const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
         }
     }, [defaultPlan]);
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmitted(true);
+
+        const messageText = 
+            `*New Membership Application - Flame Fitness Studio*\n\n` +
+            `👤 *Name:* ${formData.name.trim()}\n` +
+            `📧 *Email:* ${formData.email.trim()}\n` +
+            `📱 *Phone:* ${formData.phone.trim()}\n` +
+            `🏋️ *Selected Plan:* ${selectedPlan}`;
+
+        const whatsappUrl = `https://wa.me/919940530733?text=${encodeURIComponent(messageText)}`;
+
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }, 400);
+
         setTimeout(() => {
             setSubmitted(false);
+            setFormData({ name: "", email: "", phone: "" });
             onClose();
         }, 3000);
     };
@@ -64,7 +90,7 @@ const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
                                 </svg>
                             </div>
                             <h3 className="text-3xl font-black league-spartan text-[var(--primary)] mb-4 uppercase tracking-wider">Welcome To The Elite</h3>
-                            <p className="poiret text-white/70 text-center text-lg">Your journey to greatness begins now. Our team will contact you within 24 hours.</p>
+                            <p className="poiret text-white/70 text-center text-lg">Opening WhatsApp to connect with our team...</p>
                         </motion.div>
                     ) : (
                         <>
@@ -80,17 +106,41 @@ const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
                             <form onSubmit={handleSubmit} className="space-y-5">
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
                                     <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Full Name</label>
-                                    <input type="text" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="Enter your name" />
+                                    <input 
+                                        type="text" 
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required 
+                                        className="w-full p-4 rounded-2xl input-primary montserrat" 
+                                        placeholder="Enter your name" 
+                                    />
                                 </motion.div>
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3 }}>
                                     <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Email Address</label>
-                                    <input type="email" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="your@email.com" />
+                                    <input 
+                                        type="email" 
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required 
+                                        className="w-full p-4 rounded-2xl input-primary montserrat" 
+                                        placeholder="your@email.com" 
+                                    />
                                 </motion.div>
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4 }}>
                                     <label className="block mb-2 poiret text-white/50 text-sm tracking-widest uppercase">Phone Number</label>
-                                    <input type="tel" required className="w-full p-4 rounded-2xl input-primary montserrat" placeholder="+91 98765 43210" />
+                                    <input 
+                                        type="tel" 
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required 
+                                        className="w-full p-4 rounded-2xl input-primary montserrat" 
+                                        placeholder="+91 99405 30733" 
+                                    />
                                 </motion.div>
 
                                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
@@ -113,8 +163,9 @@ const JoinForm = ({ isOpen, onClose, defaultPlan }) => {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="w-full p-5 bg-[var(--primary)] text-[#050505] font-black league-spartan uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-[0_0_30px_rgba(255,0,0,0.3)] hover:shadow-[0_0_40px_rgba(255,0,0,0.5)] cursor-pointer mt-4"
+                                    className="w-full p-5 bg-[var(--primary)] text-[#050505] font-black league-spartan uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-[0_0_30px_rgba(255,0,0,0.3)] hover:shadow-[0_0_40px_rgba(255,0,0,0.5)] cursor-pointer mt-4 flex items-center justify-center gap-2"
                                 >
+                                    <FaWhatsapp size={20} />
                                     Join The Tribe
                                 </motion.button>
                             </form>
