@@ -49,9 +49,10 @@ const headCoach = {
     fallbackImage: 'https://i.pravatar.cc/500?img=11',
     title: 'Surendar P',
     subtitle: 'Head Coach & Managing Director',
+    badge: 'Head Coach & MD',
     focus: 'Fitness Coach & Wellness',
     description:
-        'Surendar P is a dedicated Fitness Coach & Wellness Specialist, serving as Head Coach and Managing Director of Flame Fitness Studio, and Vice President of TNGO&TWA (Tamil Nadu Gym Owners and Trainers Welfare Association). Internationally certified by leading fitness organizations including NASM, ISSA, and IFA, he brings elite standards to physical fitness and holistic wellness.',
+        'Dedicated Fitness Coach & Wellness Specialist, serving as Head Coach and Managing Director of Flame Fitness Studio, and Vice President of TNGO&TWA. Internationally certified by NASM, ISSA, and IFA, bringing elite coaching standards and holistic wellness.',
     positions: [
         {
             role: 'Head Coach',
@@ -74,6 +75,16 @@ const headCoach = {
         { abbr: 'ISSA', name: 'International Sports Sciences Association' },
         { abbr: 'IFA', name: 'International Fitness Association' },
     ],
+};
+
+const sathya = {
+    image: null,
+    initials: 'S',
+    title: 'Sathya',
+    subtitle: 'Managing Director',
+    badge: 'Managing Director',
+    description:
+        'Managing Director at Flame Fitness Studio, steering executive leadership, operational excellence, and empowering members to achieve transformative fitness results through world-class facility standards.',
 };
 
 const balu = {
@@ -145,6 +156,20 @@ const prawin = {
         'CPR First Aid Course',
     ],
     academy: 'Caduceus Fitness Academy',
+};
+
+const kumar = {
+    image: null,
+    initials: 'K',
+    title: 'Kumar',
+    subtitle: 'Fitness Trainer & Coach',
+    focus: 'Strength & Conditioning',
+    description:
+        'Professional Fitness Trainer at Flame Fitness Studio, specializing in personalized workout plans, functional strength training, and motivating members towards sustainable health and fitness results.',
+    certifications: [
+        'Certified Fitness Trainer',
+        'Strength & Conditioning Specialist',
+    ],
 };
 
 // ─── Certificate Data (Surendar P) ────────────────────────────────────────────
@@ -280,14 +305,128 @@ const TrainerCard = ({ trainer, reverse, onViewProfile, stats }) => {
     );
 };
 
+// ─── Executive Director Placeholder (Animated Mesh + Glowing Monogram) ───────
+const DirectorPlaceholder = ({ initials, name, badge = 'Flame Leadership' }) => (
+    <div
+        aria-label={`Profile visual for ${name}`}
+        className="w-full h-full flex flex-col items-center justify-center select-none relative mesh-bg-animated overflow-hidden"
+    >
+        {/* Ambient radial red pulse in center */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,0,0,0.25)_0%,_transparent_70%)] pointer-events-none" />
+
+        {/* Top & bottom accent glow lines */}
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[var(--primary)]/40 to-transparent" />
+
+        {/* Stylized Monogram Crest */}
+        <div className="relative z-10 flex flex-col items-center">
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border border-[var(--primary)]/40 flex items-center justify-center bg-black/50 backdrop-blur-md shadow-[0_0_35px_rgba(255,0,0,0.35)] transition-all duration-700 group-hover:scale-110 group-hover:border-[var(--primary)] group-hover:shadow-[0_0_55px_rgba(255,0,0,0.6)]">
+                {/* Inner decorative dashed ring */}
+                <div className="absolute inset-1.5 rounded-full border border-dashed border-white/20" />
+                <span className="league-spartan font-black text-4xl sm:text-5xl text-white tracking-tighter drop-shadow-[0_0_12px_rgba(255,0,0,0.8)]">
+                    {initials}
+                </span>
+            </div>
+
+            {/* Sub-label */}
+            <div className="mt-4 px-4 py-1 bg-black/70 border border-[var(--primary)]/40 rounded-full backdrop-blur-sm">
+                <p className="text-[var(--primary)] text-[10px] uppercase tracking-[0.2em] montserrat font-bold">
+                    {badge}
+                </p>
+            </div>
+        </div>
+    </div>
+);
+
+// ─── Director Card (Premium vertical rectangular card for side-by-side layout) ─
+const DirectorCard = ({ trainer, onViewProfile, entranceDirection = 'left' }) => {
+    const isLeft = entranceDirection === 'left';
+    const imageArea = trainer.image ? (
+        <div className="relative w-full h-full overflow-hidden">
+            <img
+                src={trainer.image}
+                alt={trainer.title}
+                loading="lazy"
+                onError={(e) => {
+                    e.target.style.display = 'none';
+                }}
+                className="w-full h-full object-cover object-top grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+            />
+            {/* Cinematic Vignette & Bottom Fade */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-black/30" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.5)_100%)]" />
+        </div>
+    ) : (
+        <DirectorPlaceholder initials={trainer.initials} name={trainer.title} badge={trainer.badge || 'Managing Director'} />
+    );
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: isLeft ? -35 : 35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -6, scale: 1.01 }}
+            className="group relative rounded-[28px] sm:rounded-[32px] overflow-hidden glass-card border border-white/10 hover:border-[var(--primary)]/60 transition-all duration-700 shadow-2xl hover:shadow-[0_0_60px_rgba(255,0,0,0.3)] flex flex-col h-full w-full director-card-glow"
+        >
+            {/* Red Accent Corner Glows */}
+            <div className="absolute -top-12 -right-12 w-28 h-28 bg-[var(--primary)]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[var(--primary)]/30 transition-all duration-700" />
+            <div className="absolute -bottom-12 -left-12 w-28 h-28 bg-[var(--primary)]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[var(--primary)]/30 transition-all duration-700" />
+
+            {/* Top hover accent line */}
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20" />
+
+            {/* Image Section */}
+            <div className="w-full h-[270px] sm:h-[330px] md:h-[360px] relative overflow-hidden shrink-0 bg-[#050505]">
+                {imageArea}
+
+                {/* Role Badge Chip floating over image */}
+                <div className="absolute top-4 left-4 z-20 px-3.5 py-1.5 bg-black/80 backdrop-blur-md border border-[var(--primary)]/40 rounded-full flex items-center gap-2 shadow-lg">
+                    <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" />
+                    <span className="text-[10px] sm:text-xs uppercase font-extrabold tracking-wider text-white league-spartan">
+                        {trainer.badge || 'Director'}
+                    </span>
+                </div>
+            </div>
+
+            {/* Content Section */}
+            <div className="w-full p-6 sm:p-8 flex flex-col flex-1 justify-between relative z-10 bg-gradient-to-b from-[#0a0a0a]/95 to-[#050505]/95 backdrop-blur-xl border-t border-white/5">
+                <div>
+                    <h3 className="text-2xl sm:text-3xl font-black text-white league-spartan uppercase tracking-tight mb-1 group-hover:text-red-50 transition-colors">
+                        {trainer.title}
+                    </h3>
+                    <p className="text-[var(--primary)] text-xs sm:text-sm poiret font-bold tracking-widest uppercase mb-4">
+                        {trainer.subtitle}
+                    </p>
+                    <p className="text-white/70 montserrat text-xs sm:text-sm leading-relaxed mb-6 line-clamp-3">
+                        {trainer.description}
+                    </p>
+                </div>
+
+                <div className="mt-auto pt-4 border-t border-white/5">
+                    <button
+                        onClick={onViewProfile}
+                        className="group/btn relative w-full py-3 px-6 btn-shimmer text-black font-extrabold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,0,0,0.3)] hover:shadow-[0_0_35px_rgba(255,0,0,0.7)] cursor-pointer"
+                    >
+                        <span>View Full Profile</span>
+                        <span className="inline-block transition-transform duration-300 group-hover/btn:translate-x-1.5 font-bold">→</span>
+                    </button>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const ServicesSection = () => {
     const [showGallery, setShowGallery] = useState(false);
     const [showHeadCoachProfile, setShowHeadCoachProfile] = useState(false);
+    const [showSathyaProfile, setShowSathyaProfile] = useState(false);
     const [showBaluProfile, setShowBaluProfile] = useState(false);
     const [showVijayProfile, setShowVijayProfile] = useState(false);
     const [showPrawinProfile, setShowPrawinProfile] = useState(false);
+    const [showKumarProfile, setShowKumarProfile] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
 
     const texts = [
@@ -339,62 +478,69 @@ const ServicesSection = () => {
                 </div>
             </div>
 
-            {/* ── Trainers Section ──────────────────────────────────────── */}
-            <div className="w-full flex flex-col items-center mt-12 sm:mt-20 px-4">
-                <h2 className="text-[10px] sm:text-xs md:text-sm text-[var(--primary)] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-2 sm:mb-4 text-center">
+            {/* ── Managing Director Section ──────────────────────────────────────── */}
+            <div className="w-full flex flex-col items-center mt-12 sm:mt-20 px-4 relative">
+                {/* Atmospheric ambient red glow behind the section */}
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[90vw] max-w-5xl h-[420px] bg-[radial-gradient(ellipse_at_center,_rgba(255,0,0,0.18)_0%,_rgba(139,0,0,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
+
+                <motion.h2
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="text-[10px] sm:text-xs md:text-sm text-[var(--primary)] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase mb-2 sm:mb-4 text-center"
+                >
                     Meet the Professionals Behind Your Transformation
-                </h2>
+                </motion.h2>
+
+                <motion.h1
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="text-3xl sm:text-5xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-4 sm:mb-6 text-center uppercase"
+                >
+                    MANAGING <span className="gradient-text">DIRECTOR</span>
+                </motion.h1>
+
+                {/* Decorative expanding accent line */}
+                <motion.div
+                    initial={{ width: 0, opacity: 0 }}
+                    whileInView={{ width: '80px', opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent rounded-full mb-10 sm:mb-14"
+                />
+
+                {/* Equal Left & Right cards on the same horizontal level */}
+                <div className="w-full max-w-5xl px-0 sm:px-4 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch relative">
+                    {/* Left: Surendar P */}
+                    <div className="h-full flex">
+                        <DirectorCard
+                            trainer={headCoach}
+                            entranceDirection="left"
+                            onViewProfile={() => setShowHeadCoachProfile(true)}
+                        />
+                    </div>
+
+                    {/* Right: Sathya */}
+                    <div className="h-full flex">
+                        <DirectorCard
+                            trainer={sathya}
+                            entranceDirection="right"
+                            onViewProfile={() => setShowSathyaProfile(true)}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {/* ── Our Trainers Section ──────────────────────────────────────── */}
+            <div className="w-full flex flex-col items-center mt-16 sm:mt-24 px-4">
                 <h1 className="text-3xl sm:text-5xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-10 sm:mb-16 text-center">
                     Our <span className="gradient-text">Trainers</span>
                 </h1>
 
                 <div className="w-full max-w-5xl px-0 sm:px-4 md:px-8 flex flex-col gap-6 sm:gap-8">
-
-                    {/* ── 1. Surendar P — Head Coach (Image Left on Desktop, Top on Mobile) ── */}
-                    <motion.div
-                        whileHover={{ y: -4, scale: 1.002 }}
-                        className="group relative rounded-[24px] sm:rounded-[32px] overflow-hidden glass-card cursor-pointer border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-700 shadow-2xl hover:shadow-[0_0_50px_rgba(255,0,0,0.3)] flex flex-col md:flex-row w-full"
-                        onClick={() => setShowHeadCoachProfile(true)}
-                    >
-                        {/* Image */}
-                        <div className="w-full md:w-1/2 h-[260px] sm:h-[360px] md:h-[500px] relative overflow-hidden shrink-0">
-                            <img
-                                src={headCoach.image}
-                                alt={headCoach.title}
-                                loading="lazy"
-                                onError={(e) => {
-                                    e.target.src = headCoach.fallbackImage;
-                                }}
-                                className="w-full h-full object-cover object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#050505] via-[#050505]/40 to-transparent" />
-                        </div>
-
-                        {/* Content */}
-                        <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center relative z-10 bg-[#050505]/80 backdrop-blur-md">
-                            <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-2">
-                                {headCoach.title}
-                            </h3>
-                            <p className="text-[var(--primary)] text-sm sm:text-base md:text-xl poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
-                                {headCoach.subtitle}
-                            </p>
-                            <p className="text-white/70 montserrat text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 line-clamp-3">
-                                {headCoach.description}
-                            </p>
-
-                            <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8 flex-wrap">
-                                <StatBlock value={headCoach.affiliations.length} label="Affiliations" />
-                                <div className="w-px h-8 sm:h-10 bg-white/10" />
-                                <StatBlock value={certificatesData.length} label="Certifications" accent />
-                            </div>
-
-                            <button className="self-start px-6 sm:px-8 py-2.5 sm:py-3 bg-transparent border-2 border-[var(--primary)] text-white hover:bg-[var(--primary)] hover:text-black font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm">
-                                View Full Profile
-                            </button>
-                            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                        </div>
-                    </motion.div>
-
                     {/* ── 2. Vijayakumar R — HFI (Image Left on Desktop, Top on Mobile) ── */}
                     <TrainerCard
                         trainer={vijay}
@@ -423,6 +569,17 @@ const ServicesSection = () => {
                         stats={[
                             { value: prawin.certifications.length, label: 'Certifications', accent: true },
                             { value: 'CFI', label: 'Credential' },
+                        ]}
+                    />
+
+                    {/* ── 5. Kumar — Fitness Trainer (Image Right on Desktop, Top on Mobile) ── */}
+                    <TrainerCard
+                        trainer={kumar}
+                        reverse={true}
+                        onViewProfile={() => setShowKumarProfile(true)}
+                        stats={[
+                            { value: kumar.certifications.length, label: 'Certifications', accent: true },
+                            { value: 'Coach', label: 'Role' },
                         ]}
                     />
                 </div>
@@ -623,6 +780,74 @@ const ServicesSection = () => {
                                             </div>
                                         ))}
                                     </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* ── Sathya — Profile Modal ────────────────────────────── */}
+            <AnimatePresence>
+                {showSathyaProfile && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        onClick={() => setShowSathyaProfile(false)}
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            transition={{ duration: 0.4 }}
+                            className="bg-[#0a0a0a] border border-white/10 rounded-[24px] sm:rounded-[32px] w-[calc(100vw-24px)] max-w-2xl max-h-[calc(100dvh-24px)] md:max-h-[85vh] my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row overflow-y-auto custom-scrollbar"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-transparent to-[var(--primary)]" />
+
+                            <button
+                                onClick={() => setShowSathyaProfile(false)}
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer shadow-lg"
+                                aria-label="Close profile modal"
+                            >
+                                ✕
+                            </button>
+
+                            <div className="flex flex-col md:flex-row w-full">
+                                <div className="w-full md:w-[40%] h-[220px] sm:h-[280px] md:min-h-[380px] relative overflow-hidden shrink-0 bg-[#050505]">
+                                    <TrainerPlaceholder initials={sathya.initials} name={sathya.title} />
+                                </div>
+
+                                <div className="w-full md:w-[60%] p-5 sm:p-8 md:p-10 flex flex-col justify-center">
+                                    <div className="mb-2 sm:mb-3">
+                                        <span className="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[var(--primary)]/60 montserrat font-semibold">
+                                            Flame Fitness Studio
+                                        </span>
+                                    </div>
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-1 sm:mb-2">
+                                        {sathya.title}
+                                    </h2>
+                                    <p className="text-[var(--primary)] text-xs sm:text-sm poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
+                                        {sathya.subtitle}
+                                    </p>
+
+                                    <div className="mb-4 sm:mb-6 p-3.5 sm:p-4 bg-white/[0.03] border border-white/5 rounded-xl">
+                                        <h4 className="text-[10px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mb-2">
+                                            About
+                                        </h4>
+                                        <p className="text-white/80 montserrat text-xs sm:text-sm leading-relaxed">
+                                            {sathya.description}
+                                        </p>
+                                    </div>
+
+                                    <button
+                                        onClick={() => setShowSathyaProfile(false)}
+                                        className="mt-6 sm:mt-8 w-full py-2.5 sm:py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
+                                    >
+                                        Close
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>
@@ -943,6 +1168,96 @@ const ServicesSection = () => {
 
                                     <button
                                         onClick={() => setShowPrawinProfile(false)}
+                                        className="mt-6 sm:mt-8 w-full py-2.5 sm:py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* ── Kumar — Profile Modal ─────────────────────────────── */}
+            <AnimatePresence>
+                {showKumarProfile && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        onClick={() => setShowKumarProfile(false)}
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            transition={{ duration: 0.4 }}
+                            className="bg-[#0a0a0a] border border-white/10 rounded-[24px] sm:rounded-[32px] w-[calc(100vw-24px)] max-w-2xl max-h-[calc(100dvh-24px)] md:max-h-[85vh] my-auto relative shadow-[0_0_100px_rgba(255,0,0,0.15)] overflow-hidden flex flex-col md:flex-row overflow-y-auto custom-scrollbar"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary)] via-transparent to-[var(--primary)]" />
+
+                            <button
+                                onClick={() => setShowKumarProfile(false)}
+                                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white hover:text-[var(--primary)] hover:border-[var(--primary)] transition-all cursor-pointer shadow-lg"
+                                aria-label="Close profile modal"
+                            >
+                                ✕
+                            </button>
+
+                            <div className="flex flex-col md:flex-row w-full">
+                                <div className="w-full md:w-[40%] h-[220px] sm:h-[280px] md:min-h-[380px] relative overflow-hidden shrink-0 bg-[#050505]">
+                                    {kumar.image ? (
+                                        <img
+                                            src={kumar.image}
+                                            alt={kumar.title}
+                                            loading="lazy"
+                                            className="w-full h-full object-cover object-top grayscale-[20%]"
+                                        />
+                                    ) : (
+                                        <TrainerPlaceholder initials={kumar.initials} name={kumar.title} />
+                                    )}
+                                </div>
+
+                                <div className="w-full md:w-[60%] p-5 sm:p-8 md:p-10 flex flex-col justify-center">
+                                    <div className="mb-2 sm:mb-3">
+                                        <span className="text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[var(--primary)]/60 montserrat font-semibold">
+                                            Flame Fitness Studio
+                                        </span>
+                                    </div>
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-1 sm:mb-2">
+                                        {kumar.title}
+                                    </h2>
+                                    <p className="text-[var(--primary)] text-xs sm:text-sm poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
+                                        {kumar.subtitle}
+                                    </p>
+
+                                    <div className="mb-4 sm:mb-6 p-3.5 sm:p-4 bg-white/[0.03] border border-white/5 rounded-xl">
+                                        <h4 className="text-[10px] sm:text-xs text-white/40 uppercase tracking-widest montserrat mb-2">
+                                            About
+                                        </h4>
+                                        <p className="text-white/80 montserrat text-xs sm:text-sm leading-relaxed">
+                                            {kumar.description}
+                                        </p>
+                                    </div>
+
+                                    <div className="flex flex-wrap gap-2.5 sm:gap-3">
+                                        {kumar.certifications.map((item, index) => (
+                                            <div
+                                                key={index}
+                                                className="px-3.5 sm:px-4 py-1.5 sm:py-2 bg-[var(--primary)]/10 border border-[var(--primary)]/30 rounded-full"
+                                            >
+                                                <p className="text-[var(--primary)] text-[10px] sm:text-xs uppercase tracking-wider league-spartan font-bold">
+                                                    {item}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <button
+                                        onClick={() => setShowKumarProfile(false)}
                                         className="mt-6 sm:mt-8 w-full py-2.5 sm:py-3 bg-transparent border border-white/10 text-white/60 hover:text-white hover:border-white/30 font-bold rounded-xl transition-all duration-300 league-spartan uppercase tracking-wider text-xs sm:text-sm"
                                     >
                                         Close
