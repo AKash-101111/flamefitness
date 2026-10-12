@@ -111,11 +111,11 @@ export default function CustomCarousel() {
                                 Your browser does not support the video tag.
                             </video>
                             {/* OVERLAY */}
-                            <div className="absolute inset-0 flex flex-col justify-end pb-12 md:pb-[20vh] p-6 md:p-8 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white league-spartan mb-2">
+                            <div className="absolute inset-0 flex flex-col justify-end pb-12 md:pb-[16vh] p-6 md:p-8 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                                <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-normal">
                                     {slide.title}
                                 </h1>
-                                <p className="text-sm sm:text-lg md:text-xl text-white/80 max-w-2xl poiret leading-tight">
+                                <p className="text-xs sm:text-sm md:text-base text-white/80 max-w-xl poiret leading-relaxed">
                                     {slide.line}
                                 </p>
                             </div>

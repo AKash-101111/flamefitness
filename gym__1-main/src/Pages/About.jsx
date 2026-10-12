@@ -47,7 +47,7 @@ const About = () => {
                     <p className="text-white/40 poiret uppercase tracking-[0.3em] text-sm group-hover:text-white/70 transition-colors">Square Feet</p>
                 </div>
                 <div className="p-10 glass-card border border-white/10 rounded-[40px] hover:border-[var(--primary)]/50 transition-all duration-500 group shadow-lg hover:shadow-[0_0_30px_rgba(255,0,0,0.1)] hover:-translate-y-2">
-                    <h4 className="text-5xl font-black text-[var(--primary)] league-spartan mb-2 drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]">500+</h4>
+                    <h4 className="text-5xl font-black text-[var(--primary)] league-spartan mb-2 drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]">5000+</h4>
                     <p className="text-white/40 poiret uppercase tracking-[0.3em] text-sm group-hover:text-white/70 transition-colors">Happy Members</p>
                 </div>
             </div>

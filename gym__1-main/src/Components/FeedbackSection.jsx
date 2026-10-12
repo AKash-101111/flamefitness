@@ -5,7 +5,7 @@ import { FaStar, FaGoogle, FaExternalLinkAlt, FaHeart, FaDumbbell, FaMedal } fro
 // Read Google review link from single environment variable with fallback
 const GOOGLE_REVIEW_URL = 
     import.meta.env.VITE_GOOGLE_REVIEW || 
-    "https://search.google.com/local/writereview?placeid=ChIJf-flame-fitness-studio";
+    "https://www.google.com/search?q=flame+fitness+studio#lrd=0x3a52665b761f9173:0xb00b91c7d5664d2,3,,,,";
 
 const FeedbackSection = () => {
     const handleReviewClick = () => {
@@ -25,10 +25,10 @@ const FeedbackSection = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <h2 className="text-4xl md:text-6xl font-extrabold league-spartan text-white tracking-tighter uppercase mb-4">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight uppercase mb-4">
                             We Value Your <span className="gradient-text">Feedback</span>
                         </h2>
-                        <p className="poiret text-lg md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed">
+                        <p className="poiret text-sm sm:text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
                             Your experience fuels our passion. Share your journey with the Flame Fitness community on Google.
                         </p>
                     </motion.div>
@@ -39,7 +39,7 @@ const FeedbackSection = () => {
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="glass-card p-8 sm:p-12 md:p-16 primary-border shadow-[0_0_60px_rgba(255,0,0,0.08)] rounded-3xl text-center relative overflow-hidden"
+                    className="glass-card p-6 sm:p-10 md:p-14 primary-border shadow-[0_0_60px_rgba(255,0,0,0.08)] rounded-3xl text-center relative overflow-hidden"
                 >
                     {/* Subtle ambient light inside card */}
                     <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-64 bg-[var(--primary)]/15 rounded-full blur-3xl pointer-events-none" />
@@ -54,16 +54,16 @@ const FeedbackSection = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: 0.1 + star * 0.08 }}
                             >
-                                <FaStar className="w-8 h-8 md:w-10 md:h-10 text-[var(--primary)] drop-shadow-[0_0_15px_rgba(255,0,0,0.7)] fill-current" />
+                                <FaStar className="w-7 h-7 md:w-9 md:h-9 text-[var(--primary)] drop-shadow-[0_0_15px_rgba(255,0,0,0.7)] fill-current" />
                             </motion.div>
                         ))}
                     </div>
 
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-black league-spartan text-white uppercase tracking-wider mb-3">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white uppercase tracking-wide mb-3">
                         Loved Training With Us?
                     </h3>
 
-                    <p className="poiret text-white/80 text-base sm:text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+                    <p className="poiret text-white/80 text-sm sm:text-base md:text-lg max-w-lg mx-auto mb-8 leading-relaxed">
                         Take a quick moment to leave us a review on Google. It helps more athletes find their ultimate fitness home!
                     </p>
 
@@ -79,11 +79,11 @@ const FeedbackSection = () => {
                                 boxShadow: "0 0 50px rgba(255, 0, 0, 0.6)"
                             }}
                             whileTap={{ scale: 0.96 }}
-                            className="group relative inline-flex items-center justify-center gap-4 px-8 sm:px-12 py-5 bg-[var(--primary)] text-[#050505] font-black rounded-2xl league-spartan text-xl sm:text-2xl uppercase tracking-widest transition-all duration-300 shadow-[0_0_30px_rgba(255,0,0,0.35)] cursor-pointer"
+                            className="group relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 bg-[var(--primary)] text-[#050505] font-black rounded-2xl text-base sm:text-lg uppercase tracking-wider transition-all duration-300 shadow-[0_0_30px_rgba(255,0,0,0.35)] cursor-pointer"
                         >
-                            <FaGoogle className="text-2xl group-hover:rotate-12 transition-transform duration-300" />
+                            <FaGoogle className="text-xl group-hover:rotate-12 transition-transform duration-300" />
                             <span>Review Us</span>
-                            <FaExternalLinkAlt className="text-lg opacity-80 group-hover:translate-x-1 -translate-y-0.5 transition-transform duration-300" />
+                            <FaExternalLinkAlt className="text-sm opacity-80 group-hover:translate-x-1 -translate-y-0.5 transition-transform duration-300" />
                         </motion.a>
                     </div>
 

@@ -36,9 +36,9 @@ const HeroSection = () => {
           className="w-full flex justify-center"
         >
           <h1 className="hero-title text-white uppercase text-center">
-            <span className="inline-block whitespace-nowrap">Unleash Your</span>
+            <span className="inline-block whitespace-nowrap">Find your</span>
             <br />
-            <span className="gradient-text">Beast!</span>
+            <span className="gradient-text">Flame</span>
           </h1>
         </motion.div>
 
@@ -47,11 +47,11 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="poiret text-base sm:text-xl md:text-2xl text-white/80 max-w-2xl leading-relaxed px-4 m-0"
+          className="poiret text-sm sm:text-base md:text-lg text-white/80 max-w-xl leading-relaxed px-4 m-0"
         >
           Train Elite. Become Unstoppable.
           <br />
-          <span className="text-[var(--primary)]/80 league-spartan font-bold">FLAME</span> empowers every step of your fitness journey.
+          <span className="text-[var(--primary)] font-bold">FLAME</span> empowers every step of your fitness journey.
         </motion.p>
 
         {/* 4. CTA Button */}
@@ -59,13 +59,13 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 0, 0, 0.6)' }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(255, 0, 0, 0.6)' }}
+          whileTap={{ scale: 0.96 }}
           onClick={() => {
             const el = document.getElementById('membership-plans');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="px-8 sm:px-12 py-3.5 sm:py-4.5 bg-[var(--primary)] text-[#050505] font-black text-base sm:text-lg md:text-xl league-spartan uppercase tracking-widest rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,0,0,0.3)] m-0 w-[min(90%,280px)] sm:w-auto"
+          className="px-6 sm:px-10 py-3 sm:py-3.5 bg-[var(--primary)] text-[#050505] font-black text-sm sm:text-base md:text-lg uppercase tracking-wider rounded-full transition-all duration-300 cursor-pointer shadow-[0_0_20px_rgba(255,0,0,0.3)] m-0 w-[min(90%,280px)] sm:w-auto"
         >
           Start Your Journey
         </motion.button>

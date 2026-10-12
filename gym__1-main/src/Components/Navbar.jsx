@@ -40,7 +40,7 @@ const Navbar = () => {
                     <span
                         className="block text-white text-[10px] sm:text-sm md:text-base tracking-widest leading-none font-bold"
                         style={{
-                            fontFamily: "'Michroma', sans-serif",
+                            fontFamily: "'Audiowide', sans-serif",
                             textShadow: "0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4)",
                             background: "linear-gradient(180deg, #FFFFFF 0%, #FF4D4D 50%, #B20000 100%)",
                             WebkitBackgroundClip: "text",

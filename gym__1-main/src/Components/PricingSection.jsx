@@ -35,7 +35,7 @@ const PricingSection = () => {
                     <span className="mb-2 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">
                         Membership Plans
                     </span>
-                    <h2 className="mt-2 text-4xl md:text-6xl font-extrabold text-white leading-tight league-spartan uppercase tracking-tighter">
+                    <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight uppercase tracking-tight">
                         Unleash Your <span className="gradient-text">Ultimate Power</span>
                     </h2>
                     <p className="mt-4 text-lg md:text-xl text-white/50 max-w-2xl mx-auto poiret px-4 italic">
@@ -218,33 +218,33 @@ const PricingCard = ({
                 ${active ? 'border-[var(--primary)] shadow-[0_0_80px_rgba(255,0,0,0.25)] primary-shimmer-border' : 'border-white/10 hover:border-[var(--primary)]/40'}`}>
                 
                 {active && (
-                    <div className="absolute top-0 right-0 bg-[var(--primary)] text-[#050505] px-6 py-1.5 text-xs font-black rounded-bl-2xl league-spartan uppercase tracking-tighter primary-pulse">
+                    <div className="absolute top-0 right-0 bg-[var(--primary)] text-[#050505] px-4 py-1 text-[10px] sm:text-xs font-black rounded-bl-2xl uppercase tracking-wider primary-pulse">
                         Most Popular
                     </div>
                 )}
 
                 <div>
-                    <span className="mb-4 block text-lg font-bold text-[var(--primary)] uppercase tracking-widest league-spartan">{type}</span>
+                    <span className="mb-3 block text-base sm:text-lg font-bold text-[var(--primary)] uppercase tracking-wider">{type}</span>
 
                     <div className="mb-6">
-                        <div className={`flex flex-wrap items-baseline gap-x-2 font-black league-spartan ${active ? 'text-white' : 'text-white/90'}`}>
-                            <span className="text-3xl min-[360px]:text-4xl sm:text-4xl lg:text-[42px] xl:text-5xl font-black whitespace-nowrap tracking-tight">
+                        <div className={`flex flex-wrap items-baseline gap-x-2 font-black ${active ? 'text-white' : 'text-white/90'}`}>
+                            <span className="text-2xl min-[360px]:text-3xl sm:text-3xl lg:text-[34px] xl:text-4xl font-black whitespace-nowrap tracking-tight">
                                 {price}
                             </span>
-                            <span className="text-base sm:text-lg font-medium text-white/40 poiret italic whitespace-nowrap">
+                            <span className="text-sm sm:text-base font-medium text-white/40 poiret italic whitespace-nowrap">
                                 / {subscription}
                             </span>
                         </div>
                     </div>
 
-                    <p className="mb-8 text-white/50 poiret text-base sm:text-lg h-12 leading-tight">{description}</p>
+                    <p className="mb-6 text-white/50 poiret text-sm sm:text-base min-h-[3rem] leading-relaxed">{description}</p>
 
-                    <div className="mb-10 flex flex-col gap-4">{children}</div>
+                    <div className="mb-8 flex flex-col gap-3">{children}</div>
                 </div>
 
                 <button 
                     onClick={onJoinClick}
-                    className={`w-full rounded-2xl py-4 sm:py-5 text-lg sm:text-xl font-black league-spartan uppercase tracking-widest transition-all duration-500 cursor-pointer mt-auto
+                    className={`w-full rounded-2xl py-3.5 sm:py-4 text-base sm:text-lg font-black uppercase tracking-wider transition-all duration-500 cursor-pointer mt-auto
                         ${active 
                             ? "bg-[var(--primary)] text-[#050505] hover:shadow-[0_0_40px_rgba(255,0,0,0.6)]" 
                             : "border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-[#050505]"}`}

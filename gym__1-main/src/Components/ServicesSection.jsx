@@ -269,7 +269,7 @@ const TrainerCard = ({ trainer, reverse, onViewProfile, stats }) => {
 
             {/* Content Section */}
             <div className="w-full md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-center relative z-10 bg-[#050505]/80 backdrop-blur-md">
-                <h3 className="text-2xl sm:text-3xl md:text-5xl font-black text-white league-spartan uppercase tracking-tight sm:tracking-tighter mb-2">
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white uppercase tracking-tight mb-2 break-normal">
                     {trainer.title}
                 </h3>
                 <p className="text-[var(--primary)] text-sm sm:text-base md:text-lg poiret font-bold tracking-widest uppercase mb-4 sm:mb-6">
@@ -498,7 +498,7 @@ const ServicesSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-3xl sm:text-5xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-4 sm:mb-6 text-center uppercase"
+                    className="text-2xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-tight mb-4 sm:mb-6 text-center uppercase"
                 >
                     MANAGING <span className="gradient-text">DIRECTOR</span>
                 </motion.h1>
@@ -536,7 +536,7 @@ const ServicesSection = () => {
 
             {/* ── Our Trainers Section ──────────────────────────────────────── */}
             <div className="w-full flex flex-col items-center mt-16 sm:mt-24 px-4">
-                <h1 className="text-3xl sm:text-5xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-10 sm:mb-16 text-center">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-tight mb-10 sm:mb-16 text-center">
                     Our <span className="gradient-text">Trainers</span>
                 </h1>
 

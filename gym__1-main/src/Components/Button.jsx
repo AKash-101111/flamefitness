@@ -20,14 +20,16 @@ const Button = ({ onClick }) => {
 
 const StyledWrapper = styled.div`
   .animated-button {
-    font-family: "Poiret One", sans-serif;
+    font-family: 'Audiowide', sans-serif;
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 7px 30px;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 8px 36px;
     border: 0.5px solid transparent;
-    font-size: 18px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
     background-color: inherit;
     border-radius: 12px;
     font-weight: 600;
@@ -40,13 +42,13 @@ const StyledWrapper = styled.div`
 
   .animated-button svg {
     position: absolute;
-    width: 24px;
+    width: 20px;
     fill: var(--primary);
     z-index: 9;
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .animated-button .arr-1 { right: 16px; }
+  .animated-button .arr-1 { right: 12px; }
   .animated-button .arr-2 { left: -25%; }
 
   .animated-button .circle {
@@ -65,7 +67,7 @@ const StyledWrapper = styled.div`
   .animated-button .text {
     position: relative;
     z-index: 1;
-    transform: translateX(-12px);
+    transform: translateX(-8px);
     transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
@@ -76,8 +78,8 @@ const StyledWrapper = styled.div`
   }
 
   .animated-button:hover .arr-1 { right: -25%; }
-  .animated-button:hover .arr-2 { left: 16px; }
-  .animated-button:hover .text { transform: translateX(12px); }
+  .animated-button:hover .arr-2 { left: 12px; }
+  .animated-button:hover .text { transform: translateX(8px); }
   .animated-button:hover svg { fill: #050505; }
   .animated-button:active { scale: 0.95; box-shadow: 0 0 0 4px var(--primary); }
   .animated-button:hover .circle { width: 220px; height: 220px; opacity: 1; }
