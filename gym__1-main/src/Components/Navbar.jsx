@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
 import JoinForm from "./JoinForm";
@@ -9,7 +9,17 @@ import { AnimatePresence, motion } from "framer-motion";
 const Navbar = () => {
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const whatsappUrl = "https://wa.me/919940530733?text=Hi!%20I'm%20interested%20in%20joining%20Flame%20Fitness%20Studio%20and%20would%20like%20to%20know%20more%20about%20the%20membership%20plans%20and%20available%20facilities.";
     const instagramUrl = "https://www.instagram.com/flamefitnessstudio_tnagar?igsh=b3JtdncxOTF5bmti";
@@ -27,22 +37,22 @@ const Navbar = () => {
     return (
         <>
             <nav
-                className="
-                w-[95%] h-16
-                flex items-center px-4 sm:px-6
-                rounded-2xl
-                sticky top-3 z-50
-                mx-auto
-                bg-black/40
-                backdrop-blur-md
-                border border-white/10
-                shadow-[0_4px_30px_rgba(0,0,0,0.5)]
-            "
+                className={`
+                    w-[95%] max-w-7xl h-16
+                    flex items-center px-4 sm:px-6
+                    rounded-2xl
+                    fixed top-3 left-1/2 -translate-x-1/2 z-50
+                    transition-all duration-300
+                    ${scrolled 
+                        ? "bg-black/80 backdrop-blur-2xl border border-white/15 shadow-[0_8px_32px_rgba(0,0,0,0.8),0_0_15px_rgba(255,0,0,0.15)]" 
+                        : "bg-black/45 backdrop-blur-md border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+                    }
+                `}
             >
-                <Link to="/" className="flex items-center gap-3">
-                    <img src="/images/flamelogo.svg" alt="Flame Fitness Logo" className="h-10 md:h-12 w-auto object-contain rounded-lg" />
+                <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink min-w-0">
+                    <img src="/images/flamelogo.svg" alt="Flame Fitness Logo" className="h-9 sm:h-10 md:h-12 w-auto object-contain rounded-lg shrink-0" />
                     <span
-                        className="block text-white text-[10px] sm:text-sm md:text-base tracking-widest leading-none font-bold"
+                        className="block text-white text-[9px] min-[380px]:text-[11px] sm:text-sm md:text-base tracking-wider sm:tracking-widest leading-none font-bold truncate max-w-[120px] min-[380px]:max-w-[170px] sm:max-w-none"
                         style={{
                             fontFamily: "'Handel Gothic', 'HandelGothic BT', sans-serif",
                             textShadow: "0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4)",
@@ -83,7 +93,8 @@ const Navbar = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="WhatsApp"
-                            className="w-9 h-9 rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] hover:bg-[var(--primary)]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+                            className="w-9 h-9 shrink-0 aspect-square rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] hover:bg-[var(--primary)]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+                            style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', borderRadius: '9999px', aspectRatio: '1 / 1' }}
                         >
                             <FaWhatsapp size={17} />
                         </a>
@@ -92,7 +103,8 @@ const Navbar = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Instagram"
-                            className="w-9 h-9 rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] hover:bg-[var(--primary)]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+                            className="w-9 h-9 shrink-0 aspect-square rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] hover:bg-[var(--primary)]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] transition-all duration-300 hover:scale-105 active:scale-95"
+                            style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', borderRadius: '9999px', aspectRatio: '1 / 1' }}
                         >
                             <FaInstagram size={17} />
                         </a>
@@ -102,27 +114,29 @@ const Navbar = () => {
                 </div>
 
                 {/* MOBILE SOCIAL ICONS & MENU TOGGLE */}
-                <div className="ml-auto md:hidden flex items-center gap-2">
+                <div className="ml-auto md:hidden flex items-center gap-2 shrink-0">
                     <a
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="WhatsApp"
-                        className="w-8 h-8 rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] transition-all duration-300"
+                        className="w-9 h-9 shrink-0 aspect-square rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] hover:bg-[var(--primary)]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] transition-all duration-300 active:scale-95"
+                        style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', borderRadius: '9999px', aspectRatio: '1 / 1' }}
                     >
-                        <FaWhatsapp size={15} />
+                        <FaWhatsapp size={17} />
                     </a>
                     <a
                         href={instagramUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Instagram"
-                        className="w-8 h-8 rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] transition-all duration-300"
+                        className="w-9 h-9 shrink-0 aspect-square rounded-full flex items-center justify-center bg-[#151515] border border-white/15 text-white/80 hover:text-white hover:border-[var(--primary)] hover:bg-[var(--primary)]/10 hover:shadow-[0_0_15px_rgba(255,0,0,0.4)] transition-all duration-300 active:scale-95"
+                        style={{ width: '36px', height: '36px', minWidth: '36px', minHeight: '36px', borderRadius: '9999px', aspectRatio: '1 / 1' }}
                     >
-                        <FaInstagram size={15} />
+                        <FaInstagram size={17} />
                     </a>
                     <button
-                        className="text-[var(--primary)] cursor-pointer p-1 ml-1"
+                        className="text-[var(--primary)] cursor-pointer p-1 ml-0.5 shrink-0"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -130,6 +144,9 @@ const Navbar = () => {
                     </button>
                 </div>
             </nav>
+
+            {/* Flow spacer so sections and hero maintain exact 100vh viewport alignment */}
+            <div id="nav-flow-spacer" className="w-full h-16 sm:h-[4.5rem] shrink-0 pointer-events-none" aria-hidden="true" />
 
             {/* ─────────────────────────────────────────────────────────────
                 MOBILE FULLSCREEN MENU OVERLAY

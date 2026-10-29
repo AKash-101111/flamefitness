@@ -25,7 +25,7 @@ const PricingSection = () => {
     }, [billingCycle]);
 
     return (
-        <section id="membership-plans" className="relative z-10 overflow-hidden pb-16 pt-20 lg:pb-[120px] lg:pt-[140px] bg-transparent">
+        <section id="membership-plans" className="w-full min-h-[calc(100vh-5rem)] flex flex-col justify-center relative z-10 overflow-hidden py-16 sm:py-24 scroll-mt-24 bg-transparent">
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--primary)]/5 rounded-full blur-[100px] -z-10" />
 

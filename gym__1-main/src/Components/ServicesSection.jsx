@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { MorphingText } from './MorphingText';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -429,6 +429,30 @@ const ServicesSection = () => {
     const [showKumarProfile, setShowKumarProfile] = useState(false);
     const [selectedCertificate, setSelectedCertificate] = useState(null);
 
+    const isAnyModalOpen = Boolean(
+        showHeadCoachProfile ||
+        showSathyaProfile ||
+        showVijayProfile ||
+        showBaluProfile ||
+        showPrawinProfile ||
+        showKumarProfile ||
+        selectedCertificate
+    );
+
+    useEffect(() => {
+        if (isAnyModalOpen) {
+            document.body.style.overflow = 'hidden';
+            document.body.dataset.modalOpen = 'true';
+        } else {
+            document.body.style.overflow = '';
+            delete document.body.dataset.modalOpen;
+        }
+        return () => {
+            document.body.style.overflow = '';
+            delete document.body.dataset.modalOpen;
+        };
+    }, [isAnyModalOpen]);
+
     const texts = [
         'Air Conditioning',
         'Changing Room',
@@ -439,7 +463,7 @@ const ServicesSection = () => {
     ];
 
     return (
-        <div className="w-full flex flex-col items-center py-8 my-10 overflow-x-hidden max-w-full">
+        <div className="w-full flex flex-col items-center overflow-x-hidden max-w-full">
             {/* ── Equipment ─────────────────────────────────────────────── */}
             <h1 className="text-4xl md:text-6xl text-white league-spartan font-extrabold tracking-tighter mb-8 md:mb-0">
                 Equipment
@@ -596,7 +620,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowHeadCoachProfile(false)}
                     >
                         <motion.div
@@ -794,7 +818,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowSathyaProfile(false)}
                     >
                         <motion.div
@@ -862,7 +886,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-4 md:p-8 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowBaluProfile(false)}
                     >
                         <motion.div
@@ -1007,7 +1031,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowVijayProfile(false)}
                     >
                         <motion.div
@@ -1096,7 +1120,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowPrawinProfile(false)}
                     >
                         <motion.div
@@ -1186,7 +1210,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-4 bg-black/90 backdrop-blur-xl overflow-y-auto min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setShowKumarProfile(false)}
                     >
                         <motion.div
@@ -1276,7 +1300,7 @@ const ServicesSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="modal-overlay fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-4 bg-black/95 backdrop-blur-2xl min-h-[100dvh] w-screen overflow-x-hidden"
+                        className="modal-overlay fixed inset-0 z-[260] flex items-center justify-center p-3 sm:p-4 bg-black/95 backdrop-blur-2xl min-h-[100dvh] w-screen overflow-x-hidden"
                         onClick={() => setSelectedCertificate(null)}
                     >
                         <motion.div

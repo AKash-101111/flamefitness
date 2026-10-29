@@ -31,7 +31,7 @@ const App = () => {
 
         <Navbar />
         
-        <main className="w-full flex-grow relative z-10">
+        <main className="w-full flex-grow relative">
           <Suspense fallback={<RouteLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />

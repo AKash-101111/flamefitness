@@ -13,7 +13,7 @@ const FeedbackSection = () => {
     };
 
     return (
-        <section className="w-full py-16 md:py-28 bg-transparent relative overflow-hidden">
+        <section id="feedback-section" className="w-full min-h-[calc(100vh-5rem)] flex flex-col justify-center py-16 md:py-24 bg-transparent relative overflow-hidden scroll-mt-24">
             {/* Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-[var(--primary)]/10 rounded-full blur-[140px] pointer-events-none" />
 

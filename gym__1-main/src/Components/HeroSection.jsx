@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full hero-fullscreen mb-6 overflow-hidden flex items-center justify-center">
+    <section id="hero-section" className="relative w-full hero-fullscreen overflow-hidden flex items-center justify-center scroll-mt-24">
       {/* Background Video - Scaled to crop bottom-right watermark */}
       <video
         autoPlay
@@ -87,7 +87,7 @@ const HeroSection = () => {
           </svg>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

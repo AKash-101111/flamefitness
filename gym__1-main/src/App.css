@@ -40,6 +40,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   scrollbar-width: thin;
   scrollbar-color: var(--primary) #111;
   /* Prevent horizontal scroll at root level */
@@ -435,4 +436,17 @@ button, input, textarea, select {
   footer {
     padding-bottom: max(3rem, env(safe-area-inset-bottom));
   }
+}
+
+/* ---------- Section & Subsection Scroll Alignment ---------- */
+section, [data-section] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* ---------- Hide Fixed Navbar When Any Modal Is Open ---------- */
+body[data-modal-open="true"] nav {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate(-50%, -20px) scale(0.95) !important;
+  transition: all 0.25s ease-in-out !important;
 }

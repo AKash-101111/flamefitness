@@ -93,7 +93,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
     return (
-        <section className="w-full py-20 md:py-28 overflow-hidden bg-transparent relative">
+        <section id="testimonials-section" className="w-full min-h-[calc(100vh-5rem)] flex flex-col justify-center py-16 md:py-24 overflow-hidden bg-transparent relative scroll-mt-24">
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-[var(--primary)]/5 rounded-full blur-[140px] pointer-events-none -z-10" />
 

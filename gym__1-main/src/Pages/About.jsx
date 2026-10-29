@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className="w-full min-h-screen pt-24 sm:pt-32 pb-20 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col items-center">
+        <div className="w-full min-h-screen pt-10 sm:pt-16 pb-20 scroll-mt-24 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col items-center">
             <h1 className="text-5xl md:text-7xl font-extrabold league-spartan text-white mb-12 tracking-tighter text-center uppercase">
                 Our <span className="gradient-text">Story</span>
             </h1>
