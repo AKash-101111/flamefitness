@@ -150,7 +150,7 @@ const VariableProximity = forwardRef((props, ref) => {
             onClick={onClick}
             style={{
                 display: 'inline',
-                fontFamily: '"Audiowide", sans-serif',
+                fontFamily: '"Handel Gothic", "HandelGothic BT", sans-serif',
                 ...style
             }}
             className={className}

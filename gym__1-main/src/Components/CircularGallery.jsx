@@ -287,7 +287,7 @@ class App {
             bend,
             textColor = '#ffffff',
             borderRadius = 0,
-            font = 'bold 30px Audiowide',
+            font = 'bold 30px "Handel Gothic", "HandelGothic BT", sans-serif',
             scrollSpeed = 2,
             scrollEase = 0.05
         } = {}
@@ -471,7 +471,7 @@ export default function CircularGallery({
     bend = 3,
     textColor = '#ffffff',
     borderRadius = 0.05,
-    font = 'bold 30px Audiowide',
+    font = 'bold 30px "Handel Gothic", "HandelGothic BT", sans-serif',
     scrollSpeed = 2,
     scrollEase = 0.05
 }) {

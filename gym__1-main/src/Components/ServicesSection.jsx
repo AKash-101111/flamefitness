@@ -561,25 +561,25 @@ const ServicesSection = () => {
                         ]}
                     />
 
-                    {/* ── 4. Prawin K — Certified Fitness Instructor (Image Left on Desktop, Top on Mobile) ── */}
-                    <TrainerCard
-                        trainer={prawin}
-                        reverse={false}
-                        onViewProfile={() => setShowPrawinProfile(true)}
-                        stats={[
-                            { value: prawin.certifications.length, label: 'Certifications', accent: true },
-                            { value: 'CFI', label: 'Credential' },
-                        ]}
-                    />
-
-                    {/* ── 5. Kumar — Fitness Trainer (Image Right on Desktop, Top on Mobile) ── */}
+                    {/* ── 4. Kumar — Fitness Trainer (Image Left on Desktop, Top on Mobile) ── */}
                     <TrainerCard
                         trainer={kumar}
-                        reverse={true}
+                        reverse={false}
                         onViewProfile={() => setShowKumarProfile(true)}
                         stats={[
                             { value: kumar.certifications.length, label: 'Certifications', accent: true },
                             { value: 'Coach', label: 'Role' },
+                        ]}
+                    />
+
+                    {/* ── 5. Prawin K — Certified Fitness Instructor (Image Right on Desktop, Top on Mobile) ── */}
+                    <TrainerCard
+                        trainer={prawin}
+                        reverse={true}
+                        onViewProfile={() => setShowPrawinProfile(true)}
+                        stats={[
+                            { value: prawin.certifications.length, label: 'Certifications', accent: true },
+                            { value: 'CFI', label: 'Credential' },
                         ]}
                     />
                 </div>

@@ -20,7 +20,7 @@ const Button = ({ onClick }) => {
 
 const StyledWrapper = styled.div`
   .animated-button {
-    font-family: 'Audiowide', sans-serif;
+    font-family: 'Handel Gothic', 'HandelGothic BT', sans-serif;
     position: relative;
     display: inline-flex;
     align-items: center;
