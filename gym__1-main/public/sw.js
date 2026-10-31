@@ -1,11 +1,9 @@
-const CACHE_NAME = 'flame-fitness-v4';
-const STATIC_CACHE = 'flame-static-v4';
-const IMAGE_CACHE = 'flame-images-v4';
+const CACHE_NAME = 'flame-fitness-v5';
+const STATIC_CACHE = 'flame-static-v5';
+const IMAGE_CACHE = 'flame-images-v5';
 
-// Core app shell - must be small and reliable
+// Core app shell - only truly static manifests (never cache index.html here)
 const APP_SHELL = [
-  '/',
-  '/index.html',
   '/manifest.json',
 ];
 
@@ -38,7 +36,7 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// --- ACTIVATE: Clean up old caches ---
+// --- ACTIVATE: Clean up all old caches immediately ---
 self.addEventListener('activate', (event) => {
   const VALID_CACHES = [CACHE_NAME, STATIC_CACHE, IMAGE_CACHE];
   event.waitUntil(
@@ -59,10 +57,32 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(event.request.url);
 
-  // Skip non-same-origin requests (e.g. Google Fonts CDN, pravatar)
+  // Skip non-same-origin requests (e.g. Google Fonts CDN, external images)
   if (url.origin !== self.location.origin) return;
 
-  // Images: Cache-first, fallback to network
+  // 1. HTML navigation: Always Network-first so deployments are seen immediately
+  if (event.request.mode === 'navigate' || event.request.destination === 'document' || url.pathname.endsWith('.html') || url.pathname === '/') {
+    event.respondWith(
+      (async () => {
+        try {
+          const networkResponse = await fetch(event.request);
+          if (networkResponse && networkResponse.ok) {
+            const cache = await caches.open(STATIC_CACHE);
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          }
+          return networkResponse;
+        } catch (err) {
+          const cache = await caches.open(STATIC_CACHE);
+          const cached = await cache.match(event.request);
+          return cached || new Response('Offline', { status: 503, headers: { 'Content-Type': 'text/plain' } });
+        }
+      })()
+    );
+    return;
+  }
+
+  // 2. Images: Cache-first, fallback to network
   if (/\.(jpg|jpeg|png|gif|webp|svg|ico)$/i.test(url.pathname)) {
     event.respondWith(
       caches.open(IMAGE_CACHE).then(async (cache) => {
@@ -80,35 +100,25 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // JS / CSS assets: Network-first, fallback to cache
+  // 3. JS / CSS hashed assets: Network-first, only cache successful responses
   if (/\.(js|css)$/i.test(url.pathname)) {
     event.respondWith(
       (async () => {
-        const cache = await caches.open(STATIC_CACHE);
         try {
           const response = await fetch(event.request);
-          if (response.ok) cache.put(event.request, response.clone());
+          if (response.ok) {
+            const cache = await caches.open(STATIC_CACHE);
+            cache.put(event.request, response.clone());
+            return response;
+          }
           return response;
         } catch {
-          return cache.match(event.request) || new Response('', { status: 503 });
+          const cache = await caches.open(STATIC_CACHE);
+          const cached = await cache.match(event.request);
+          return cached || new Response('', { status: 503 });
         }
       })()
     );
     return;
   }
-
-  // HTML navigation: Stale-while-revalidate
-  event.respondWith(
-    (async () => {
-      const cache = await caches.open(STATIC_CACHE);
-      const cached = await cache.match(event.request);
-      const fetchPromise = fetch(event.request)
-        .then((response) => {
-          if (response.ok) cache.put(event.request, response.clone());
-          return response;
-        })
-        .catch(() => cached);
-      return cached || fetchPromise;
-    })()
-  );
 });
