@@ -1,6 +1,10 @@
 import React from 'react';
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const About = () => {
+    const whatsappUrl = "https://wa.me/919940530733?text=Hi!%20I'm%20interested%20in%20joining%20Flame%20Fitness%20Studio%20and%20would%20like%20to%20know%20more%20about%20the%20membership%20plans%20and%20available%20facilities.";
+    const instagramUrl = "https://www.instagram.com/flamefitnessstudio_tnagar?igsh=b3JtdncxOTF5bmti";
+
     return (
         <div className="w-full min-h-screen pt-10 sm:pt-16 pb-20 scroll-mt-24 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col items-center">
             <h1 className="text-5xl md:text-7xl font-extrabold league-spartan text-white mb-12 tracking-tighter text-center uppercase">
@@ -49,6 +53,31 @@ const About = () => {
                 <div className="p-10 glass-card border border-white/10 rounded-[40px] hover:border-[var(--primary)]/50 transition-all duration-500 group shadow-lg hover:shadow-[0_0_30px_rgba(255,0,0,0.1)] hover:-translate-y-2">
                     <h4 className="text-5xl font-black text-[var(--primary)] league-spartan mb-2 drop-shadow-[0_0_10px_rgba(255,0,0,0.3)]">5000+</h4>
                     <p className="text-white/40 poiret uppercase tracking-[0.3em] text-sm group-hover:text-white/70 transition-colors">Happy Members</p>
+                </div>
+            </div>
+
+            {/* Follow Our Journey Social Connect */}
+            <div className="mt-20 flex flex-col items-center gap-6">
+                <p className="text-white/40 poiret uppercase tracking-[0.3em] text-sm text-center">Follow Our Journey & Join the Community</p>
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                    <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-8 py-4 glass-card border border-white/10 hover:border-[var(--primary)]/50 rounded-full transition-all group hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                    >
+                        <FaWhatsapp className="text-[var(--primary)] text-2xl group-hover:scale-110 transition-transform" />
+                        <span className="text-white/80 group-hover:text-white montserrat text-sm font-semibold tracking-wider uppercase">Chat on WhatsApp</span>
+                    </a>
+                    <a
+                        href={instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-8 py-4 glass-card border border-white/10 hover:border-[var(--primary)]/50 rounded-full transition-all group hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                    >
+                        <FaInstagram className="text-[var(--primary)] text-2xl group-hover:scale-110 transition-transform" />
+                        <span className="text-white/80 group-hover:text-white montserrat text-sm font-semibold tracking-wider uppercase">Follow on Instagram</span>
+                    </a>
                 </div>
             </div>
         </div>

@@ -137,6 +137,8 @@ const Footer = () => {
                             <motion.a
                                 key={idx}
                                 href={social.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ 
                                     scale: 1.15, 
                                     translateY: -8,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
@@ -10,6 +10,9 @@ const Contact = () => {
         phone: '',
         message: ''
     });
+
+    const whatsappUrl = "https://wa.me/919940530733?text=Hi!%20I'm%20interested%20in%20joining%20Flame%20Fitness%20Studio%20and%20would%20like%20to%20know%20more%20about%20the%20membership%20plans%20and%20available%20facilities.";
+    const instagramUrl = "https://www.instagram.com/flamefitnessstudio_tnagar?igsh=b3JtdncxOTF5bmti";
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,10 +34,10 @@ const Contact = () => {
             `📱 *Phone:* ${formData.phone.trim()}\n` +
             `💬 *Enquiry:* ${formData.message.trim()}`;
 
-        const whatsappUrl = `https://wa.me/919940530733?text=${encodeURIComponent(messageText)}`;
+        const enquiryUrl = `https://wa.me/919940530733?text=${encodeURIComponent(messageText)}`;
 
         setTimeout(() => {
-            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            window.open(enquiryUrl, '_blank', 'noopener,noreferrer');
             setStatus('success');
             setFormData({
                 name: '',
@@ -229,6 +232,31 @@ const Contact = () => {
                             </motion.form>
                         )}
                     </AnimatePresence>
+                </div>
+            </div>
+
+            {/* Social Connect Strip */}
+            <div className="mt-16 w-full flex flex-col items-center gap-6">
+                <p className="text-white/40 poiret uppercase tracking-[0.3em] text-sm text-center">Connect With Us On Social Handles</p>
+                <div className="flex flex-wrap items-center justify-center gap-6">
+                    <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-8 py-4 glass-card border border-white/10 hover:border-[var(--primary)]/50 rounded-full transition-all group hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                    >
+                        <FaWhatsapp className="text-[var(--primary)] text-2xl group-hover:scale-110 transition-transform" />
+                        <span className="text-white/80 group-hover:text-white montserrat text-sm font-semibold tracking-wider uppercase">WhatsApp Us</span>
+                    </a>
+                    <a
+                        href={instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-8 py-4 glass-card border border-white/10 hover:border-[var(--primary)]/50 rounded-full transition-all group hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.5)]"
+                    >
+                        <FaInstagram className="text-[var(--primary)] text-2xl group-hover:scale-110 transition-transform" />
+                        <span className="text-white/80 group-hover:text-white montserrat text-sm font-semibold tracking-wider uppercase">Follow on Instagram</span>
+                    </a>
                 </div>
             </div>
         </div>
